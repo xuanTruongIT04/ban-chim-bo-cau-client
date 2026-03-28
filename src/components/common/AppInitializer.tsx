@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import type { ReactNode } from 'react';
-import { axiosInstance } from '../../api/axiosInstance';
+import { authApi } from '../../api/authApi';
 import { useAuthStore } from '../../stores/authStore';
-import type { UserProfile } from '../../types/api';
 
 interface AppInitializerProps {
   children: ReactNode;
@@ -22,10 +21,10 @@ export function AppInitializer({ children }: AppInitializerProps) {
     }
 
     // Token exists — validate it and load user profile
-    axiosInstance
-      .get<UserProfile>('/api/me')
-      .then((response) => {
-        setUser(response.data);
+    authApi
+      .getMe()
+      .then((user) => {
+        setUser(user);
       })
       .catch(() => {
         // Token invalid/expired — clear auth so user gets redirected
