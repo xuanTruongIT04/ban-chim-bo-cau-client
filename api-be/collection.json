@@ -1,0 +1,814 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/127.0.0.1:8000"
+        }
+    ],
+    "info": {
+        "name": "Ban Chim B\u1ed3 C\u00e2u \u2014 API Documentation",
+        "_postman_id": "b2aa4c43-9feb-4101-8295-822b61328219",
+        "description": "Backend API cho h\u1ec7 th\u1ed1ng b\u00e1n gia c\u1ea7m & th\u00fa nu\u00f4i. H\u1ed7 tr\u1ee3 qu\u1ea3n l\u00fd s\u1ea3n ph\u1ea9m, t\u1ed3n kho, \u0111\u01a1n h\u00e0ng.",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Admin > Danh m\u1ee5c",
+            "description": "\nQu\u1ea3n l\u00fd danh m\u1ee5c s\u1ea3n ph\u1ea9m (max 2 c\u1ea5p)",
+            "item": [
+                {
+                    "name": "GET api\/v1\/admin\/categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/categories"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"code\":\"UNAUTHENTICATED\",\"message\":\"B\\u1ea1n ch\\u01b0a \\u0111\\u0103ng nh\\u1eadp.\",\"errors\":{}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/admin\/categories",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/categories",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/categories"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"b\",\"slug\":\"n\",\"parent_id\":16,\"description\":\"Et animi quos velit et fugiat.\",\"sort_order\":42,\"is_active\":false}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/v1\/admin\/categories\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/categories\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/categories\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "architecto",
+                                    "description": "The ID of the category."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"code\":\"UNAUTHENTICATED\",\"message\":\"B\\u1ea1n ch\\u01b0a \\u0111\\u0103ng nh\\u1eadp.\",\"errors\":{}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/v1\/admin\/categories\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/categories\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/categories\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "architecto",
+                                    "description": "The ID of the category."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"b\",\"slug\":\"n\",\"parent_id\":16,\"description\":\"Et animi quos velit et fugiat.\",\"sort_order\":42,\"is_active\":true}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/v1\/admin\/categories\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/categories\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/categories\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "architecto",
+                                    "description": "The ID of the category."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Admin > S\u1ea3n ph\u1ea9m",
+            "description": "\nCRUD s\u1ea3n ph\u1ea9m v\u00e0 toggle tr\u1ea1ng th\u00e1i active",
+            "item": [
+                {
+                    "name": "GET api\/v1\/admin\/products",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/products"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"code\":\"UNAUTHENTICATED\",\"message\":\"B\\u1ea1n ch\\u01b0a \\u0111\\u0103ng nh\\u1eadp.\",\"errors\":{}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/admin\/products",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/products"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"price_vnd\":42,\"unit_type\":\"con\",\"category_id\":16,\"stock_quantity\":39,\"is_active\":false}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/v1\/admin\/products\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/products\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/products\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "architecto",
+                                    "description": "The ID of the product."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"code\":\"UNAUTHENTICATED\",\"message\":\"B\\u1ea1n ch\\u01b0a \\u0111\\u0103ng nh\\u1eadp.\",\"errors\":{}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/v1\/admin\/products\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/products\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/products\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "architecto",
+                                    "description": "The ID of the product."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"b\",\"description\":\"Et animi quos velit et fugiat.\",\"price_vnd\":42,\"unit_type\":\"kg\",\"category_id\":16,\"is_active\":true}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/v1\/admin\/products\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/products\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/products\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "architecto",
+                                    "description": "The ID of the product."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PATCH api\/v1\/admin\/products\/{product}\/toggle-active",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/products\/:product\/toggle-active",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/products\/:product\/toggle-active",
+                            "variable": [
+                                {
+                                    "id": "product",
+                                    "key": "product",
+                                    "value": "architecto",
+                                    "description": "The product."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Admin > T\u1ed3n kho",
+            "description": "\n\u0110i\u1ec1u ch\u1ec9nh t\u1ed3n kho v\u00e0 xem l\u1ecbch s\u1eed thay \u0111\u1ed5i",
+            "item": [
+                {
+                    "name": "GET api\/v1\/admin\/products\/{product_id}\/stock-adjustments",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/products\/:product_id\/stock-adjustments",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/products\/:product_id\/stock-adjustments",
+                            "variable": [
+                                {
+                                    "id": "product_id",
+                                    "key": "product_id",
+                                    "value": "architecto",
+                                    "description": "The ID of the product."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"code\":\"UNAUTHENTICATED\",\"message\":\"B\\u1ea1n ch\\u01b0a \\u0111\\u0103ng nh\\u1eadp.\",\"errors\":{}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/admin\/products\/{product_id}\/stock-adjustments",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/products\/:product_id\/stock-adjustments",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/products\/:product_id\/stock-adjustments",
+                            "variable": [
+                                {
+                                    "id": "product_id",
+                                    "key": "product_id",
+                                    "value": "architecto",
+                                    "description": "The ID of the product."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"delta\":4326.41688,\"adjustment_type\":\"kiem_ke\",\"note\":\"m\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Admin > \u1ea2nh s\u1ea3n ph\u1ea9m",
+            "description": "\nUpload, \u0111\u1eb7t \u1ea3nh ch\u00ednh, x\u00f3a \u1ea3nh s\u1ea3n ph\u1ea9m (l\u01b0u tr\u00ean S3)",
+            "item": [
+                {
+                    "name": "PATCH api\/v1\/admin\/products\/{product}\/images\/{image}\/primary",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/products\/:product\/images\/:image\/primary",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/products\/:product\/images\/:image\/primary",
+                            "variable": [
+                                {
+                                    "id": "product",
+                                    "key": "product",
+                                    "value": "architecto",
+                                    "description": "The product."
+                                },
+                                {
+                                    "id": "image",
+                                    "key": "image",
+                                    "value": "architecto",
+                                    "description": "The image."
+                                }
+                            ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/v1\/admin\/products\/{product_id}\/images\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/products\/:product_id\/images\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/products\/:product_id\/images\/:id",
+                            "variable": [
+                                {
+                                    "id": "product_id",
+                                    "key": "product_id",
+                                    "value": "architecto",
+                                    "description": "The ID of the product."
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "architecto",
+                                    "description": "The ID of the image."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Auth",
+            "description": "\nX\u00e1c th\u1ef1c admin (Sanctum token)",
+            "item": [
+                {
+                    "name": "\u0110\u0103ng nh\u1eadp admin",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"gbailey@example.net\",\"password\":\"+-0pBNvYgxwmi\\\/#iw\"}"
+                        },
+                        "description": "Tr\u1ea3 v\u1ec1 Sanctum token \u0111\u1ec3 s\u1eed d\u1ee5ng cho c\u00e1c admin endpoint.",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/v1\/admin\/logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/admin\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/admin\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Public > S\u1ea3n ph\u1ea9m",
+            "description": "\nXem danh s\u00e1ch v\u00e0 chi ti\u1ebft s\u1ea3n ph\u1ea9m (kh\u00f4ng c\u1ea7n \u0111\u0103ng nh\u1eadp)",
+            "item": [
+                {
+                    "name": "GET api\/v1\/products",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/products",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/products"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":13,\"name\":\"Product 10\",\"description\":null,\"price_vnd\":840000,\"unit_type\":\"con\",\"category_id\":4,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:13:58.000000Z\",\"updated_at\":\"2026-03-28T15:13:58.000000Z\"},{\"id\":14,\"name\":\"Product 11\",\"description\":null,\"price_vnd\":440000,\"unit_type\":\"con\",\"category_id\":2,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:14:07.000000Z\",\"updated_at\":\"2026-03-28T15:14:07.000000Z\"},{\"id\":15,\"name\":\"Product 12\",\"description\":null,\"price_vnd\":410000,\"unit_type\":\"con\",\"category_id\":3,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:14:16.000000Z\",\"updated_at\":\"2026-03-28T15:14:16.000000Z\"},{\"id\":16,\"name\":\"Product 13\",\"description\":null,\"price_vnd\":510000,\"unit_type\":\"con\",\"category_id\":4,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:14:24.000000Z\",\"updated_at\":\"2026-03-28T15:14:24.000000Z\"},{\"id\":17,\"name\":\"Product 14\",\"description\":null,\"price_vnd\":610000,\"unit_type\":\"con\",\"category_id\":2,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:14:31.000000Z\",\"updated_at\":\"2026-03-28T15:14:31.000000Z\"},{\"id\":18,\"name\":\"Product 15\",\"description\":null,\"price_vnd\":710000,\"unit_type\":\"con\",\"category_id\":3,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:14:35.000000Z\",\"updated_at\":\"2026-03-28T15:14:35.000000Z\"},{\"id\":19,\"name\":\"Product 16\",\"description\":null,\"price_vnd\":810000,\"unit_type\":\"con\",\"category_id\":4,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:14:42.000000Z\",\"updated_at\":\"2026-03-28T15:14:42.000000Z\"},{\"id\":20,\"name\":\"Product 18\",\"description\":null,\"price_vnd\":110000,\"unit_type\":\"con\",\"category_id\":2,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:14:52.000000Z\",\"updated_at\":\"2026-03-28T15:14:52.000000Z\"},{\"id\":21,\"name\":\"Product 19\",\"description\":null,\"price_vnd\":85000,\"unit_type\":\"con\",\"category_id\":3,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:15:00.000000Z\",\"updated_at\":\"2026-03-28T15:15:00.000000Z\"},{\"id\":3,\"name\":\"Product 2\",\"description\":null,\"price_vnd\":43000,\"unit_type\":\"con\",\"category_id\":3,\"stock_quantity\":\"1.000\",\"is_active\":true,\"primary_image\":{\"url\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/s3\\\/products\\\/3\\\/94b5bee6-2ccb-417b-9a01-704d1603fa0e.jpg\",\"thumbnail_url\":\"http:\\\/\\\/127.0.0.1:8000\\\/storage\\\/s3\\\/products\\\/3\\\/thumb_94b5bee6-2ccb-417b-9a01-704d1603fa0e.jpg\"},\"created_at\":\"2026-03-28T15:11:52.000000Z\",\"updated_at\":\"2026-03-28T15:32:56.000000Z\"},{\"id\":22,\"name\":\"Product 20\",\"description\":null,\"price_vnd\":89000,\"unit_type\":\"con\",\"category_id\":4,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:15:07.000000Z\",\"updated_at\":\"2026-03-28T15:15:07.000000Z\"},{\"id\":23,\"name\":\"Product 21\",\"description\":null,\"price_vnd\":87000,\"unit_type\":\"con\",\"category_id\":2,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:15:18.000000Z\",\"updated_at\":\"2026-03-28T15:15:18.000000Z\"},{\"id\":4,\"name\":\"Product 3\",\"description\":null,\"price_vnd\":45000,\"unit_type\":\"con\",\"category_id\":4,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:12:03.000000Z\",\"updated_at\":\"2026-03-28T15:12:03.000000Z\"},{\"id\":5,\"name\":\"Product 4\",\"description\":null,\"price_vnd\":47000,\"unit_type\":\"con\",\"category_id\":2,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:12:18.000000Z\",\"updated_at\":\"2026-03-28T15:12:18.000000Z\"},{\"id\":6,\"name\":\"Product 4\",\"description\":null,\"price_vnd\":47000,\"unit_type\":\"con\",\"category_id\":2,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:12:52.000000Z\",\"updated_at\":\"2026-03-28T15:12:52.000000Z\"},{\"id\":7,\"name\":\"Product 5\",\"description\":null,\"price_vnd\":57000,\"unit_type\":\"con\",\"category_id\":2,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:13:05.000000Z\",\"updated_at\":\"2026-03-28T15:13:05.000000Z\"},{\"id\":8,\"name\":\"Product 6\",\"description\":null,\"price_vnd\":120000,\"unit_type\":\"con\",\"category_id\":3,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:13:13.000000Z\",\"updated_at\":\"2026-03-28T15:13:13.000000Z\"},{\"id\":9,\"name\":\"Product 6\",\"description\":null,\"price_vnd\":110000,\"unit_type\":\"con\",\"category_id\":4,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:13:21.000000Z\",\"updated_at\":\"2026-03-28T15:13:21.000000Z\"},{\"id\":10,\"name\":\"Product 7\",\"description\":null,\"price_vnd\":990000,\"unit_type\":\"con\",\"category_id\":2,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:13:32.000000Z\",\"updated_at\":\"2026-03-28T15:13:32.000000Z\"},{\"id\":11,\"name\":\"Product 8\",\"description\":null,\"price_vnd\":880000,\"unit_type\":\"con\",\"category_id\":3,\"stock_quantity\":\"0.000\",\"is_active\":true,\"primary_image\":null,\"created_at\":\"2026-03-28T15:13:39.000000Z\",\"updated_at\":\"2026-03-28T15:13:39.000000Z\"}],\"links\":{\"first\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/v1\\\/products?page=1\",\"last\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/v1\\\/products?page=2\",\"prev\":null,\"next\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/v1\\\/products?page=2\"},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":2,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/v1\\\/products?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/v1\\\/products?page=2\",\"label\":\"2\",\"page\":2,\"active\":false},{\"url\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/v1\\\/products?page=2\",\"label\":\"Next &raquo;\",\"page\":2,\"active\":false}],\"path\":\"http:\\\/\\\/127.0.0.1:8000\\\/api\\\/v1\\\/products\",\"per_page\":20,\"to\":20,\"total\":21}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/products\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/products\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/products\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "architecto",
+                                    "description": "The ID of the product."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\"success\":false,\"code\":\"SERVER_ERROR\",\"message\":\"App\\\\Presentation\\\\Http\\\\Controllers\\\\Public\\\\ProductController::show(): Argument #1 ($product) must be of type int, string given, called in \\\/Users\\\/toney\\\/projects\\\/ban-chim-bo-cau\\\/vendor\\\/laravel\\\/framework\\\/src\\\/Illuminate\\\/Routing\\\/ControllerDispatcher.php on line 46\",\"errors\":{}}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "Authorization",
+                "type": "string"
+            }
+        ]
+    }
+}
