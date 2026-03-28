@@ -1,4 +1,4 @@
-# Roadmap: Bán Chim Bồ Câu — Frontend Client
+# Roadmap: Ban Chim Bo Cau -- Frontend Client
 
 **Milestone:** v1
 **Granularity:** Coarse
@@ -9,34 +9,41 @@
 
 ## Phases
 
-- [ ] **Phase 1: Foundation + Authentication** — Project scaffold, infrastructure layers, and both auth flows (login/register/guest) are production-ready; the entire app can be built on top
-- [ ] **Phase 2: Customer Purchase Flow** — Any visitor (guest or logged-in) can browse products, manage a cart, and place a COD order end-to-end
-- [ ] **Phase 3: Admin Panel** — Admin can manage the full product catalog and all orders through a protected internal interface
-- [ ] **Phase 4: Account + Polish** — Logged-in customers can view their order history; every surface has consistent loading states, error handling, and passes mobile audit
+- [ ] **Phase 1: Foundation + Authentication** -- Project scaffold, infrastructure layers, and admin auth flow (login/logout/guest access) are production-ready; the entire app can be built on top
+- [ ] **Phase 2: Customer Purchase Flow** -- Any visitor (guest or logged-in) can browse products, manage a cart, and place a COD order end-to-end
+- [ ] **Phase 3: Admin Panel** -- Admin can manage the full product catalog and all orders through a protected internal interface
+- [ ] **Phase 4: Account + Polish** -- Logged-in customers can view their order history; every surface has consistent loading states, error handling, and passes mobile audit
 
 ---
 
 ## Phase Details
 
 ### Phase 1: Foundation + Authentication
-**Goal**: The project infrastructure is production-quality and both auth flows work correctly — any feature built on top will have reliable HTTP, state, routing, and session handling from day one
+**Goal**: The project infrastructure is production-quality and admin auth flow works correctly -- any feature built on top will have reliable HTTP, state, routing, and session handling from day one
 **Depends on**: Nothing (first phase)
 **Requirements**: FOUND-01, FOUND-02, FOUND-03, FOUND-04, FOUND-05, FOUND-06, FOUND-07, FOUND-08, FOUND-09, FOUND-10, AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05
 **Success Criteria** (what must be TRUE):
   1. A developer can run `npm run dev` on a fresh clone and reach a working app with the correct API base URL loaded from `.env.development`
-  2. A user can log in with email/password, refresh the page, and remain logged in without being redirected to the login page
-  3. A user can log out and be immediately redirected; subsequent page visits require re-authentication
-  4. A new customer can register an account with email/password
+  2. An admin can log in with email/password, refresh the page, and remain logged in without being redirected to the login page
+  3. An admin can log out and be immediately redirected; subsequent page visits require re-authentication
+  4. AUTH-04 (customer registration) confirmed out of scope per D-13
   5. A guest (unauthenticated) visitor can navigate the public routes without being redirected to login; an attempt to reach a protected route redirects correctly based on role
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 01-01-PLAN.md -- Scaffold Vite project, install dependencies, create folder structure, env config, types, test infra
+- [ ] 01-02-PLAN.md -- Axios instance with interceptors, auth store, cart store, navigation service, AntD theme
+- [ ] 01-03-PLAN.md -- Router config, layouts (admin sidebar + customer navbar), protected routes, placeholder pages, App.tsx wiring
+- [ ] 01-04-PLAN.md -- Auth API module, admin login page, AppInitializer wiring, human verification of complete auth flow
+
 **UI hint**: yes
 
 ### Phase 2: Customer Purchase Flow
-**Goal**: Any visitor — guest or logged-in — can browse the full product catalog, add items to a persistent cart, and complete a COD order with a confirmation receipt
+**Goal**: Any visitor -- guest or logged-in -- can browse the full product catalog, add items to a persistent cart, and complete a COD order with a confirmation receipt
 **Depends on**: Phase 1
 **Requirements**: PROD-01, PROD-02, PROD-03, PROD-04, PROD-05, PROD-06, CART-01, CART-02, CART-03, CART-04, CART-05, CHECKOUT-01, CHECKOUT-02, CHECKOUT-03
 **Success Criteria** (what must be TRUE):
-  1. A visitor can browse paginated products, filter by category, and search by name — all without logging in
+  1. A visitor can browse paginated products, filter by category, and search by name -- all without logging in
   2. A visitor can view a product detail page showing name, description, price, image, and current stock count; out-of-stock products display a clear status and the Add-to-Cart button is disabled
   3. A visitor can add products to the cart, update quantities, and remove items; the cart total updates in real time
   4. A visitor can refresh the page and find their cart items still present
@@ -50,8 +57,8 @@
 **Requirements**: APROD-01, APROD-02, APROD-03, APROD-04, APROD-05, AORD-01, AORD-02, AORD-03, DASH-01, DASH-02, DASH-03
 **Success Criteria** (what must be TRUE):
   1. An admin can view the dashboard and immediately see total new orders, basic revenue figure, and product stock status (in-stock vs. out-of-stock count)
-  2. An admin can create a new product (with image upload), edit it, and delete it with a confirmation dialog — changes reflect immediately in the product list
-  3. An admin can view all orders filtered by status, open a specific order to see full detail, and move it through the status workflow (pending → confirmed → shipping → delivered, or cancelled)
+  2. An admin can create a new product (with image upload), edit it, and delete it with a confirmation dialog -- changes reflect immediately in the product list
+  3. An admin can view all orders filtered by status, open a specific order to see full detail, and move it through the status workflow (pending -> confirmed -> shipping -> delivered, or cancelled)
 **Plans**: TBD
 **UI hint**: yes
 
@@ -62,9 +69,9 @@
 **Success Criteria** (what must be TRUE):
   1. A logged-in customer can view a list of their past orders and open any order to see full detail (items, status, delivery address)
   2. Every data-fetching surface shows a loading indicator (spinner or skeleton) while the API call is in flight
-  3. Every API error produces a visible, human-readable notification — no silent failures or blank screens
+  3. Every API error produces a visible, human-readable notification -- no silent failures or blank screens
   4. Every form shows inline validation errors before submission; the user knows exactly what to fix
-  5. The app is fully usable on a 360px mobile viewport — no horizontal scroll, no truncated actions, no overlapping UI elements
+  5. The app is fully usable on a 360px mobile viewport -- no horizontal scroll, no truncated actions, no overlapping UI elements
 **Plans**: TBD
 **UI hint**: yes
 
@@ -74,7 +81,7 @@
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation + Authentication | 0/? | Not started | - |
+| 1. Foundation + Authentication | 0/4 | Planning complete | - |
 | 2. Customer Purchase Flow | 0/? | Not started | - |
 | 3. Admin Panel | 0/? | Not started | - |
 | 4. Account + Polish | 0/? | Not started | - |
@@ -137,4 +144,5 @@
 ---
 
 *Roadmap created: 2026-03-28*
-*Next: `/gsd:plan-phase 1`*
+*Phase 1 planned: 2026-03-28*
+*Next: `/gsd:execute-phase 01`*
