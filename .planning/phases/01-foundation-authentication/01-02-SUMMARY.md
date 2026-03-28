@@ -145,3 +145,16 @@ _Note: Both tasks used TDD (RED → GREEN) with Vitest_
 ---
 *Phase: 01-foundation-authentication*
 *Completed: 2026-03-28*
+
+## Self-Check: PASSED
+
+- FOUND: src/api/axiosInstance.ts
+- FOUND: src/stores/authStore.ts
+- FOUND: src/stores/cartStore.ts
+- FOUND: src/lib/navigationService.ts
+- FOUND: src/config/antd-theme.ts
+- FOUND: src/stores/__tests__/authStore.test.ts
+- FOUND: src/api/__tests__/axiosInstance.test.ts
+- FOUND: .planning/phases/01-foundation-authentication/01-02-SUMMARY.md
+- FOUND commit: a12dece
+- FOUND commit: e053c13
