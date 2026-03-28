@@ -5,12 +5,13 @@ milestone_name: milestone
 current_phase: 01
 current_plan: 1
 status: executing
-last_updated: "2026-03-28T10:37:56.199Z"
+last_updated: "2026-03-28T10:57:39.191Z"
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 4
-  completed_plans: 0
+  completed_plans: 2
+  percent: 50
 ---
 
 # Project State: Bán Chim Bồ Câu — Frontend Client
@@ -33,18 +34,19 @@ progress:
 ## Current Position
 
 Phase: 01 (foundation-authentication) — EXECUTING
-Plan: 1 of 4
+Plan: 2 of 4
 **Current phase:** 01
 **Current plan:** 1
-**Status:** Executing Phase 01
+**Status:** Ready to execute
 
 **Progress:**
 
-```
+[█████░░░░░] 50%
 [          ] Phase 1: Foundation + Authentication   (0%)
 [          ] Phase 2: Customer Purchase Flow        (0%)
 [          ] Phase 3: Admin Panel                   (0%)
 [          ] Phase 4: Account + Polish              (0%)
+
 ```
 
 **Overall:** 0 of 4 phases complete
@@ -61,6 +63,7 @@ Plan: 1 of 4
 | Plans in progress | 0 |
 
 ---
+| Phase 01 P02 | 5 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -72,6 +75,10 @@ Plan: 1 of 4
 | UX requirements in Phase 4 | Polish sweep is correctly applied after all feature surfaces exist | Pre-Phase 1 |
 | ACCOUNT requirements in Phase 4 | My Orders requires both auth (Phase 1) and order data (Phase 2 creates orders) | Pre-Phase 1 |
 | Admin panel in Phase 3 | Admin depends on product/order API types established in Phase 2 | Pre-Phase 1 |
+
+- [Phase 01]: isRefreshing module-level flag prevents concurrent 401s from triggering multiple redirect/clearAuth cycles
+- [Phase 01]: partialize: token only — user and isInitializing always rehydrate fresh from API (D-31)
+- [Phase 01]: 422 responses not globally intercepted — pass through to call-site handlers (FOUND-05)
 
 ### Critical Blockers (Must Resolve Before Phase 1)
 

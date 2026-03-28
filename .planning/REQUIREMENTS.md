@@ -10,13 +10,13 @@
 - [x] **FOUND-01**: Project được scaffold với Vite 6 + React 18 + TypeScript + ESLint + Prettier chuẩn production
 - [x] **FOUND-02**: Cấu trúc thư mục clean architecture: `src/api/`, `src/stores/`, `src/hooks/`, `src/components/`, `src/layouts/`, `src/pages/`
 - [x] **FOUND-03**: Cấu hình đa môi trường hoạt động: `.env.development`, `.env.staging`, `.env.production` với `VITE_API_BASE_URL`
-- [ ] **FOUND-04**: Axios instance tập trung với interceptor tự động inject JWT Bearer token vào mọi request
-- [ ] **FOUND-05**: Axios response interceptor xử lý lỗi global: 401 → redirect login, 422 → surface validation errors, 5xx → toast error
+- [x] **FOUND-04**: Axios instance tập trung với interceptor tự động inject JWT Bearer token vào mọi request
+- [x] **FOUND-05**: Axios response interceptor xử lý lỗi global: 401 → redirect login, 422 → surface validation errors, 5xx → toast error
 - [ ] **FOUND-06**: React Router v6 với `ProtectedRoute` component xử lý cả authentication check và role check (admin vs. customer)
-- [ ] **FOUND-07**: Auth store (Zustand) với `persist` middleware — session không mất khi refresh trang
-- [ ] **FOUND-08**: Cart store (Zustand) với `persist` middleware — giỏ hàng không mất khi refresh trang
-- [ ] **FOUND-09**: TanStack Query (`QueryClientProvider`) setup — quản lý server state, loading, error, caching
-- [ ] **FOUND-10**: Ant Design 5 (`ConfigProvider`) setup với theme cơ bản
+- [x] **FOUND-07**: Auth store (Zustand) với `persist` middleware — session không mất khi refresh trang
+- [x] **FOUND-08**: Cart store (Zustand) với `persist` middleware — giỏ hàng không mất khi refresh trang
+- [x] **FOUND-09**: TanStack Query (`QueryClientProvider`) setup — quản lý server state, loading, error, caching
+- [x] **FOUND-10**: Ant Design 5 (`ConfigProvider`) setup với theme cơ bản
 
 ### Authentication
 
@@ -119,13 +119,13 @@
 | FOUND-01 | Phase 1 | Done (01-01) |
 | FOUND-02 | Phase 1 | Done (01-01) |
 | FOUND-03 | Phase 1 | Done (01-01) |
-| FOUND-04 | Phase 1 | Pending |
-| FOUND-05 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Complete |
+| FOUND-05 | Phase 1 | Complete |
 | FOUND-06 | Phase 1 | Pending |
-| FOUND-07 | Phase 1 | Pending |
-| FOUND-08 | Phase 1 | Pending |
-| FOUND-09 | Phase 1 | Pending |
-| FOUND-10 | Phase 1 | Pending |
+| FOUND-07 | Phase 1 | Complete |
+| FOUND-08 | Phase 1 | Complete |
+| FOUND-09 | Phase 1 | Complete |
+| FOUND-10 | Phase 1 | Complete |
 | AUTH-01 | Phase 1 | Pending |
 | AUTH-02 | Phase 1 | Pending |
 | AUTH-03 | Phase 1 | Pending |
