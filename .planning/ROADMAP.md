@@ -31,7 +31,7 @@
 **Plans:** 4 plans
 
 Plans:
-- [ ] 01-01-PLAN.md -- Scaffold Vite project, install dependencies, create folder structure, env config, types, test infra
+- [x] 01-01-PLAN.md -- Scaffold Vite project, install dependencies, create folder structure, env config, types, test infra
 - [ ] 01-02-PLAN.md -- Axios instance with interceptors, auth store, cart store, navigation service, AntD theme
 - [ ] 01-03-PLAN.md -- Router config, layouts (admin sidebar + customer navbar), protected routes, placeholder pages, App.tsx wiring
 - [ ] 01-04-PLAN.md -- Auth API module, admin login page, AppInitializer wiring, human verification of complete auth flow

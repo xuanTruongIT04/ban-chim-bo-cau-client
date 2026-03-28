@@ -7,9 +7,9 @@
 
 ### Foundation (Technical)
 
-- [ ] **FOUND-01**: Project được scaffold với Vite 6 + React 18 + TypeScript + ESLint + Prettier chuẩn production
-- [ ] **FOUND-02**: Cấu trúc thư mục clean architecture: `src/api/`, `src/stores/`, `src/hooks/`, `src/components/`, `src/layouts/`, `src/pages/`
-- [ ] **FOUND-03**: Cấu hình đa môi trường hoạt động: `.env.development`, `.env.staging`, `.env.production` với `VITE_API_BASE_URL`
+- [x] **FOUND-01**: Project được scaffold với Vite 6 + React 18 + TypeScript + ESLint + Prettier chuẩn production
+- [x] **FOUND-02**: Cấu trúc thư mục clean architecture: `src/api/`, `src/stores/`, `src/hooks/`, `src/components/`, `src/layouts/`, `src/pages/`
+- [x] **FOUND-03**: Cấu hình đa môi trường hoạt động: `.env.development`, `.env.staging`, `.env.production` với `VITE_API_BASE_URL`
 - [ ] **FOUND-04**: Axios instance tập trung với interceptor tự động inject JWT Bearer token vào mọi request
 - [ ] **FOUND-05**: Axios response interceptor xử lý lỗi global: 401 → redirect login, 422 → surface validation errors, 5xx → toast error
 - [ ] **FOUND-06**: React Router v6 với `ProtectedRoute` component xử lý cả authentication check và role check (admin vs. customer)
@@ -116,9 +116,9 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | Phase 1 | Pending |
-| FOUND-02 | Phase 1 | Pending |
-| FOUND-03 | Phase 1 | Pending |
+| FOUND-01 | Phase 1 | Done (01-01) |
+| FOUND-02 | Phase 1 | Done (01-01) |
+| FOUND-03 | Phase 1 | Done (01-01) |
 | FOUND-04 | Phase 1 | Pending |
 | FOUND-05 | Phase 1 | Pending |
 | FOUND-06 | Phase 1 | Pending |
