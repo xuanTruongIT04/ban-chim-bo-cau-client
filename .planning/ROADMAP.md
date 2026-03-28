@@ -28,12 +28,12 @@
   3. An admin can log out and be immediately redirected; subsequent page visits require re-authentication
   4. AUTH-04 (customer registration) confirmed out of scope per D-13
   5. A guest (unauthenticated) visitor can navigate the public routes without being redirected to login; an attempt to reach a protected route redirects correctly based on role
-**Plans:** 2/4 plans executed
+**Plans:** 3/4 plans executed
 
 Plans:
 - [x] 01-01-PLAN.md -- Scaffold Vite project, install dependencies, create folder structure, env config, types, test infra
 - [x] 01-02-PLAN.md -- Axios instance with interceptors, auth store, cart store, navigation service, AntD theme
-- [ ] 01-03-PLAN.md -- Router config, layouts (admin sidebar + customer navbar), protected routes, placeholder pages, App.tsx wiring
+- [x] 01-03-PLAN.md -- Router config, layouts (admin sidebar + customer navbar), protected routes, placeholder pages, App.tsx wiring
 - [ ] 01-04-PLAN.md -- Auth API module, admin login page, AppInitializer wiring, human verification of complete auth flow
 
 **UI hint**: yes
@@ -81,7 +81,7 @@ Plans:
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation + Authentication | 2/4 | In Progress|  |
+| 1. Foundation + Authentication | 3/4 | In Progress|  |
 | 2. Customer Purchase Flow | 0/? | Not started | - |
 | 3. Admin Panel | 0/? | Not started | - |
 | 4. Account + Polish | 0/? | Not started | - |

@@ -12,7 +12,7 @@
 - [x] **FOUND-03**: Cấu hình đa môi trường hoạt động: `.env.development`, `.env.staging`, `.env.production` với `VITE_API_BASE_URL`
 - [x] **FOUND-04**: Axios instance tập trung với interceptor tự động inject JWT Bearer token vào mọi request
 - [x] **FOUND-05**: Axios response interceptor xử lý lỗi global: 401 → redirect login, 422 → surface validation errors, 5xx → toast error
-- [ ] **FOUND-06**: React Router v6 với `ProtectedRoute` component xử lý cả authentication check và role check (admin vs. customer)
+- [x] **FOUND-06**: React Router v6 với `ProtectedRoute` component xử lý cả authentication check và role check (admin vs. customer)
 - [x] **FOUND-07**: Auth store (Zustand) với `persist` middleware — session không mất khi refresh trang
 - [x] **FOUND-08**: Cart store (Zustand) với `persist` middleware — giỏ hàng không mất khi refresh trang
 - [x] **FOUND-09**: TanStack Query (`QueryClientProvider`) setup — quản lý server state, loading, error, caching
@@ -24,7 +24,7 @@
 - [ ] **AUTH-02**: Người dùng có thể đăng xuất — token bị xóa, redirect về trang chủ
 - [ ] **AUTH-03**: Session đăng nhập tồn tại qua browser refresh (không cần đăng nhập lại)
 - [ ] **AUTH-04**: Khách hàng có thể tạo tài khoản (tự đăng ký với email/password)
-- [ ] **AUTH-05**: Khách vãng lai (guest) có thể duyệt sản phẩm và đặt hàng mà không cần đăng nhập
+- [x] **AUTH-05**: Khách vãng lai (guest) có thể duyệt sản phẩm và đặt hàng mà không cần đăng nhập
 
 ### Customer — Product Browsing
 
@@ -121,7 +121,7 @@
 | FOUND-03 | Phase 1 | Done (01-01) |
 | FOUND-04 | Phase 1 | Complete |
 | FOUND-05 | Phase 1 | Complete |
-| FOUND-06 | Phase 1 | Pending |
+| FOUND-06 | Phase 1 | Complete |
 | FOUND-07 | Phase 1 | Complete |
 | FOUND-08 | Phase 1 | Complete |
 | FOUND-09 | Phase 1 | Complete |
@@ -130,7 +130,7 @@
 | AUTH-02 | Phase 1 | Pending |
 | AUTH-03 | Phase 1 | Pending |
 | AUTH-04 | Phase 1 | Pending |
-| AUTH-05 | Phase 1 | Pending |
+| AUTH-05 | Phase 1 | Complete |
 | PROD-01 | Phase 2 | Pending |
 | PROD-02 | Phase 2 | Pending |
 | PROD-03 | Phase 2 | Pending |

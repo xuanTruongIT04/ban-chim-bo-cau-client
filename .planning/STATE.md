@@ -5,13 +5,13 @@ milestone_name: milestone
 current_phase: 01
 current_plan: 1
 status: executing
-last_updated: "2026-03-28T10:57:39.191Z"
+last_updated: "2026-03-28T11:04:53.497Z"
 progress:
   total_phases: 4
   completed_phases: 0
   total_plans: 4
-  completed_plans: 2
-  percent: 50
+  completed_plans: 3
+  percent: 75
 ---
 
 # Project State: Bán Chim Bồ Câu — Frontend Client
@@ -34,14 +34,14 @@ progress:
 ## Current Position
 
 Phase: 01 (foundation-authentication) — EXECUTING
-Plan: 2 of 4
+Plan: 3 of 4
 **Current phase:** 01
 **Current plan:** 1
 **Status:** Ready to execute
 
 **Progress:**
 
-[█████░░░░░] 50%
+[████████░░] 75%
 [          ] Phase 1: Foundation + Authentication   (0%)
 [          ] Phase 2: Customer Purchase Flow        (0%)
 [          ] Phase 3: Admin Panel                   (0%)
@@ -64,6 +64,7 @@ Plan: 2 of 4
 
 ---
 | Phase 01 P02 | 5 | 2 tasks | 7 files |
+| Phase 01 P03 | 260 | 2 tasks | 12 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,8 @@ Plan: 2 of 4
 - [Phase 01]: isRefreshing module-level flag prevents concurrent 401s from triggering multiple redirect/clearAuth cycles
 - [Phase 01]: partialize: token only — user and isInitializing always rehydrate fresh from API (D-31)
 - [Phase 01]: 422 responses not globally intercepted — pass through to call-site handlers (FOUND-05)
+- [Phase 01]: authApi stub created in Plan 03 to unblock AdminLayout logout wiring; Plan 04 replaces with full implementation
+- [Phase 01]: setNavigator registered in both AdminLayout and CustomerLayout useEffect so navigation service works across all route sections
 
 ### Critical Blockers (Must Resolve Before Phase 1)
 
