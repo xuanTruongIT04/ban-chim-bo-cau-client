@@ -116,22 +116,58 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 – FOUND-10 | Phase 1 | Pending |
-| AUTH-01 – AUTH-05 | Phase 1 | Pending |
-| PROD-01 – PROD-06 | Phase 2 | Pending |
-| CART-01 – CART-05 | Phase 2 | Pending |
-| CHECKOUT-01 – CHECKOUT-03 | Phase 2 | Pending |
-| ACCOUNT-01 – ACCOUNT-02 | Phase 2 | Pending |
-| APROD-01 – APROD-05 | Phase 3 | Pending |
-| AORD-01 – AORD-03 | Phase 3 | Pending |
-| DASH-01 – DASH-03 | Phase 3 | Pending |
-| UX-01 – UX-04 | Phase 4 | Pending |
+| FOUND-01 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Pending |
+| FOUND-06 | Phase 1 | Pending |
+| FOUND-07 | Phase 1 | Pending |
+| FOUND-08 | Phase 1 | Pending |
+| FOUND-09 | Phase 1 | Pending |
+| FOUND-10 | Phase 1 | Pending |
+| AUTH-01 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Pending |
+| AUTH-03 | Phase 1 | Pending |
+| AUTH-04 | Phase 1 | Pending |
+| AUTH-05 | Phase 1 | Pending |
+| PROD-01 | Phase 2 | Pending |
+| PROD-02 | Phase 2 | Pending |
+| PROD-03 | Phase 2 | Pending |
+| PROD-04 | Phase 2 | Pending |
+| PROD-05 | Phase 2 | Pending |
+| PROD-06 | Phase 2 | Pending |
+| CART-01 | Phase 2 | Pending |
+| CART-02 | Phase 2 | Pending |
+| CART-03 | Phase 2 | Pending |
+| CART-04 | Phase 2 | Pending |
+| CART-05 | Phase 2 | Pending |
+| CHECKOUT-01 | Phase 2 | Pending |
+| CHECKOUT-02 | Phase 2 | Pending |
+| CHECKOUT-03 | Phase 2 | Pending |
+| APROD-01 | Phase 3 | Pending |
+| APROD-02 | Phase 3 | Pending |
+| APROD-03 | Phase 3 | Pending |
+| APROD-04 | Phase 3 | Pending |
+| APROD-05 | Phase 3 | Pending |
+| AORD-01 | Phase 3 | Pending |
+| AORD-02 | Phase 3 | Pending |
+| AORD-03 | Phase 3 | Pending |
+| DASH-01 | Phase 3 | Pending |
+| DASH-02 | Phase 3 | Pending |
+| DASH-03 | Phase 3 | Pending |
+| ACCOUNT-01 | Phase 4 | Pending |
+| ACCOUNT-02 | Phase 4 | Pending |
+| UX-01 | Phase 4 | Pending |
+| UX-02 | Phase 4 | Pending |
+| UX-03 | Phase 4 | Pending |
+| UX-04 | Phase 4 | Pending |
 
 **Coverage:**
-- v1 requirements: 47 total
-- Mapped to phases: 47
-- Unmapped: 0 ✓
+- v1 requirements: 46 total (enumerated; original draft stated 47 — count verified against requirement IDs)
+- Mapped to phases: 46
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-28*
-*Last updated: 2026-03-28 after initial definition*
+*Last updated: 2026-03-28 after roadmap creation — traceability updated with confirmed phase assignments*

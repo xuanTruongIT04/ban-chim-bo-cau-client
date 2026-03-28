@@ -1,0 +1,105 @@
+# Project State: Bán Chim Bồ Câu — Frontend Client
+
+**Last updated:** 2026-03-28
+**Updated by:** Roadmap initialization
+
+---
+
+## Project Reference
+
+**Core value:** Khách hàng có thể duyệt, chọn và đặt mua chim bồ câu dễ dàng (kể cả không cần đăng nhập); admin có thể quản lý toàn bộ hệ thống từ một giao diện.
+
+**Stack:** Vite 6 + React 18 + TypeScript + Zustand 5 + TanStack Query + Ant Design 5 + React Router v6 + Axios
+
+**Backend:** Laravel REST API (auth contract not yet confirmed — Sanctum vs. Tymon JWT)
+
+---
+
+## Current Position
+
+**Current phase:** Phase 1 — Foundation + Authentication
+**Current plan:** None (planning not yet started)
+**Status:** Not started
+
+**Progress:**
+```
+[          ] Phase 1: Foundation + Authentication   (0%)
+[          ] Phase 2: Customer Purchase Flow        (0%)
+[          ] Phase 3: Admin Panel                   (0%)
+[          ] Phase 4: Account + Polish              (0%)
+```
+
+**Overall:** 0 of 4 phases complete
+
+---
+
+## Performance Metrics
+
+| Metric | Value |
+|--------|-------|
+| Phases defined | 4 |
+| Requirements mapped | 46/46 |
+| Plans complete | 0 |
+| Plans in progress | 0 |
+
+---
+
+## Accumulated Context
+
+### Decisions Made
+
+| Decision | Rationale | Phase |
+|----------|-----------|-------|
+| 4-phase coarse structure | Research confirms natural delivery boundaries: infrastructure → purchase flow → admin → polish | Pre-Phase 1 |
+| UX requirements in Phase 4 | Polish sweep is correctly applied after all feature surfaces exist | Pre-Phase 1 |
+| ACCOUNT requirements in Phase 4 | My Orders requires both auth (Phase 1) and order data (Phase 2 creates orders) | Pre-Phase 1 |
+| Admin panel in Phase 3 | Admin depends on product/order API types established in Phase 2 | Pre-Phase 1 |
+
+### Critical Blockers (Must Resolve Before Phase 1)
+
+- **Laravel auth contract undefined:** Must confirm Sanctum vs. Tymon JWT, `POST /api/auth/login` response shape, refresh token endpoint existence, and cookie vs. Bearer token strategy with backend team before writing any interceptor code
+- **JWT storage strategy:** Decide on access token in Zustand memory only + `httpOnly` cookie for refresh token (requires backend cooperation) vs. full localStorage — affects XSS risk profile
+- **Image upload endpoint (Phase 3 pre-work):** Confirm whether product images are accepted as multipart form data directly or via signed cloud storage URLs
+
+### Known Pitfalls (From Research)
+
+- Axios interceptor token refresh race condition — implement `isRefreshing` request queue in `axiosInstance.ts` from day one
+- Protected route flicker — add `isInitializing: true` to auth store and render `<PageLoader>` until initialization completes
+- Zustand store over-subscription — always use selector functions, never subscribe to whole store
+- AntD bundle bloat — lazy-load admin routes (Phase 3)
+- Stale AntD modal/form state — unmount modals on close, not hide
+- Cart lost on refresh — CART-05/FOUND-08 require Zustand `persist` middleware; verify this is wired from the start
+
+### Todos
+
+- [ ] Confirm Laravel auth contract with backend before Phase 1 planning
+- [ ] Agree on JWT storage strategy (memory vs. localStorage) before Phase 1 sprint
+- [ ] Verify `@ant-design/plots` v2 currency against AntD 5.x changelog before Phase 3
+- [ ] Run `npm view react version` / `npm view antd version` / `npm view vite version` before scaffold to confirm current patch versions (training cutoff Aug 2025)
+
+### Blockers
+
+None active (project not yet started)
+
+---
+
+## Session Continuity
+
+### What Was Done Last
+
+Roadmap initialized from requirements and research. ROADMAP.md written with 4-phase structure covering all 46 v1 requirements. STATE.md created. REQUIREMENTS.md traceability section verified.
+
+### What Comes Next
+
+Run `/gsd:plan-phase 1` to decompose Phase 1 into executable plans.
+Before planning Phase 1: resolve the Laravel auth contract blocker listed above.
+
+### Context Warnings
+
+- Backend API docs do not yet exist — contracts must be defined in parallel with Phase 1 development
+- React 18.3 is pinned (not 19) due to Ant Design 5.x peer-dependency constraints; do not upgrade React until AntD explicitly supports v19
+- ESLint 9 flat config ecosystem adoption was mixed as of mid-2024; verify plugin compatibility before committing
+
+---
+
+*State initialized: 2026-03-28*
