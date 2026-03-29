@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 01
+current_phase: 02
 current_plan: 1
 status: executing
-last_updated: "2026-03-28T11:04:53.497Z"
+last_updated: "2026-03-29T04:21:22.770Z"
 progress:
   total_phases: 4
   completed_phases: 0
-  total_plans: 4
-  completed_plans: 3
-  percent: 75
+  total_plans: 8
+  completed_plans: 4
+  percent: 50
 ---
 
 # Project State: Bán Chim Bồ Câu — Frontend Client
@@ -33,15 +33,15 @@ progress:
 
 ## Current Position
 
-Phase: 01 (foundation-authentication) — EXECUTING
-Plan: 3 of 4
-**Current phase:** 01
+Phase: 02 (customer-purchase-flow) — EXECUTING
+Plan: 2 of 4
+**Current phase:** 02
 **Current plan:** 1
 **Status:** Ready to execute
 
 **Progress:**
 
-[████████░░] 75%
+[█████░░░░░] 50%
 [          ] Phase 1: Foundation + Authentication   (0%)
 [          ] Phase 2: Customer Purchase Flow        (0%)
 [          ] Phase 3: Admin Panel                   (0%)
@@ -65,6 +65,7 @@ Plan: 3 of 4
 ---
 | Phase 01 P02 | 5 | 2 tasks | 7 files |
 | Phase 01 P03 | 260 | 2 tasks | 12 files |
+| Phase 02 P01 | 3 | 2 tasks | 14 files |
 
 ## Accumulated Context
 
@@ -82,6 +83,9 @@ Plan: 3 of 4
 - [Phase 01]: 422 responses not globally intercepted — pass through to call-site handlers (FOUND-05)
 - [Phase 01]: authApi stub created in Plan 03 to unblock AdminLayout logout wiring; Plan 04 replaces with full implementation
 - [Phase 01]: setNavigator registered in both AdminLayout and CustomerLayout useEffect so navigation service works across all route sections
+- [Phase 02]: cartStore persists only cartToken (not items) — cart data lives in backend, token is the identity key
+- [Phase 02]: CART_TOKEN_REQUIRED and CART_NOT_FOUND 401s skip admin login redirect — cart errors are separate from auth errors
+- [Phase 02]: useCategories degrades gracefully to empty array on 401 — guest product browsing works without auth
 
 ### Critical Blockers (Must Resolve Before Phase 1)
 
