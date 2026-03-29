@@ -138,6 +138,7 @@ export default function MyOrdersPage() {
         rowKey="id"
         pagination={false}
         size="small"
+        scroll={{ x: 400 }}
         style={{ marginBottom: 8 }}
       />
 
@@ -186,6 +187,7 @@ export default function MyOrdersPage() {
           dataSource={orders}
           columns={columns}
           rowKey="id"
+          scroll={{ x: 500 }}
           expandable={{
             expandedRowRender,
             expandedRowKeys,

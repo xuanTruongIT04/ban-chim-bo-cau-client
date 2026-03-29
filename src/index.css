@@ -1,0 +1,42 @@
+/* Global responsive overrides */
+
+/* Prevent horizontal scroll at the document level */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* CustomerLayout header: show full logo on sm+, short on xs */
+.logo-full {
+  display: none;
+}
+.logo-short {
+  display: inline;
+}
+
+@media (min-width: 576px) {
+  .logo-full {
+    display: inline;
+  }
+  .logo-short {
+    display: none;
+  }
+}
+
+/* CustomerLayout header: show nav text on sm+, icon-only on xs */
+.nav-text {
+  display: none;
+}
+
+@media (min-width: 576px) {
+  .nav-text {
+    display: inline;
+    font-size: 14px;
+  }
+}
+
+/* Ensure AntD tables with scroll don't break layout */
+.ant-table-wrapper {
+  overflow-x: auto;
+}

@@ -145,6 +145,7 @@ export default function ProductsPage() {
         columns={columns}
         dataSource={data?.data}
         loading={isLoading}
+        scroll={{ x: 800 }}
         pagination={
           data?.meta
             ? {

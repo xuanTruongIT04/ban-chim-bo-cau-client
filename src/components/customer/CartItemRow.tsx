@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { List, InputNumber, Button, Typography, Space } from 'antd';
+import { List, InputNumber, Button, Typography } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import type { CartItemResource } from '../../types/api';
 import { formatVND } from '../../utils/format';
@@ -34,29 +34,19 @@ export default function CartItemRow({
   }
 
   return (
-    <List.Item
-      actions={[
-        <Button
-          key="remove"
-          type="text"
-          danger
-          icon={<DeleteOutlined />}
-          onClick={() => onRemove(item.id)}
-          disabled={updating}
-        >
-          Xóa
-        </Button>,
-      ]}
-    >
-      <List.Item.Meta
-        title={<Typography.Text strong>{item.product_name}</Typography.Text>}
-        description={
-          <Typography.Text type="secondary">
-            {formatVND(item.unit_price)} / con
-          </Typography.Text>
-        }
-      />
-      <Space size="large" align="center">
+    <List.Item style={{ flexWrap: 'wrap', gap: 8, alignItems: 'flex-start' }}>
+      {/* Product info */}
+      <div style={{ flex: '1 1 140px', minWidth: 0 }}>
+        <Typography.Text strong style={{ display: 'block', wordBreak: 'break-word' }}>
+          {item.product_name}
+        </Typography.Text>
+        <Typography.Text type="secondary" style={{ fontSize: 12 }}>
+          {formatVND(item.unit_price)} / con
+        </Typography.Text>
+      </div>
+
+      {/* Quantity + subtotal + remove */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
         <InputNumber
           min={1}
           step={1}
@@ -64,12 +54,20 @@ export default function CartItemRow({
           value={parseInt(item.quantity)}
           onChange={handleQuantityChange}
           disabled={updating}
-          style={{ width: 80 }}
+          style={{ width: 72 }}
         />
-        <Typography.Text strong style={{ minWidth: 100, textAlign: 'right', display: 'inline-block' }}>
+        <Typography.Text strong style={{ minWidth: 80, textAlign: 'right', display: 'inline-block' }}>
           {formatVND(item.subtotal)}
         </Typography.Text>
-      </Space>
+        <Button
+          type="text"
+          danger
+          icon={<DeleteOutlined />}
+          onClick={() => onRemove(item.id)}
+          disabled={updating}
+          size="small"
+        />
+      </div>
     </List.Item>
   );
 }
