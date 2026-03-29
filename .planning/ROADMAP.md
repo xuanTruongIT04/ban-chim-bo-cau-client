@@ -77,17 +77,23 @@ Plans:
 **UI hint**: yes
 
 ### Phase 4: Account + Polish
-**Goal**: Logged-in customers can track their order history; every page in the app has consistent, production-quality loading states, error handling, and passes a mobile responsiveness check
+**Goal**: Customers can track their recent order history; every page in the app has consistent, production-quality loading states, error handling, and passes a mobile responsiveness check
 **Depends on**: Phase 3
 **Requirements**: ACCOUNT-01, ACCOUNT-02, UX-01, UX-02, UX-03, UX-04, DASH-02
 **Success Criteria** (what must be TRUE):
-  1. A logged-in customer can view a list of their past orders and open any order to see full detail (items, status, delivery address)
+  1. A customer can view a list of their recent orders and open any order to see full detail (items, status, delivery address)
   2. Every data-fetching surface shows a loading indicator (spinner or skeleton) while the API call is in flight
   3. Every API error produces a visible, human-readable notification -- no silent failures or blank screens
   4. Every form shows inline validation errors before submission; the user knows exactly what to fix
   5. The app is fully usable on a 360px mobile viewport -- no horizontal scroll, no truncated actions, no overlapping UI elements
-  6. Admin dashboard shows basic revenue figure (DASH-02 — deferred from Phase 3; requires backend revenue endpoint)
-**Plans**: TBD
+  6. Admin dashboard shows basic revenue figure (DASH-02 -- calculated client-side from completed orders)
+**Plans:** 3 plans
+
+Plans:
+- [ ] 04-01-PLAN.md -- Order history store (localStorage), MyOrdersPage, checkout wiring, dashboard revenue card
+- [ ] 04-02-PLAN.md -- UX audit: loading states, error handling, form validation across all pages
+- [ ] 04-03-PLAN.md -- Mobile responsiveness audit (360px), final human verification of Phase 4
+
 **UI hint**: yes
 
 ---
@@ -99,7 +105,7 @@ Plans:
 | 1. Foundation + Authentication | 3/4 | In Progress|  |
 | 2. Customer Purchase Flow | 4/4 | Complete   | 2026-03-29 |
 | 3. Admin Panel | 3/4 | In Progress|  |
-| 4. Account + Polish | 0/? | Not started | - |
+| 4. Account + Polish | 0/3 | Not started | - |
 
 ---
 
@@ -162,5 +168,6 @@ Plans:
 *Phase 1 planned: 2026-03-28*
 *Phase 2 planned: 2026-03-29*
 *Phase 3 planned: 2026-03-29*
-*Phase 3 revised: 2026-03-29 (DASH-02 deferred to Phase 4 — backend lacks revenue endpoint)*
-*Next: `/gsd:execute-phase 03`*
+*Phase 3 revised: 2026-03-29 (DASH-02 deferred to Phase 4 -- backend lacks revenue endpoint)*
+*Phase 4 planned: 2026-03-29*
+*Next: `/gsd:execute-phase 04`*
