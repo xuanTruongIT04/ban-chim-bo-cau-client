@@ -13,7 +13,10 @@ import {
   Result,
   Space,
   Divider,
+  Card,
+  message,
 } from 'antd';
+import { ShoppingCartOutlined, ThunderboltOutlined, CheckCircleOutlined, SafetyOutlined } from '@ant-design/icons';
 import { useProduct } from '../../hooks/useProduct';
 import { useAddToCart } from '../../hooks/useCart';
 import { formatVND } from '../../utils/format';
@@ -42,10 +45,10 @@ export default function ProductDetailPage() {
     return (
       <Result
         status="404"
-        title="Sản phẩm không tồn tại hoặc đã bị xóa. Vui lòng quay lại danh sách sản phẩm."
+        title="Sản phẩm không tồn tại hoặc đã bị xóa."
         extra={
           <Link to="/">
-            <Button type="primary">Quay lại danh sách</Button>
+            <Button type="primary" size="large">Quay lại danh sách</Button>
           </Link>
         }
       />
@@ -54,25 +57,26 @@ export default function ProductDetailPage() {
 
   const stockQty = parseFloat(product.stock_quantity);
   const isOutOfStock = stockQty === 0;
+  const isLowStock = stockQty > 0 && stockQty <= 5;
   const images = product.images ?? [];
   const primaryImage = images[selectedImageIndex] ?? images[0];
 
   function renderStockStatus() {
     const qty = parseFloat(product!.stock_quantity);
     if (qty === 0) {
-      return <Tag color="error">Hết hàng</Tag>;
+      return <Tag color="error" style={{ fontSize: 16, padding: '4px 12px' }}>Hết hàng</Tag>;
     }
     if (qty <= 5) {
       return (
-        <Text style={{ color: '#faad14', fontWeight: 500 }}>
-          Chỉ còn {qty} con
-        </Text>
+        <Tag color="warning" style={{ fontSize: 16, padding: '4px 12px' }}>
+          Sắp hết — Chỉ còn {qty} con
+        </Tag>
       );
     }
     return (
-      <Text style={{ color: '#52c41a', fontWeight: 500 }}>
-        Còn {qty} con
-      </Text>
+      <Tag color="success" style={{ fontSize: 16, padding: '4px 12px' }}>
+        <CheckCircleOutlined /> Còn hàng ({qty} con)
+      </Tag>
     );
   }
 
@@ -81,6 +85,14 @@ export default function ProductDetailPage() {
       { productId: product!.id, quantity: selectedQuantity },
       {
         onSuccess: () => {
+          message.success({
+            content: (
+              <span style={{ fontSize: 16 }}>
+                Đã thêm <strong>{selectedQuantity} x {product!.name}</strong> vào giỏ hàng!
+              </span>
+            ),
+            duration: 3,
+          });
           setSelectedQuantity(1);
         },
       }
@@ -88,9 +100,9 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px 48px' }}>
+    <div className="fade-in-up" style={{ maxWidth: 1200, margin: '0 auto', padding: '16px 20px 48px' }}>
       <Breadcrumb
-        style={{ marginBottom: 24 }}
+        style={{ marginBottom: 20, fontSize: 15 }}
         items={[
           { title: <Link to="/">Trang chủ</Link> },
           ...(product.category ? [{ title: product.category.name }] : []),
@@ -107,7 +119,7 @@ export default function ProductDetailPage() {
                 <Image
                   src={primaryImage.url}
                   alt={product.name}
-                  style={{ width: '100%', borderRadius: 8 }}
+                  style={{ width: '100%', borderRadius: 12 }}
                   preview={{ src: primaryImage.url }}
                 />
               ) : (
@@ -115,15 +127,16 @@ export default function ProductDetailPage() {
                   style={{
                     width: '100%',
                     height: 320,
-                    background: '#f5f5f5',
+                    background: '#fafafa',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    borderRadius: 8,
-                    color: '#bfbfbf',
+                    borderRadius: 12,
+                    color: '#bbb',
+                    fontSize: 18,
                   }}
                 >
-                  Không có ảnh
+                  Chưa có ảnh
                 </div>
               )}
             </div>
@@ -137,11 +150,11 @@ export default function ProductDetailPage() {
                       alt={`${product.name} ${index + 1}`}
                       style={{
                         width: '100%',
-                        height: 70,
+                        height: 80,
                         objectFit: 'cover',
-                        borderRadius: 4,
+                        borderRadius: 8,
                         cursor: 'pointer',
-                        border: selectedImageIndex === index ? '2px solid #1677ff' : '2px solid transparent',
+                        border: selectedImageIndex === index ? '3px solid #2e7d32' : '3px solid transparent',
                       }}
                       preview={false}
                       onClick={() => setSelectedImageIndex(index)}
@@ -155,29 +168,54 @@ export default function ProductDetailPage() {
 
         {/* Info section */}
         <Col xs={24} md={14}>
-          <Title level={2}>{product.name}</Title>
+          <Title level={2} style={{ fontSize: 28, marginBottom: 12 }}>{product.name}</Title>
 
-          <Text
-            style={{ color: '#1677ff', fontSize: 24, fontWeight: 600, display: 'block', marginBottom: 16 }}
+          {/* Price - big and red (Vietnamese style) */}
+          <div
+            style={{
+              background: '#fff5f5',
+              borderRadius: 10,
+              padding: '16px 20px',
+              marginBottom: 16,
+              border: '1px solid #ffcdd2',
+            }}
           >
-            {formatVND(product.price_vnd)} / {product.unit_type}
-          </Text>
+            <Text
+              style={{ color: '#c62828', fontSize: 32, fontWeight: 700, display: 'block' }}
+            >
+              {formatVND(product.price_vnd)}
+              <span style={{ fontSize: 18, fontWeight: 400, color: '#999' }}>
+                {' '}/ {product.unit_type}
+              </span>
+            </Text>
+          </div>
 
           <div style={{ marginBottom: 16 }}>
             {renderStockStatus()}
           </div>
 
+          {isLowStock && (
+            <Card
+              size="small"
+              style={{ background: '#fff8e1', border: '1px solid #ffe082', marginBottom: 16 }}
+            >
+              <Text style={{ fontSize: 15, color: '#e65100' }}>
+                <ThunderboltOutlined /> Sản phẩm sắp hết — Đặt ngay để không bỏ lỡ!
+              </Text>
+            </Card>
+          )}
+
           <Divider />
 
-          <Paragraph style={{ whiteSpace: 'pre-wrap', marginBottom: 24 }}>
+          <Paragraph style={{ whiteSpace: 'pre-wrap', marginBottom: 24, fontSize: 16, lineHeight: 1.8 }}>
             {product.description}
           </Paragraph>
 
           <Divider />
 
-          <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+          <Space direction="vertical" size="large" style={{ width: '100%' }}>
             <div>
-              <Text strong style={{ display: 'block', marginBottom: 8 }}>
+              <Text strong style={{ display: 'block', marginBottom: 8, fontSize: 17 }}>
                 Số lượng:
               </Text>
               <InputNumber
@@ -188,7 +226,8 @@ export default function ProductDetailPage() {
                 value={selectedQuantity}
                 onChange={(val) => setSelectedQuantity(val ?? 1)}
                 disabled={isOutOfStock}
-                style={{ width: 120 }}
+                size="large"
+                style={{ width: 140, fontSize: 18 }}
               />
             </div>
 
@@ -199,9 +238,38 @@ export default function ProductDetailPage() {
               disabled={isOutOfStock}
               loading={addToCart.isPending}
               onClick={handleAddToCart}
+              className={!isOutOfStock ? 'btn-cta-pulse' : ''}
+              style={{
+                height: 56,
+                fontSize: 20,
+                fontWeight: 700,
+                borderRadius: 12,
+              }}
             >
-              {isOutOfStock ? 'Hết hàng' : 'Thêm vào giỏ hàng'}
+              {isOutOfStock ? 'Hết hàng' : (
+                <>
+                  <ShoppingCartOutlined style={{ fontSize: 22 }} /> THÊM VÀO GIỎ HÀNG
+                </>
+              )}
             </Button>
+
+            {/* Trust signals */}
+            <Card
+              size="small"
+              style={{ background: '#f0f7f0', border: '1px solid #c8e6c9' }}
+            >
+              <Space direction="vertical" size={8}>
+                <Text style={{ color: '#2e7d32', fontSize: 15 }}>
+                  <SafetyOutlined /> Chim tươi sống, đảm bảo chất lượng
+                </Text>
+                <Text style={{ color: '#2e7d32', fontSize: 15 }}>
+                  <CheckCircleOutlined /> Giao hàng tận nơi — Nhận hàng mới trả tiền
+                </Text>
+                <Text style={{ color: '#2e7d32', fontSize: 15 }}>
+                  <CheckCircleOutlined /> Hỗ trợ hotline: 0946 477 117
+                </Text>
+              </Space>
+            </Card>
           </Space>
         </Col>
       </Row>

@@ -111,7 +111,7 @@ export default function OrdersPage() {
 
   return (
     <div>
-      <Title level={4} style={{ marginBottom: 16 }}>
+      <Title level={3} style={{ marginBottom: 16, color: '#1b5e20' }}>
         Quản lý đơn hàng
       </Title>
 

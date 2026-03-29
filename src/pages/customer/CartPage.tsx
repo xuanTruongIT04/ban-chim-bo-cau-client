@@ -9,8 +9,9 @@ import {
   Empty,
   Spin,
   Result,
-  theme,
+  Divider,
 } from 'antd';
+import { ShoppingOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { useCart, useUpdateCartItem, useRemoveCartItem } from '../../hooks/useCart';
 import CartItemRow from '../../components/customer/CartItemRow';
 import { formatVND } from '../../utils/format';
@@ -18,7 +19,6 @@ import type { CartItemResource } from '../../types/api';
 
 export default function CartPage() {
   const navigate = useNavigate();
-  const { token: designToken } = theme.useToken();
   const { data: cart, isLoading, isError, refetch } = useCart();
   const updateCartItem = useUpdateCartItem();
   const removeCartItem = useRemoveCartItem();
@@ -47,7 +47,7 @@ export default function CartPage() {
           title="Không tải được giỏ hàng"
           subTitle="Đã có lỗi xảy ra khi tải thông tin giỏ hàng."
           extra={
-            <Button type="primary" onClick={() => refetch()}>
+            <Button type="primary" size="large" onClick={() => refetch()}>
               Thử lại
             </Button>
           }
@@ -69,16 +69,24 @@ export default function CartPage() {
         }}
       >
         <Empty
+          image={<ShoppingOutlined style={{ fontSize: 64, color: '#2e7d32' }} />}
           description={
             <>
-              <Typography.Title level={3}>Giỏ hàng trống</Typography.Title>
-              <Typography.Text type="secondary">
+              <Typography.Title level={3} style={{ color: '#1b5e20' }}>
+                Giỏ hàng trống
+              </Typography.Title>
+              <Typography.Text style={{ fontSize: 17, color: '#888' }}>
                 Bạn chưa có sản phẩm nào trong giỏ hàng.
               </Typography.Text>
             </>
           }
         >
-          <Button type="primary" onClick={() => navigate('/')}>
+          <Button
+            type="primary"
+            size="large"
+            onClick={() => navigate('/')}
+            style={{ height: 50, fontSize: 18, fontWeight: 600, borderRadius: 10 }}
+          >
             Tiếp tục mua sắm
           </Button>
         </Empty>
@@ -89,11 +97,12 @@ export default function CartPage() {
   const isMutating = updateCartItem.isPending || removeCartItem.isPending;
 
   return (
-    <div style={{ maxWidth: 1200, margin: '0 auto', padding: '24px' }}>
-      <Typography.Title level={2}>Giỏ hàng</Typography.Title>
+    <div className="fade-in-up" style={{ maxWidth: 1200, margin: '0 auto', padding: '24px 20px' }}>
+      <Typography.Title level={2} style={{ color: '#1b5e20', fontSize: 26 }}>
+        <ShoppingOutlined /> Giỏ hàng của bạn
+      </Typography.Title>
 
       <Row gutter={[24, 24]}>
-        {/* Cart items column */}
         <Col xs={24} md={16}>
           <List
             dataSource={cart.items}
@@ -107,34 +116,47 @@ export default function CartPage() {
               />
             )}
             bordered
-            style={{ background: designToken.colorBgContainer }}
+            style={{ background: '#ffffff', borderRadius: 12, borderColor: '#e0e0e0' }}
           />
         </Col>
 
-        {/* Order summary column */}
         <Col xs={24} md={8}>
-          <Card title="Tóm tắt đơn hàng">
+          <Card
+            title={<span style={{ fontSize: 18, fontWeight: 600 }}>Tóm tắt đơn hàng</span>}
+            style={{ borderRadius: 12, border: '1px solid #e0e0e0' }}
+          >
             <div style={{ marginBottom: 12 }}>
-              <Typography.Text>{cart.items.length} sản phẩm</Typography.Text>
+              <Typography.Text style={{ fontSize: 16 }}>
+                {cart.items.length} sản phẩm
+              </Typography.Text>
             </div>
-            <div style={{ marginBottom: 24 }}>
-              <Typography.Text type="secondary">Tổng cộng:</Typography.Text>
-              <br />
-              <Typography.Title
-                level={3}
-                style={{ color: designToken.colorPrimary, margin: 0 }}
-              >
-                {formatVND(cart.total_amount)}
-              </Typography.Title>
+            <Divider />
+            <div style={{ marginBottom: 8 }}>
+              <Typography.Text style={{ fontSize: 16, color: '#888' }}>
+                Tổng cộng:
+              </Typography.Text>
             </div>
+            <Typography.Title
+              level={2}
+              style={{ color: '#c62828', margin: '0 0 20px', fontSize: 30 }}
+            >
+              {formatVND(cart.total_amount)}
+            </Typography.Title>
             <Button
               type="primary"
               block
               size="large"
               disabled={!cart || cart.items.length === 0}
               onClick={() => navigate('/checkout')}
+              className="btn-cta-pulse"
+              style={{
+                height: 54,
+                fontSize: 19,
+                fontWeight: 700,
+                borderRadius: 10,
+              }}
             >
-              Tiến hành đặt hàng
+              <ThunderboltOutlined /> ĐẶT HÀNG NGAY
             </Button>
           </Card>
         </Col>

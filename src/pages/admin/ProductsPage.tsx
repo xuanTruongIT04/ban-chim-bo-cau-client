@@ -124,8 +124,14 @@ export default function ProductsPage() {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-        <Title level={2} style={{ margin: 0 }}>Sản phẩm</Title>
-        <Button type="primary" icon={<PlusOutlined />} onClick={handleAddNew}>
+        <Title level={2} style={{ margin: 0, color: '#1b5e20' }}>Quản lý sản phẩm</Title>
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          onClick={handleAddNew}
+          size="large"
+          style={{ fontWeight: 600, fontSize: 16 }}
+        >
           Thêm sản phẩm
         </Button>
       </div>

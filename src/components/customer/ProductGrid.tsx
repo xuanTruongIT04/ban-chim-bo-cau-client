@@ -38,13 +38,13 @@ export default function ProductGrid({
       <Empty
         description={
           <div>
-            <div style={{ fontWeight: 500, marginBottom: 8 }}>Không tìm thấy sản phẩm</div>
-            <div style={{ color: '#8c8c8c' }}>Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm.</div>
+            <div style={{ fontWeight: 600, marginBottom: 8, fontSize: 18 }}>Không tìm thấy sản phẩm</div>
+            <div style={{ color: '#8c8c8c', fontSize: 16 }}>Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm.</div>
           </div>
         }
         style={{ padding: '48px 0' }}
       >
-        <Button onClick={onClearFilters}>Xem tất cả sản phẩm</Button>
+        <Button type="primary" size="large" onClick={onClearFilters}>Xem tất cả sản phẩm</Button>
       </Empty>
     );
   }
@@ -67,7 +67,7 @@ export default function ProductGrid({
             pageSize={pagination.per_page}
             onChange={onPageChange}
             showSizeChanger={false}
-            showTotal={(total) => `Tổng ${total} sản phẩm`}
+            showTotal={(total) => <span style={{ fontSize: 16 }}>{`Tổng ${total} sản phẩm`}</span>}
             align="center"
           />
         </div>

@@ -1,4 +1,5 @@
 import { Button, Modal, Space, Spin, Tag, Upload, message } from 'antd';
+import { InboxOutlined } from '@ant-design/icons';
 import type { UploadRequestOption } from 'rc-upload/lib/interface';
 import { useAdminProduct, useDeleteProductImage } from '../../hooks/admin/useAdminProducts';
 import { adminProductApi } from '../../api/admin/adminProductApi';
@@ -35,12 +36,12 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
     const isValidType = ['image/jpeg', 'image/png', 'image/webp'].includes(file.type);
     if (!isValidType) {
       message.error('Chỉ chấp nhận ảnh JPEG, PNG hoặc WebP');
-      return false;
+      return Upload.LIST_IGNORE;
     }
     const isUnderLimit = file.size / 1024 / 1024 < MAX_FILE_SIZE_MB;
     if (!isUnderLimit) {
       message.error(`Ảnh phải nhỏ hơn ${MAX_FILE_SIZE_MB}MB`);
-      return false;
+      return Upload.LIST_IGNORE;
     }
     return true;
   };
@@ -84,15 +85,19 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
         </div>
       ) : (
         <>
-          <Upload
+          <Upload.Dragger
             accept="image/jpeg,image/png,image/webp"
-            listType="picture-card"
             showUploadList={false}
             customRequest={customRequest}
             beforeUpload={beforeUpload}
+            multiple
           >
-            + Tải ảnh lên
-          </Upload>
+            <p className="ant-upload-drag-icon">
+              <InboxOutlined />
+            </p>
+            <p className="ant-upload-text" style={{ fontSize: 16 }}>Nhấn hoặc kéo ảnh vào đây để tải lên</p>
+            <p className="ant-upload-hint">Hỗ trợ JPEG, PNG, WebP — tối đa {MAX_FILE_SIZE_MB}MB</p>
+          </Upload.Dragger>
 
           {images.length > 0 && (
             <div style={{ marginTop: 16, display: 'flex', flexWrap: 'wrap', gap: 12 }}>

@@ -12,9 +12,11 @@ export const axiosInstance = axios.create({
 
 // Request interceptor — inject auth tokens and handle FormData Content-Type
 axiosInstance.interceptors.request.use((config) => {
-  // When sending FormData, delete the default Content-Type so axios auto-sets multipart/form-data with boundary
+  // When sending FormData, remove the default Content-Type so axios auto-sets multipart/form-data with boundary
+  // NOTE: Use AxiosHeaders method instead of `delete` operator — Axios 1.x AxiosHeaders
+  // is a class instance where bracket-delete may silently fail.
   if (config.data instanceof FormData) {
-    delete config.headers['Content-Type'];
+    config.headers.set('Content-Type', false as unknown as string);
   }
 
   const token = useAuthStore.getState().token;

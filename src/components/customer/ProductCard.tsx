@@ -1,5 +1,5 @@
-import { Card, Tag, Button, Typography } from 'antd';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { Card, Tag, Button, Typography, message } from 'antd';
+import { ShoppingCartOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useAddToCart } from '../../hooks/useCart';
 import { formatVND } from '../../utils/format';
@@ -14,9 +14,26 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const addToCart = useAddToCart();
   const isOutOfStock = parseFloat(product.stock_quantity) === 0;
+  const stockQty = parseFloat(product.stock_quantity);
+  const isLowStock = stockQty > 0 && stockQty <= 5;
+
+  const handleAddToCart = () => {
+    addToCart.mutate(
+      { productId: product.id, quantity: 1 },
+      {
+        onSuccess: () => {
+          message.success({
+            content: `Đã thêm "${product.name}" vào giỏ hàng!`,
+            duration: 2,
+            style: { fontSize: 16 },
+          });
+        },
+      },
+    );
+  };
 
   const coverImage = (
-    <div style={{ position: 'relative', height: 200, overflow: 'hidden', background: '#f5f5f5' }}>
+    <div style={{ position: 'relative', height: 220, overflow: 'hidden', background: '#f5f5f5' }}>
       {product.primary_image ? (
         <img
           src={product.primary_image}
@@ -31,19 +48,31 @@ export default function ProductCard({ product }: ProductCardProps) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#bfbfbf',
+            color: '#bbb',
+            fontSize: 16,
+            background: '#fafafa',
           }}
         >
-          Không có ảnh
+          Chưa có ảnh
         </div>
       )}
-      {isOutOfStock && (
-        <Tag
-          color="error"
-          style={{ position: 'absolute', top: 8, right: 8 }}
-        >
-          Hết hàng
-        </Tag>
+      {/* Status badges */}
+      <div style={{ position: 'absolute', top: 8, left: 8, display: 'flex', flexDirection: 'column', gap: 4 }}>
+        {isOutOfStock && (
+          <Tag color="error" style={{ fontSize: 14, padding: '2px 10px', fontWeight: 600 }}>
+            Hết hàng
+          </Tag>
+        )}
+        {isLowStock && (
+          <Tag color="warning" style={{ fontSize: 13, padding: '2px 8px', fontWeight: 600 }}>
+            Còn {stockQty} con
+          </Tag>
+        )}
+      </div>
+      {!isOutOfStock && !isLowStock && (
+        <div style={{ position: 'absolute', top: 8, right: 8 }}>
+          <Tag color="#2e7d32" style={{ fontWeight: 600, fontSize: 12 }}>Còn hàng</Tag>
+        </div>
       )}
     </div>
   );
@@ -52,30 +81,78 @@ export default function ProductCard({ product }: ProductCardProps) {
     <Card
       hoverable
       cover={coverImage}
-      actions={[
+      className="product-card-hover"
+      style={{
+        borderRadius: 12,
+        overflow: 'hidden',
+        border: '1px solid #e0e0e0',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+      styles={{
+        body: { padding: '16px', flex: 1, display: 'flex', flexDirection: 'column' },
+      }}
+    >
+      <Link to={`/products/${product.id}`} style={{ textDecoration: 'none' }}>
+        <Text
+          strong
+          style={{
+            fontSize: 17,
+            color: '#333',
+            display: 'block',
+            marginBottom: 8,
+            lineHeight: 1.3,
+          }}
+        >
+          {product.name}
+        </Text>
+      </Link>
+
+      <Text
+        style={{
+          fontSize: 22,
+          fontWeight: 700,
+          color: '#c62828',
+          display: 'block',
+          marginBottom: 12,
+        }}
+      >
+        {formatVND(product.price_vnd)}
+        <span style={{ fontSize: 14, fontWeight: 400, color: '#999' }}>
+          {' '}/ {product.unit_type}
+        </span>
+      </Text>
+
+      <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
         <Button
-          key="add-to-cart"
           type="primary"
-          icon={<ShoppingCartOutlined />}
+          icon={isOutOfStock ? undefined : <ShoppingCartOutlined />}
           disabled={isOutOfStock}
           loading={addToCart.isPending}
-          onClick={() => addToCart.mutate({ productId: product.id, quantity: 1 })}
+          onClick={handleAddToCart}
+          size="large"
+          block
+          className={!isOutOfStock ? 'btn-cta-pulse' : ''}
+          style={{
+            fontWeight: 700,
+            fontSize: 16,
+            height: 48,
+            borderRadius: 10,
+          }}
         >
-          {isOutOfStock ? 'Hết hàng' : 'Thêm vào giỏ'}
-        </Button>,
-        <Link key="view-detail" to={`/products/${product.id}`}>
-          Xem chi tiết
-        </Link>,
-      ]}
-    >
-      <Card.Meta
-        title={product.name}
-        description={
-          <Text style={{ color: '#1677ff', fontWeight: 500 }}>
-            {formatVND(product.price_vnd)} / {product.unit_type}
-          </Text>
-        }
-      />
+          {isOutOfStock ? 'Hết hàng' : (
+            <>
+              <ThunderboltOutlined /> MUA NGAY
+            </>
+          )}
+        </Button>
+        <Link to={`/products/${product.id}`} style={{ textAlign: 'center' }}>
+          <Button type="link" style={{ fontSize: 15, color: '#2e7d32', fontWeight: 500, padding: 0 }}>
+            Xem chi tiết
+          </Button>
+        </Link>
+      </div>
     </Card>
   );
 }
