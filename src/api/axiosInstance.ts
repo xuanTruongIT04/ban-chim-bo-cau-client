@@ -83,6 +83,11 @@ axiosInstance.interceptors.response.use(
       }, 1000);
     }
 
+    // 403: Forbidden — user lacks permission
+    if (status === 403) {
+      message.error('Bạn không có quyền thực hiện thao tác này.');
+    }
+
     // D-28: 5xx → global error toast
     if (status && status >= 500) {
       message.error('Lỗi máy chủ. Vui lòng thử lại sau.');

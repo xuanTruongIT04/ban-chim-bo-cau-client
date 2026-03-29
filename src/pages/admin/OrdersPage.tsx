@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  Alert,
   Table,
   Tag,
   Button,
@@ -41,7 +42,7 @@ export default function OrdersPage() {
   });
   const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
 
-  const { data, isLoading } = useAdminOrders(filters);
+  const { data, isLoading, isError } = useAdminOrders(filters);
 
   const meta = data?.meta;
 
@@ -113,6 +114,16 @@ export default function OrdersPage() {
       <Title level={4} style={{ marginBottom: 16 }}>
         Quản lý đơn hàng
       </Title>
+
+      {isError && (
+        <Alert
+          type="error"
+          message="Không tải được danh sách đơn hàng"
+          description="Đã có lỗi xảy ra. Vui lòng tải lại trang."
+          showIcon
+          style={{ marginBottom: 16 }}
+        />
+      )}
 
       <Space wrap style={{ marginBottom: 16 }}>
         <Select

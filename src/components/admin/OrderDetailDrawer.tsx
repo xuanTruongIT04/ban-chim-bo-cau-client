@@ -1,4 +1,4 @@
-import { Drawer, Descriptions, Table, Spin, Typography } from 'antd';
+import { Alert, Drawer, Descriptions, Table, Spin, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { useAdminOrder } from '../../hooks/admin/useAdminOrders';
 import OrderStatusButtons from './OrderStatusButtons';
@@ -46,7 +46,7 @@ export default function OrderDetailDrawer({
   orderId,
   onClose,
 }: OrderDetailDrawerProps) {
-  const { data: order, isLoading } = useAdminOrder(orderId ?? 0);
+  const { data: order, isLoading, isError } = useAdminOrder(orderId ?? 0);
 
   return (
     <Drawer
@@ -60,6 +60,13 @@ export default function OrderDetailDrawer({
         <div style={{ textAlign: 'center', padding: 40 }}>
           <Spin size="large" />
         </div>
+      ) : isError ? (
+        <Alert
+          type="error"
+          message="Không tải được chi tiết đơn hàng"
+          description="Đã có lỗi xảy ra. Vui lòng đóng và mở lại."
+          showIcon
+        />
       ) : order ? (
         <>
           <Descriptions bordered column={1} size="small" style={{ marginBottom: 24 }}>
