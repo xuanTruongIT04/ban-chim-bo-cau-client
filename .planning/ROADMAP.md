@@ -66,7 +66,14 @@ Plans:
   1. An admin can view the dashboard and immediately see total new orders, basic revenue figure, and product stock status (in-stock vs. out-of-stock count)
   2. An admin can create a new product (with image upload), edit it, and delete it with a confirmation dialog -- changes reflect immediately in the product list
   3. An admin can view all orders filtered by status, open a specific order to see full detail, and move it through the status workflow (pending -> confirmed -> shipping -> delivered, or cancelled)
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 03-01-PLAN.md -- Admin types, API modules (product/order/dashboard/category), TanStack Query hooks, unit tests
+- [ ] 03-02-PLAN.md -- Dashboard page (stat cards), Product management page (table + CRUD modal + image upload + stock adjust), router wiring
+- [ ] 03-03-PLAN.md -- Order management page (filterable table + detail drawer + status workflow buttons), router wiring
+- [ ] 03-04-PLAN.md -- Human verification of complete admin panel (dashboard, products, orders)
+
 **UI hint**: yes
 
 ### Phase 4: Account + Polish
@@ -90,7 +97,7 @@ Plans:
 |-------|----------------|--------|-----------|
 | 1. Foundation + Authentication | 3/4 | In Progress|  |
 | 2. Customer Purchase Flow | 4/4 | Complete   | 2026-03-29 |
-| 3. Admin Panel | 0/? | Not started | - |
+| 3. Admin Panel | 0/4 | Planned | - |
 | 4. Account + Polish | 0/? | Not started | - |
 
 ---
@@ -153,4 +160,5 @@ Plans:
 *Roadmap created: 2026-03-28*
 *Phase 1 planned: 2026-03-28*
 *Phase 2 planned: 2026-03-29*
-*Next: `/gsd:execute-phase 02`*
+*Phase 3 planned: 2026-03-29*
+*Next: `/gsd:execute-phase 03`*
