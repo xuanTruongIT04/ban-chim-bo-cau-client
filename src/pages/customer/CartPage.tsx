@@ -8,6 +8,7 @@ import {
   Button,
   Empty,
   Spin,
+  Result,
   theme,
 } from 'antd';
 import { useCart, useUpdateCartItem, useRemoveCartItem } from '../../hooks/useCart';
@@ -18,7 +19,7 @@ import type { CartItemResource } from '../../types/api';
 export default function CartPage() {
   const navigate = useNavigate();
   const { token: designToken } = theme.useToken();
-  const { data: cart, isLoading } = useCart();
+  const { data: cart, isLoading, isError, refetch } = useCart();
   const updateCartItem = useUpdateCartItem();
   const removeCartItem = useRemoveCartItem();
 
@@ -34,6 +35,23 @@ export default function CartPage() {
     return (
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 400 }}>
         <Spin size="large" />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 24px' }}>
+        <Result
+          status="error"
+          title="Không tải được giỏ hàng"
+          subTitle="Đã có lỗi xảy ra khi tải thông tin giỏ hàng."
+          extra={
+            <Button type="primary" onClick={() => refetch()}>
+              Thử lại
+            </Button>
+          }
+        />
       </div>
     );
   }

@@ -19,7 +19,7 @@ function flattenCategories(categories: CategoryResource[]): CategoryResource[] {
 }
 
 export default function CategoryFilter({ value, onChange }: CategoryFilterProps) {
-  const { data: categories = [] } = useCategories();
+  const { data: categories = [], isLoading } = useCategories();
 
   const flatCategories = flattenCategories(categories);
 
@@ -33,6 +33,7 @@ export default function CategoryFilter({ value, onChange }: CategoryFilterProps)
       value={value}
       onChange={onChange}
       options={options}
+      loading={isLoading}
       style={{ width: '100%', minWidth: 200 }}
       placeholder="Tất cả"
     />
