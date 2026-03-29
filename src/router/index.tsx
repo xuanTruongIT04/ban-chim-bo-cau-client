@@ -6,6 +6,10 @@ import LoginPage from '../pages/admin/LoginPage';
 import DashboardPage from '../pages/admin/DashboardPage';
 import PlaceholderPage from '../pages/admin/PlaceholderPage';
 import HomePage from '../pages/customer/HomePage';
+import ProductDetailPage from '../pages/customer/ProductDetailPage';
+import CartPage from '../pages/customer/CartPage';
+import CheckoutPage from '../pages/customer/CheckoutPage';
+import OrderConfirmationPage from '../pages/customer/OrderConfirmationPage';
 
 export const router = createBrowserRouter([
   // Admin login — public, outside AdminLayout (per D-23)
@@ -35,7 +39,10 @@ export const router = createBrowserRouter([
     element: <CustomerLayout />,
     children: [
       { path: '/', element: <HomePage /> },
-      // Phase 2: /products/:id, /cart, /checkout
+      { path: '/products/:id', element: <ProductDetailPage /> },
+      { path: '/cart', element: <CartPage /> },
+      { path: '/checkout', element: <CheckoutPage /> },
+      { path: '/orders/confirm', element: <OrderConfirmationPage /> },
       // Phase 4: /orders
     ],
   },
