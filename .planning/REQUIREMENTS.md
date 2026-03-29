@@ -53,11 +53,11 @@
 
 ### Admin — Product Management
 
-- [ ] **APROD-01**: Admin có thể xem danh sách tất cả sản phẩm với phân trang
-- [ ] **APROD-02**: Admin có thể thêm sản phẩm mới (tên, mô tả, giá, số lượng, danh mục, ảnh)
-- [ ] **APROD-03**: Admin có thể chỉnh sửa thông tin sản phẩm
-- [ ] **APROD-04**: Admin có thể xóa sản phẩm (có confirmation dialog)
-- [ ] **APROD-05**: Admin có thể upload ảnh sản phẩm
+- [x] **APROD-01**: Admin có thể xem danh sách tất cả sản phẩm với phân trang
+- [x] **APROD-02**: Admin có thể thêm sản phẩm mới (tên, mô tả, giá, số lượng, danh mục, ảnh)
+- [x] **APROD-03**: Admin có thể chỉnh sửa thông tin sản phẩm
+- [x] **APROD-04**: Admin có thể xóa sản phẩm (có confirmation dialog)
+- [x] **APROD-05**: Admin có thể upload ảnh sản phẩm
 
 ### Admin — Order Management
 
@@ -67,9 +67,9 @@
 
 ### Admin — Dashboard
 
-- [ ] **DASH-01**: Admin thấy tổng số đơn hàng mới (hôm nay / tuần này)
+- [x] **DASH-01**: Admin thấy tổng số đơn hàng mới (hôm nay / tuần này)
 - [ ] **DASH-02**: Admin thấy tổng doanh thu cơ bản
-- [ ] **DASH-03**: Admin thấy số sản phẩm đang bán / hết hàng
+- [x] **DASH-03**: Admin thấy số sản phẩm đang bán / hết hàng
 
 ### UX & Quality
 
@@ -145,17 +145,17 @@
 | CHECKOUT-01 | Phase 2 | Complete |
 | CHECKOUT-02 | Phase 2 | Complete |
 | CHECKOUT-03 | Phase 2 | Complete |
-| APROD-01 | Phase 3 | Pending |
-| APROD-02 | Phase 3 | Pending |
-| APROD-03 | Phase 3 | Pending |
-| APROD-04 | Phase 3 | Pending |
-| APROD-05 | Phase 3 | Pending |
+| APROD-01 | Phase 3 | Complete |
+| APROD-02 | Phase 3 | Complete |
+| APROD-03 | Phase 3 | Complete |
+| APROD-04 | Phase 3 | Complete |
+| APROD-05 | Phase 3 | Complete |
 | AORD-01 | Phase 3 | Complete |
 | AORD-02 | Phase 3 | Complete |
 | AORD-03 | Phase 3 | Complete |
-| DASH-01 | Phase 3 | Pending |
+| DASH-01 | Phase 3 | Complete |
 | DASH-02 | Phase 3 | Pending |
-| DASH-03 | Phase 3 | Pending |
+| DASH-03 | Phase 3 | Complete |
 | ACCOUNT-01 | Phase 4 | Pending |
 | ACCOUNT-02 | Phase 4 | Pending |
 | UX-01 | Phase 4 | Pending |
