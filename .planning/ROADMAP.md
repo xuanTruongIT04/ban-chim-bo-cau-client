@@ -72,7 +72,7 @@ Plans:
 - [x] 03-01-PLAN.md -- Admin types, API modules (product/order/dashboard/category), TanStack Query hooks, unit tests
 - [x] 03-02-PLAN.md -- Dashboard page (stat cards with stock split), Product management page (table + CRUD modal + image upload + stock adjust), router wiring
 - [x] 03-03-PLAN.md -- Order management page (filterable table + detail drawer + status workflow buttons), router wiring
-- [ ] 03-04-PLAN.md -- Human verification of complete admin panel (dashboard, products, orders)
+- [x] 03-04-PLAN.md -- Human verification of complete admin panel (dashboard, products, orders)
 
 **UI hint**: yes
 
