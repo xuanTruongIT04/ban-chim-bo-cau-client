@@ -61,9 +61,9 @@
 
 ### Admin — Order Management
 
-- [ ] **AORD-01**: Admin có thể xem danh sách tất cả đơn hàng với bộ lọc theo trạng thái
-- [ ] **AORD-02**: Admin có thể xem chi tiết đơn hàng (sản phẩm, khách hàng, địa chỉ, tổng tiền)
-- [ ] **AORD-03**: Admin có thể cập nhật trạng thái đơn hàng (pending → confirmed → shipping → delivered / cancelled)
+- [x] **AORD-01**: Admin có thể xem danh sách tất cả đơn hàng với bộ lọc theo trạng thái
+- [x] **AORD-02**: Admin có thể xem chi tiết đơn hàng (sản phẩm, khách hàng, địa chỉ, tổng tiền)
+- [x] **AORD-03**: Admin có thể cập nhật trạng thái đơn hàng (pending → confirmed → shipping → delivered / cancelled)
 
 ### Admin — Dashboard
 
@@ -150,9 +150,9 @@
 | APROD-03 | Phase 3 | Pending |
 | APROD-04 | Phase 3 | Pending |
 | APROD-05 | Phase 3 | Pending |
-| AORD-01 | Phase 3 | Pending |
-| AORD-02 | Phase 3 | Pending |
-| AORD-03 | Phase 3 | Pending |
+| AORD-01 | Phase 3 | Complete |
+| AORD-02 | Phase 3 | Complete |
+| AORD-03 | Phase 3 | Complete |
 | DASH-01 | Phase 3 | Pending |
 | DASH-02 | Phase 3 | Pending |
 | DASH-03 | Phase 3 | Pending |

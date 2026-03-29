@@ -5,13 +5,13 @@ milestone_name: milestone
 current_phase: 03
 current_plan: 1
 status: executing
-last_updated: "2026-03-29T06:04:23.304Z"
+last_updated: "2026-03-29T06:16:00.111Z"
 progress:
   total_phases: 4
   completed_phases: 1
   total_plans: 12
-  completed_plans: 7
-  percent: 88
+  completed_plans: 9
+  percent: 75
 ---
 
 # Project State: Bán Chim Bồ Câu — Frontend Client
@@ -34,14 +34,14 @@ progress:
 ## Current Position
 
 Phase: 03 (admin-panel) — EXECUTING
-Plan: 1 of 4
+Plan: 2 of 4
 **Current phase:** 03
 **Current plan:** 1
-**Status:** Executing Phase 03
+**Status:** Ready to execute
 
 **Progress:**
 
-[█████████░] 88%
+[████████░░] 75%
 [          ] Phase 1: Foundation + Authentication   (0%)
 [          ] Phase 2: Customer Purchase Flow        (0%)
 [          ] Phase 3: Admin Panel                   (0%)
@@ -69,6 +69,7 @@ Plan: 1 of 4
 | Phase 02 P02 | 15 | 2 tasks | 6 files |
 | Phase 02 P03 | 2 | 2 tasks | 4 files |
 | Phase 02 P04 | 30 | 3 tasks | 3 files |
+| Phase 03 P03 | 660 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -95,6 +96,8 @@ Plan: 1 of 4
 - [Phase 02]: CustomerLayout badge reads cart count from useCart() TanStack Query instead of Zustand store
 - [Phase 02]: Note field shown in checkout form but intentionally excluded from CheckoutPayload — backend has no note field per RESEARCH.md gap
 - [Phase 02]: OrderConfirmationPage uses useLocation().state to receive order data — avoids extra GET /orders/:id API call after checkout
+- [Phase 03]: OrderStatusButtons returns null for terminal statuses — cleaner than disabled buttons
+- [Phase 03]: Cancel uses separate useCancelOrder hook (POST /cancel) — not updateStatus with huy value
 
 ### Critical Blockers (Must Resolve Before Phase 1)
 
