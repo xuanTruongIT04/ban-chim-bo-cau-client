@@ -4,14 +4,14 @@ milestone: v1.0
 milestone_name: milestone
 current_phase: 03
 current_plan: 1
-status: executing
-last_updated: "2026-03-29T06:48:27.065Z"
+status: verifying
+last_updated: "2026-03-29T07:40:26.040Z"
 progress:
   total_phases: 4
   completed_phases: 2
-  total_plans: 12
-  completed_plans: 11
-  percent: 92
+  total_plans: 15
+  completed_plans: 12
+  percent: 80
 ---
 
 # Project State: Bán Chim Bồ Câu — Frontend Client
@@ -37,11 +37,11 @@ Phase: 03 (admin-panel) — EXECUTING
 Plan: 4 of 4
 **Current phase:** 03
 **Current plan:** 1
-**Status:** Ready to execute
+**Status:** Phase complete — ready for verification
 
 **Progress:**
 
-[█████████░] 92%
+[████████░░] 80%
 [          ] Phase 1: Foundation + Authentication   (0%)
 [          ] Phase 2: Customer Purchase Flow        (0%)
 [          ] Phase 3: Admin Panel                   (0%)
@@ -72,6 +72,7 @@ Plan: 4 of 4
 | Phase 03 P03 | 660 | 2 tasks | 4 files |
 | Phase 03 P02 | 3 | 3 tasks | 6 files |
 | Phase 03 P04 | checkpoint | 1 tasks | 0 files |
+| Phase 04 P02 | 13 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -103,6 +104,9 @@ Plan: 4 of 4
 - [Phase 03]: PlaceholderPage import removed from router — all admin routes now have real page components
 - [Phase 03]: ProductImageUpload uses customRequest (not action URL) to avoid Content-Type header issues with multipart/form-data
 - [Phase 03]: Admin panel verified end-to-end by human against live backend — Phase 3 requirements APROD-01-05, AORD-01-03, DASH-01, DASH-03 all confirmed working
+- [Phase 04]: CartPage and CheckoutPage use Result component for error with retry — consistent with ProductDetailPage/HomePage pattern
+- [Phase 04]: ProductsPage and OrdersPage use Alert (not Result) for error — inline above table, not full-page replacement
+- [Phase 04]: 403 added to axiosInstance global interceptor — completes HTTP error coverage: 401, 403, 5xx global; 422 pass-through
 
 ### Critical Blockers (Must Resolve Before Phase 1)
 
