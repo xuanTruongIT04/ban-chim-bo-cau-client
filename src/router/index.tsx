@@ -5,6 +5,7 @@ import CustomerLayout from '../layouts/CustomerLayout';
 import LoginPage from '../pages/admin/LoginPage';
 import DashboardPage from '../pages/admin/DashboardPage';
 import PlaceholderPage from '../pages/admin/PlaceholderPage';
+import OrdersPage from '../pages/admin/OrdersPage';
 import HomePage from '../pages/customer/HomePage';
 import ProductDetailPage from '../pages/customer/ProductDetailPage';
 import CartPage from '../pages/customer/CartPage';
@@ -28,7 +29,7 @@ export const router = createBrowserRouter([
           { path: '/admin', element: <Navigate to="/admin/dashboard" replace /> },
           { path: '/admin/dashboard', element: <DashboardPage /> },
           { path: '/admin/products', element: <PlaceholderPage title="Sản phẩm" /> },
-          { path: '/admin/orders', element: <PlaceholderPage title="Đơn hàng" /> },
+          { path: '/admin/orders', element: <OrdersPage /> },
         ],
       },
     ],
