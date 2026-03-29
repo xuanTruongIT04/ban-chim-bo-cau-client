@@ -12,22 +12,21 @@ import { axiosInstance } from '../axiosInstance';
 import { authApi } from '../authApi';
 
 const mockPost = axiosInstance.post as ReturnType<typeof vi.fn>;
-const mockGet = axiosInstance.get as ReturnType<typeof vi.fn>;
 
 beforeEach(() => {
   vi.clearAllMocks();
 });
 
 describe('authApi.login', () => {
-  it('sends POST to /auth/login with email and password', async () => {
+  it('sends POST to /admin/login with email and password', async () => {
     const mockResponse = {
-      data: { access_token: 'test-token-123', token_type: 'Bearer' },
+      data: { success: true, data: { token: 'test-token-123', expires_at: '2026-04-28T00:00:00Z' } },
     };
     mockPost.mockResolvedValueOnce(mockResponse);
 
     await authApi.login({ email: 'admin@example.com', password: 'secret' });
 
-    expect(mockPost).toHaveBeenCalledWith('/auth/login', {
+    expect(mockPost).toHaveBeenCalledWith('/admin/login', {
       email: 'admin@example.com',
       password: 'secret',
     });
@@ -35,13 +34,24 @@ describe('authApi.login', () => {
 
   it('returns { access_token, token_type } on success', async () => {
     const mockResponse = {
-      data: { access_token: 'test-token-abc', token_type: 'Bearer' },
+      data: { success: true, data: { token: 'test-token-abc', expires_at: '2026-04-28T00:00:00Z' } },
     };
     mockPost.mockResolvedValueOnce(mockResponse);
 
     const result = await authApi.login({ email: 'admin@example.com', password: 'secret' });
 
     expect(result).toEqual({ access_token: 'test-token-abc', token_type: 'Bearer' });
+  });
+
+  it('handles response with "file" prefix (backend bug workaround)', async () => {
+    const mockResponse = {
+      data: 'file{"success":true,"data":{"token":"test-token-file","expires_at":"2026-04-28T00:00:00Z"}}',
+    };
+    mockPost.mockResolvedValueOnce(mockResponse);
+
+    const result = await authApi.login({ email: 'admin@example.com', password: 'secret' });
+
+    expect(result).toEqual({ access_token: 'test-token-file', token_type: 'Bearer' });
   });
 
   it('propagates error when POST fails', async () => {
@@ -55,40 +65,18 @@ describe('authApi.login', () => {
 });
 
 describe('authApi.getMe', () => {
-  it('sends GET to /me', async () => {
-    const mockResponse = {
-      data: { id: 1, name: 'Admin User', email: 'admin@example.com', role: 'admin' },
-    };
-    mockGet.mockResolvedValueOnce(mockResponse);
-
-    await authApi.getMe();
-
-    expect(mockGet).toHaveBeenCalledWith('/me');
-  });
-
-  it('returns UserProfile on success', async () => {
-    const userProfile = { id: 1, name: 'Admin User', email: 'admin@example.com', role: 'admin' as const };
-    mockGet.mockResolvedValueOnce({ data: userProfile });
-
-    const result = await authApi.getMe();
-
-    expect(result).toEqual(userProfile);
-  });
-
-  it('propagates error when GET fails', async () => {
-    mockGet.mockRejectedValueOnce({ response: { status: 401 } });
-
-    await expect(authApi.getMe()).rejects.toMatchObject({ response: { status: 401 } });
+  it('throws error (backend has no /me route yet)', async () => {
+    await expect(authApi.getMe()).rejects.toThrow('GET /me not implemented in backend');
   });
 });
 
 describe('authApi.logout', () => {
-  it('sends POST to /auth/logout', async () => {
+  it('sends POST to /admin/logout', async () => {
     mockPost.mockResolvedValueOnce({ data: null });
 
     await authApi.logout();
 
-    expect(mockPost).toHaveBeenCalledWith('/auth/logout');
+    expect(mockPost).toHaveBeenCalledWith('/admin/logout');
   });
 
   it('returns void (undefined) on success', async () => {
