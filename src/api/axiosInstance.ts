@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { message } from 'antd';
 import { useAuthStore } from '../stores/authStore';
+import { useCartStore } from '../stores/cartStore';
 import { navigateTo } from '../lib/navigationService';
 import { env } from '../config/env';
 
@@ -10,11 +11,19 @@ export const axiosInstance = axios.create({
 });
 
 // D-25: Request interceptor — inject Bearer token when present
+// Phase 2: Also inject X-Cart-Token for cart and checkout routes
 axiosInstance.interceptors.request.use((config) => {
   const token = useAuthStore.getState().token;
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+
+  // Phase 2: Inject cart token for cart and checkout routes
+  const cartToken = useCartStore.getState().cartToken;
+  if (cartToken && (config.url?.includes('/cart') || config.url?.includes('/checkout'))) {
+    config.headers['X-Cart-Token'] = cartToken;
+  }
+
   return config;
 });
 
@@ -40,7 +49,9 @@ axiosInstance.interceptors.response.use(
     const status = error.response?.status;
 
     // D-26: 401 → clear auth, redirect to admin login
-    if (status === 401 && !isRefreshing) {
+    // Phase 2: Skip admin redirect when error is cart-specific (CART_TOKEN_REQUIRED, CART_NOT_FOUND)
+    const errorCode = error.response?.data?.code;
+    if (status === 401 && !isRefreshing && errorCode !== 'CART_TOKEN_REQUIRED' && errorCode !== 'CART_NOT_FOUND') {
       isRefreshing = true;
       useAuthStore.getState().clearAuth();
       // Per UI-SPEC.md copywriting contract
