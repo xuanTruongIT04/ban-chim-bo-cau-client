@@ -2,7 +2,7 @@ import { Card, Tag, Button, Typography, message } from 'antd';
 import { ShoppingCartOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useAddToCart } from '../../hooks/useCart';
-import { formatVND } from '../../utils/format';
+import { formatVND, extractImageUrl } from '../../utils/format';
 import type { ProductResource } from '../../types/api';
 
 const { Text } = Typography;
@@ -32,11 +32,13 @@ export default function ProductCard({ product }: ProductCardProps) {
     );
   };
 
+  const imageUrl = extractImageUrl(product.primary_image);
+
   const coverImage = (
     <div style={{ position: 'relative', height: 220, overflow: 'hidden', background: '#f5f5f5' }}>
-      {product.primary_image ? (
+      {imageUrl ? (
         <img
-          src={product.primary_image}
+          src={imageUrl}
           alt={product.name}
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />

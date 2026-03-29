@@ -39,7 +39,8 @@ export interface ProductResource {
   category_id: number;
   stock_quantity: string; // decimal string e.g. "50.000"
   is_active: boolean;
-  primary_image: string | null; // URL string or null
+  // Public API returns string URL; Admin API may return object { id, url, is_primary } or null
+  primary_image: string | ProductImage | null;
   created_at: string;
   updated_at: string;
 }
@@ -152,12 +153,12 @@ export interface AdminProductDetailResource extends ProductDetailResource {
   updated_at: string;
 }
 
+// Admin image upload/set-primary returns: { id, product_id, url, is_primary }
 export interface ProductImageResource {
   id: number;
+  product_id?: number;
   url: string;
-  thumbnail_url: string;
   is_primary: boolean;
-  sort_order: number;
 }
 
 export interface CreateProductPayload {

@@ -1,10 +1,10 @@
+import { useRef } from 'react';
 import { Button, Modal, Space, Spin, Tag, Upload, message } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import type { UploadRequestOption } from 'rc-upload/lib/interface';
-import { useAdminProduct, useDeleteProductImage } from '../../hooks/admin/useAdminProducts';
+import { useAdminProduct, useDeleteProductImage, ADMIN_PRODUCT_KEY, ADMIN_PRODUCTS_KEY } from '../../hooks/admin/useAdminProducts';
 import { adminProductApi } from '../../api/admin/adminProductApi';
 import { useQueryClient } from '@tanstack/react-query';
-import { ADMIN_PRODUCT_KEY } from '../../hooks/admin/useAdminProducts';
 
 interface Props {
   productId: number;
@@ -18,12 +18,15 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
   const { data: product, isLoading } = useAdminProduct(productId);
   const deleteImage = useDeleteProductImage();
   const queryClient = useQueryClient();
+  // Track whether any image change happened while modal was open
+  const changedRef = useRef(false);
 
   const customRequest = async (options: UploadRequestOption) => {
     const file = options.file as File;
     try {
       await adminProductApi.uploadImage(productId, file);
       queryClient.invalidateQueries({ queryKey: [ADMIN_PRODUCT_KEY, productId] });
+      changedRef.current = true;
       message.success('Tải ảnh lên thành công');
       options.onSuccess?.({});
     } catch (err) {
@@ -50,6 +53,7 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
     try {
       await adminProductApi.setPrimaryImage(productId, imageId);
       queryClient.invalidateQueries({ queryKey: [ADMIN_PRODUCT_KEY, productId] });
+      changedRef.current = true;
       message.success('Đã đặt ảnh đại diện');
     } catch {
       message.error('Không thể đặt ảnh đại diện. Vui lòng thử lại.');
@@ -63,8 +67,20 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
       okText: 'Xóa',
       okType: 'danger',
       cancelText: 'Hủy',
-      onOk: () => deleteImage.mutateAsync({ productId, imageId }),
+      onOk: async () => {
+        await deleteImage.mutateAsync({ productId, imageId });
+        changedRef.current = true;
+      },
     });
+  };
+
+  const handleClose = () => {
+    if (changedRef.current) {
+      // Refresh the product list so updated images show in the table
+      queryClient.invalidateQueries({ queryKey: [ADMIN_PRODUCTS_KEY] });
+      changedRef.current = false;
+    }
+    onClose();
   };
 
   const images = product?.images ?? [];
@@ -73,9 +89,9 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
     <Modal
       title="Quản lý ảnh sản phẩm"
       open={open}
-      onCancel={onClose}
+      onCancel={handleClose}
       footer={
-        <Button onClick={onClose}>Đóng</Button>
+        <Button onClick={handleClose}>Đóng</Button>
       }
       width={640}
     >
@@ -105,20 +121,21 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
                 <div
                   key={img.id}
                   style={{
-                    border: '1px solid #d9d9d9',
-                    borderRadius: 6,
+                    border: img.is_primary ? '2px solid #2e7d32' : '1px solid #d9d9d9',
+                    borderRadius: 8,
                     padding: 8,
                     textAlign: 'center',
-                    width: 120,
+                    width: 140,
+                    background: img.is_primary ? '#f0f7f0' : '#fff',
                   }}
                 >
                   <img
-                    src={img.thumbnail_url || img.url}
+                    src={img.url}
                     alt="product"
-                    style={{ width: '100%', height: 80, objectFit: 'cover', marginBottom: 8 }}
+                    style={{ width: '100%', height: 100, objectFit: 'cover', marginBottom: 8, borderRadius: 4 }}
                   />
                   {img.is_primary && (
-                    <Tag color="blue" style={{ marginBottom: 4 }}>Đại diện</Tag>
+                    <Tag color="green" style={{ marginBottom: 4, fontSize: 13 }}>Ảnh đại diện</Tag>
                   )}
                   <Space direction="vertical" size={4} style={{ width: '100%' }}>
                     {!img.is_primary && (
