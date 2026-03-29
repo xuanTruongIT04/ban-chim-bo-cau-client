@@ -10,9 +10,13 @@ export const axiosInstance = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-// D-25: Request interceptor — inject Bearer token when present
-// Phase 2: Also inject X-Cart-Token for cart and checkout routes
+// Request interceptor — inject auth tokens and handle FormData Content-Type
 axiosInstance.interceptors.request.use((config) => {
+  // When sending FormData, delete the default Content-Type so axios auto-sets multipart/form-data with boundary
+  if (config.data instanceof FormData) {
+    delete config.headers['Content-Type'];
+  }
+
   const token = useAuthStore.getState().token;
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
