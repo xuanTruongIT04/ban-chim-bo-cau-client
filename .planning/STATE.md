@@ -5,13 +5,13 @@ milestone_name: milestone
 current_phase: 03
 current_plan: 1
 status: verifying
-last_updated: "2026-03-29T07:40:26.040Z"
+last_updated: "2026-03-29T08:00:26.403Z"
 progress:
   total_phases: 4
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 15
-  completed_plans: 12
-  percent: 80
+  completed_plans: 14
+  percent: 93
 ---
 
 # Project State: Bán Chim Bồ Câu — Frontend Client
@@ -41,7 +41,7 @@ Plan: 4 of 4
 
 **Progress:**
 
-[████████░░] 80%
+[█████████░] 93%
 [          ] Phase 1: Foundation + Authentication   (0%)
 [          ] Phase 2: Customer Purchase Flow        (0%)
 [          ] Phase 3: Admin Panel                   (0%)
@@ -73,6 +73,7 @@ Plan: 4 of 4
 | Phase 03 P02 | 3 | 3 tasks | 6 files |
 | Phase 03 P04 | checkpoint | 1 tasks | 0 files |
 | Phase 04 P02 | 13 | 2 tasks | 7 files |
+| Phase 04 P03 | 20 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -107,6 +108,8 @@ Plan: 4 of 4
 - [Phase 04]: CartPage and CheckoutPage use Result component for error with retry — consistent with ProductDetailPage/HomePage pattern
 - [Phase 04]: ProductsPage and OrdersPage use Alert (not Result) for error — inline above table, not full-page replacement
 - [Phase 04]: 403 added to axiosInstance global interceptor — completes HTTP error coverage: 401, 403, 5xx global; 422 pass-through
+- [Phase 04]: CartItemRow refactored from List.Item actions to flex layout with flexWrap for 360px compatibility
+- [Phase 04]: AdminLayout Sider breakpoint=lg collapsedWidth=0 — sidebar collapses to zero on mobile
 
 ### Critical Blockers (Must Resolve Before Phase 1)
 

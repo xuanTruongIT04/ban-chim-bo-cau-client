@@ -12,7 +12,7 @@
 - [ ] **Phase 1: Foundation + Authentication** -- Project scaffold, infrastructure layers, and admin auth flow (login/logout/guest access) are production-ready; the entire app can be built on top
 - [x] **Phase 2: Customer Purchase Flow** -- Any visitor (guest or logged-in) can browse products, manage a cart, and place a COD order end-to-end (completed 2026-03-29)
 - [ ] **Phase 3: Admin Panel** -- Admin can manage the full product catalog and all orders through a protected internal interface
-- [ ] **Phase 4: Account + Polish** -- Logged-in customers can view their order history; every surface has consistent loading states, error handling, and passes mobile audit
+- [x] **Phase 4: Account + Polish** -- Logged-in customers can view their order history; every surface has consistent loading states, error handling, and passes mobile audit (completed 2026-03-29)
 
 ---
 
@@ -87,12 +87,12 @@ Plans:
   4. Every form shows inline validation errors before submission; the user knows exactly what to fix
   5. The app is fully usable on a 360px mobile viewport -- no horizontal scroll, no truncated actions, no overlapping UI elements
   6. Admin dashboard shows basic revenue figure (DASH-02 -- calculated client-side from completed orders)
-**Plans:** 1/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
-- [ ] 04-01-PLAN.md -- Order history store (localStorage), MyOrdersPage, checkout wiring, dashboard revenue card
+- [x] 04-01-PLAN.md -- Order history store (localStorage), MyOrdersPage, checkout wiring, dashboard revenue card
 - [x] 04-02-PLAN.md -- UX audit: loading states, error handling, form validation across all pages
-- [ ] 04-03-PLAN.md -- Mobile responsiveness audit (360px), final human verification of Phase 4
+- [x] 04-03-PLAN.md -- Mobile responsiveness audit (360px), final human verification of Phase 4
 
 **UI hint**: yes
 
@@ -105,7 +105,7 @@ Plans:
 | 1. Foundation + Authentication | 3/4 | In Progress|  |
 | 2. Customer Purchase Flow | 4/4 | Complete   | 2026-03-29 |
 | 3. Admin Panel | 3/4 | In Progress|  |
-| 4. Account + Polish | 1/3 | In Progress|  |
+| 4. Account + Polish | 3/3 | Complete   | 2026-03-29 |
 
 ---
 
