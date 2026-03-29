@@ -29,11 +29,11 @@
 ### Customer — Product Browsing
 
 - [x] **PROD-01**: Khách có thể xem danh sách sản phẩm với phân trang
-- [ ] **PROD-02**: Khách có thể filter sản phẩm theo danh mục/loại chim
-- [ ] **PROD-03**: Khách có thể tìm kiếm sản phẩm theo tên
+- [x] **PROD-02**: Khách có thể filter sản phẩm theo danh mục/loại chim
+- [x] **PROD-03**: Khách có thể tìm kiếm sản phẩm theo tên
 - [x] **PROD-04**: Khách có thể xem trang chi tiết sản phẩm (tên, mô tả, giá, ảnh)
-- [ ] **PROD-05**: Trang chi tiết sản phẩm hiển thị số lượng tồn kho ("Còn N con")
-- [ ] **PROD-06**: Sản phẩm hết hàng hiển thị rõ trạng thái và không thể thêm vào giỏ
+- [x] **PROD-05**: Trang chi tiết sản phẩm hiển thị số lượng tồn kho ("Còn N con")
+- [x] **PROD-06**: Sản phẩm hết hàng hiển thị rõ trạng thái và không thể thêm vào giỏ
 
 ### Customer — Cart & Checkout
 
@@ -132,11 +132,11 @@
 | AUTH-04 | Phase 1 | Pending |
 | AUTH-05 | Phase 1 | Complete |
 | PROD-01 | Phase 2 | Complete |
-| PROD-02 | Phase 2 | Pending |
-| PROD-03 | Phase 2 | Pending |
+| PROD-02 | Phase 2 | Complete |
+| PROD-03 | Phase 2 | Complete |
 | PROD-04 | Phase 2 | Complete |
-| PROD-05 | Phase 2 | Pending |
-| PROD-06 | Phase 2 | Pending |
+| PROD-05 | Phase 2 | Complete |
+| PROD-06 | Phase 2 | Complete |
 | CART-01 | Phase 2 | Complete |
 | CART-02 | Phase 2 | Complete |
 | CART-03 | Phase 2 | Complete |
