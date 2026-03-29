@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { Alert, Button, Card, Form, Input, Typography } from 'antd';
 import { useAuthStore } from '../../stores/authStore';
 import { authApi } from '../../api/authApi';
-import { navigateTo } from '../../lib/navigationService';
 import type { LoginRequest } from '../../types/api';
 
 const { Title, Text } = Typography;
@@ -12,6 +11,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const navigate = useNavigate();
   const token = useAuthStore((s) => s.token);
   const user = useAuthStore((s) => s.user);
   const setAuth = useAuthStore((s) => s.setAuth);
@@ -25,11 +25,20 @@ export default function LoginPage() {
     setIsLoading(true);
     setError(null);
     try {
+      console.log('[Login] calling authApi.login...');
       const loginResponse = await authApi.login(values);
-      const userProfile = await authApi.getMe();
-      setAuth(loginResponse.access_token, userProfile);
-      navigateTo('/admin/dashboard');
+      console.log('[Login] success, token:', loginResponse.access_token?.substring(0, 10) + '...');
+      setAuth(loginResponse.access_token, {
+        id: 0,
+        name: 'Admin',
+        email: values.email,
+        role: 'admin',
+      });
+      console.log('[Login] auth set, navigating...');
+      navigate('/admin/dashboard', { replace: true });
+      return;
     } catch (err: unknown) {
+      console.error('[Login] error caught:', err);
       const status = (err as { response?: { status?: number } })?.response?.status;
       if (status === 401 || status === 422) {
         setError('Email hoặc mật khẩu không đúng. Vui lòng thử lại.');

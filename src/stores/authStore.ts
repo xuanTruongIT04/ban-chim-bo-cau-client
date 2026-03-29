@@ -25,8 +25,8 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: 'auth_token',
-      // Per D-31: only persist token field — user and isInitializing are not persisted
-      partialize: (state) => ({ token: state.token }),
+      // Persist token + user — backend chưa có /me endpoint nên cần giữ user qua refresh
+      partialize: (state) => ({ token: state.token, user: state.user }),
     },
   ),
 );
