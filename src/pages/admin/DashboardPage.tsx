@@ -1,6 +1,8 @@
 import { Alert, Badge, Card, Col, Row, Spin, Statistic, Typography } from 'antd';
 import { useAdminDashboard } from '../../hooks/admin/useAdminDashboard';
 import { useAdminProducts } from '../../hooks/admin/useAdminProducts';
+import { useCompletedOrdersRevenue } from '../../hooks/admin/useAdminOrders';
+import { formatVND } from '../../utils/format';
 
 const { Title } = Typography;
 
@@ -15,6 +17,7 @@ const ORDER_STATUS_CONFIG = [
 export default function DashboardPage() {
   const { data: dashboardData, isLoading: dashboardLoading, error: dashboardError } = useAdminDashboard();
   const { data: productsData, isLoading: productsLoading, error: productsError } = useAdminProducts({ page: 1, per_page: 9999 });
+  const { data: revenue, isLoading: revenueLoading } = useCompletedOrdersRevenue();
 
   const isLoading = dashboardLoading || productsLoading;
   const hasError = dashboardError || productsError;
@@ -97,6 +100,20 @@ export default function DashboardPage() {
                 />
               </Col>
             </Row>
+          </Card>
+        </Col>
+
+        <Col xs={24} sm={12} lg={8}>
+          <Card title="Doanh thu" size="small">
+            {revenueLoading ? (
+              <Spin size="small" />
+            ) : (
+              <Statistic
+                value={formatVND(revenue ?? 0)}
+                valueStyle={{ color: '#52c41a', fontSize: 18 }}
+                suffix={<span style={{ fontSize: 12, color: '#888' }}>từ đơn hoàn thành</span>}
+              />
+            )}
           </Card>
         </Col>
       </Row>

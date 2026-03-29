@@ -40,6 +40,20 @@ export function useUpdateOrderStatus() {
   });
 }
 
+/**
+ * Fetches all completed orders and returns the total revenue sum.
+ * DASH-02: Backend dashboard endpoint lacks revenue data — calculated client-side.
+ */
+export function useCompletedOrdersRevenue() {
+  return useQuery({
+    queryKey: [ADMIN_ORDERS_KEY, { 'filter[status]': 'hoan_thanh', per_page: 9999 }],
+    queryFn: () => adminOrderApi.list({ 'filter[status]': 'hoan_thanh', per_page: 9999 }),
+    select: (data) =>
+      data.data.reduce((sum, order) => sum + parseFloat(order.total_amount), 0),
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
 export function useCancelOrder() {
   const queryClient = useQueryClient();
 
