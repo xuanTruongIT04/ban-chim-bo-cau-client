@@ -40,7 +40,7 @@
 - [x] **CART-01**: Khách có thể thêm sản phẩm vào giỏ hàng từ trang danh sách hoặc chi tiết
 - [x] **CART-02**: Khách có thể cập nhật số lượng sản phẩm trong giỏ hàng
 - [x] **CART-03**: Khách có thể xóa sản phẩm khỏi giỏ hàng
-- [ ] **CART-04**: Giỏ hàng hiển thị tổng tiền cập nhật real-time
+- [x] **CART-04**: Giỏ hàng hiển thị tổng tiền cập nhật real-time
 - [x] **CART-05**: Giỏ hàng tồn tại qua browser refresh (localStorage persistence)
 - [x] **CHECKOUT-01**: Khách có thể điền form đặt hàng: tên, số điện thoại, địa chỉ giao hàng, ghi chú
 - [x] **CHECKOUT-02**: Khách thấy trang xác nhận đơn hàng thành công sau khi đặt (mã đơn, tóm tắt)
@@ -140,7 +140,7 @@
 | CART-01 | Phase 2 | Complete |
 | CART-02 | Phase 2 | Complete |
 | CART-03 | Phase 2 | Complete |
-| CART-04 | Phase 2 | Pending |
+| CART-04 | Phase 2 | Complete |
 | CART-05 | Phase 2 | Complete |
 | CHECKOUT-01 | Phase 2 | Complete |
 | CHECKOUT-02 | Phase 2 | Complete |

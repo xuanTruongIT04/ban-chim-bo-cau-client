@@ -5,7 +5,7 @@ milestone_name: milestone
 current_phase: 02
 current_plan: 1
 status: executing
-last_updated: "2026-03-29T04:26:20.269Z"
+last_updated: "2026-03-29T04:26:27.223Z"
 progress:
   total_phases: 4
   completed_phases: 0
@@ -67,6 +67,7 @@ Plan: 4 of 4
 | Phase 01 P03 | 260 | 2 tasks | 12 files |
 | Phase 02 P01 | 3 | 2 tasks | 14 files |
 | Phase 02 P02 | 15 | 2 tasks | 6 files |
+| Phase 02 P03 | 2 | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -89,6 +90,8 @@ Plan: 4 of 4
 - [Phase 02]: useCategories degrades gracefully to empty array on 401 — guest product browsing works without auth
 - [Phase 02]: Client-side search only searches current page — server-side search would require API support not in scope
 - [Phase 02]: CategoryFilter flattens parent+children into flat Select list for simplicity
+- [Phase 02]: formatVND placed in src/utils/format.ts as shared utility for all price formatting across customer UI
+- [Phase 02]: CustomerLayout badge reads cart count from useCart() TanStack Query instead of Zustand store
 
 ### Critical Blockers (Must Resolve Before Phase 1)
 
