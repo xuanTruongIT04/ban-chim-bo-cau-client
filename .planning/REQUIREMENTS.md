@@ -48,8 +48,8 @@
 
 ### Customer — Account
 
-- [ ] **ACCOUNT-01**: Khách hàng đã đăng nhập có thể xem danh sách đơn hàng của mình
-- [ ] **ACCOUNT-02**: Khách hàng có thể xem chi tiết từng đơn hàng (sản phẩm, trạng thái, địa chỉ)
+- [x] **ACCOUNT-01**: Khách hàng đã đăng nhập có thể xem danh sách đơn hàng của mình
+- [x] **ACCOUNT-02**: Khách hàng có thể xem chi tiết từng đơn hàng (sản phẩm, trạng thái, địa chỉ)
 
 ### Admin — Product Management
 
@@ -68,7 +68,7 @@
 ### Admin — Dashboard
 
 - [x] **DASH-01**: Admin thấy tổng số đơn hàng mới (hôm nay / tuần này)
-- [ ] **DASH-02**: Admin thấy tổng doanh thu cơ bản
+- [x] **DASH-02**: Admin thấy tổng doanh thu cơ bản
 - [x] **DASH-03**: Admin thấy số sản phẩm đang bán / hết hàng
 
 ### UX & Quality
@@ -154,10 +154,10 @@
 | AORD-02 | Phase 3 | Complete |
 | AORD-03 | Phase 3 | Complete |
 | DASH-01 | Phase 3 | Complete |
-| DASH-02 | Phase 3 | Pending |
+| DASH-02 | Phase 3 | Complete |
 | DASH-03 | Phase 3 | Complete |
-| ACCOUNT-01 | Phase 4 | Pending |
-| ACCOUNT-02 | Phase 4 | Pending |
+| ACCOUNT-01 | Phase 4 | Complete |
+| ACCOUNT-02 | Phase 4 | Complete |
 | UX-01 | Phase 4 | Pending |
 | UX-02 | Phase 4 | Pending |
 | UX-03 | Phase 4 | Pending |

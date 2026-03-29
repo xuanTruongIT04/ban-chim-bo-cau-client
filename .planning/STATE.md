@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 03
+current_phase: 04
 current_plan: 1
 status: executing
-last_updated: "2026-03-29T06:48:27.065Z"
+last_updated: "2026-03-29T07:49:56.241Z"
 progress:
   total_phases: 4
   completed_phases: 2
-  total_plans: 12
-  completed_plans: 11
-  percent: 92
+  total_plans: 15
+  completed_plans: 13
+  percent: 87
 ---
 
 # Project State: Bán Chim Bồ Câu — Frontend Client
@@ -33,15 +33,15 @@ progress:
 
 ## Current Position
 
-Phase: 03 (admin-panel) — EXECUTING
-Plan: 4 of 4
-**Current phase:** 03
+Phase: 04 (account-polish) — EXECUTING
+Plan: 2 of 3
+**Current phase:** 04
 **Current plan:** 1
 **Status:** Ready to execute
 
 **Progress:**
 
-[█████████░] 92%
+[█████████░] 87%
 [          ] Phase 1: Foundation + Authentication   (0%)
 [          ] Phase 2: Customer Purchase Flow        (0%)
 [          ] Phase 3: Admin Panel                   (0%)
@@ -72,6 +72,7 @@ Plan: 4 of 4
 | Phase 03 P03 | 660 | 2 tasks | 4 files |
 | Phase 03 P02 | 3 | 3 tasks | 6 files |
 | Phase 03 P04 | checkpoint | 1 tasks | 0 files |
+| Phase 04 P01 | 5 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -103,6 +104,9 @@ Plan: 4 of 4
 - [Phase 03]: PlaceholderPage import removed from router — all admin routes now have real page components
 - [Phase 03]: ProductImageUpload uses customRequest (not action URL) to avoid Content-Type header issues with multipart/form-data
 - [Phase 03]: Admin panel verified end-to-end by human against live backend — Phase 3 requirements APROD-01-05, AORD-01-03, DASH-01, DASH-03 all confirmed working
+- [Phase 04]: Order history stored in localStorage via Zustand persist — backend has no public order lookup endpoint for guests
+- [Phase 04]: Revenue calculated client-side by fetching hoan_thanh orders and summing total_amount — dashboard stats API lacks revenue field
+- [Phase 04]: Max 20 orders kept in history with deduplication by id — prevents unbounded localStorage growth
 
 ### Critical Blockers (Must Resolve Before Phase 1)
 

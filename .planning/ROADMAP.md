@@ -87,11 +87,11 @@ Plans:
   4. Every form shows inline validation errors before submission; the user knows exactly what to fix
   5. The app is fully usable on a 360px mobile viewport -- no horizontal scroll, no truncated actions, no overlapping UI elements
   6. Admin dashboard shows basic revenue figure (DASH-02 -- calculated client-side from completed orders)
-**Plans:** 3 plans
+**Plans:** 2/3 plans executed
 
 Plans:
-- [ ] 04-01-PLAN.md -- Order history store (localStorage), MyOrdersPage, checkout wiring, dashboard revenue card
-- [ ] 04-02-PLAN.md -- UX audit: loading states, error handling, form validation across all pages
+- [x] 04-01-PLAN.md -- Order history store (localStorage), MyOrdersPage, checkout wiring, dashboard revenue card
+- [x] 04-02-PLAN.md -- UX audit: loading states, error handling, form validation across all pages
 - [ ] 04-03-PLAN.md -- Mobile responsiveness audit (360px), final human verification of Phase 4
 
 **UI hint**: yes
@@ -105,7 +105,7 @@ Plans:
 | 1. Foundation + Authentication | 3/4 | In Progress|  |
 | 2. Customer Purchase Flow | 4/4 | Complete   | 2026-03-29 |
 | 3. Admin Panel | 3/4 | In Progress|  |
-| 4. Account + Polish | 0/3 | Not started | - |
+| 4. Account + Polish | 2/3 | In Progress|  |
 
 ---
 
