@@ -48,7 +48,14 @@ Plans:
   3. A visitor can add products to the cart, update quantities, and remove items; the cart total updates in real time
   4. A visitor can refresh the page and find their cart items still present
   5. A visitor can fill in name, phone, address, and note, submit the checkout form, and see an order confirmation page with the order ID and summary
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 02-01-PLAN.md -- Types, API modules (product/cart/checkout), cartStore refactor to token-only, TanStack Query hooks
+- [ ] 02-02-PLAN.md -- Product listing page (HomePage), product detail page, ProductCard/Grid/CategoryFilter components
+- [ ] 02-03-PLAN.md -- Cart page with quantity controls, CartItemRow component, CustomerLayout badge update
+- [ ] 02-04-PLAN.md -- Checkout page with form validation, order confirmation page, route wiring, E2E verification
+
 **UI hint**: yes
 
 ### Phase 3: Admin Panel
@@ -82,7 +89,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation + Authentication | 3/4 | In Progress|  |
-| 2. Customer Purchase Flow | 0/? | Not started | - |
+| 2. Customer Purchase Flow | 0/4 | Planned | - |
 | 3. Admin Panel | 0/? | Not started | - |
 | 4. Account + Polish | 0/? | Not started | - |
 
@@ -145,4 +152,5 @@ Plans:
 
 *Roadmap created: 2026-03-28*
 *Phase 1 planned: 2026-03-28*
-*Next: `/gsd:execute-phase 01`*
+*Phase 2 planned: 2026-03-29*
+*Next: `/gsd:execute-phase 02`*
