@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate, Link } from 'react-router-dom';
 import { Layout, Menu, Badge, theme } from 'antd';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, OrderedListOutlined } from '@ant-design/icons';
 import { useCart } from '../hooks/useCart';
 import { setNavigator } from '../lib/navigationService';
 
@@ -55,6 +55,15 @@ export default function CustomerLayout() {
           items={[]}
           style={{ flex: 1, border: 'none', background: 'transparent' }}
         />
+
+        {/* Order history link */}
+        <Link
+          to="/orders"
+          style={{ color: designToken.colorText, marginRight: 16, display: 'flex', alignItems: 'center', gap: 4 }}
+        >
+          <OrderedListOutlined style={{ fontSize: 18 }} />
+          <span style={{ fontSize: 14 }}>Đơn hàng</span>
+        </Link>
 
         {/* Cart icon */}
         <Link to="/cart" style={{ color: designToken.colorText }}>

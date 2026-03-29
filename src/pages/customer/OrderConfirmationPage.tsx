@@ -3,6 +3,7 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Result, Typography, Descriptions, Table, Button, Space } from 'antd';
 import { formatVND } from '../../utils/format';
 import type { OrderResource, OrderItemResource } from '../../types/api';
+import { useOrderHistoryStore } from '../../stores/orderHistoryStore';
 
 const { Text } = Typography;
 
@@ -16,6 +17,13 @@ export default function OrderConfirmationPage() {
       navigate('/', { replace: true });
     }
   }, [order, navigate]);
+
+  // Save order to local history when confirmation page mounts
+  useEffect(() => {
+    if (order) {
+      useOrderHistoryStore.getState().addOrder(order);
+    }
+  }, [order]);
 
   if (!order) {
     return null;
@@ -52,7 +60,7 @@ export default function OrderConfirmationPage() {
             <Link to="/">
               <Button type="primary">Tiếp tục mua sắm</Button>
             </Link>
-            <Link to="/account/orders">
+            <Link to="/orders">
               <Button>Xem đơn hàng của tôi</Button>
             </Link>
           </Space>

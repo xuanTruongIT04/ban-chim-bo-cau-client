@@ -1,4 +1,6 @@
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { Spin } from 'antd';
 import { AdminRoute } from '../components/common/AdminRoute';
 import AdminLayout from '../layouts/AdminLayout';
 import CustomerLayout from '../layouts/CustomerLayout';
@@ -11,6 +13,14 @@ import ProductDetailPage from '../pages/customer/ProductDetailPage';
 import CartPage from '../pages/customer/CartPage';
 import CheckoutPage from '../pages/customer/CheckoutPage';
 import OrderConfirmationPage from '../pages/customer/OrderConfirmationPage';
+
+const MyOrdersPageLazy = lazy(() => import('../pages/customer/MyOrdersPage'));
+
+const MyOrdersPage = (
+  <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 200 }}><Spin /></div>}>
+    <MyOrdersPageLazy />
+  </Suspense>
+);
 
 export const router = createBrowserRouter([
   // Admin login — public, outside AdminLayout (per D-23)
@@ -44,7 +54,7 @@ export const router = createBrowserRouter([
       { path: '/cart', element: <CartPage /> },
       { path: '/checkout', element: <CheckoutPage /> },
       { path: '/orders/confirm', element: <OrderConfirmationPage /> },
-      // Phase 4: /orders
+      { path: '/orders', element: MyOrdersPage },
     ],
   },
 ]);
