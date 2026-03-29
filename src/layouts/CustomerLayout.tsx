@@ -2,14 +2,15 @@ import { useEffect } from 'react';
 import { Outlet, useNavigate, Link } from 'react-router-dom';
 import { Layout, Menu, Badge, theme } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import { useCartStore } from '../stores/cartStore';
+import { useCart } from '../hooks/useCart';
 import { setNavigator } from '../lib/navigationService';
 
 const { Header, Content } = Layout;
 
 export default function CustomerLayout() {
   const navigate = useNavigate();
-  const cartCount = useCartStore((s) => s.items.length);
+  const { data: cart } = useCart();
+  const cartCount = cart?.items?.length ?? 0;
   const { token: designToken } = theme.useToken();
 
   // Register navigation service so axiosInstance interceptors can navigate
