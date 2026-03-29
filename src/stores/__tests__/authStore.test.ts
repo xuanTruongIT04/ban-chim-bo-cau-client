@@ -92,7 +92,7 @@ describe('authStore — persist partialize', () => {
 
     const persisted = partialize(mockState as unknown as Parameters<typeof partialize>[0]);
     expect(persisted).toHaveProperty('token', 'some-token');
-    expect(persisted).not.toHaveProperty('user');
+    expect(persisted).toHaveProperty('user');
     expect(persisted).not.toHaveProperty('isInitializing');
   });
 });

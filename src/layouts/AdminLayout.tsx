@@ -58,7 +58,12 @@ export default function AdminLayout() {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Sider width={240} style={{ background: designToken.colorBgContainer }}>
+      <Sider
+        width={240}
+        breakpoint="lg"
+        collapsedWidth={0}
+        style={{ background: designToken.colorBgContainer }}
+      >
         {/* Logo area */}
         <div
           style={{
