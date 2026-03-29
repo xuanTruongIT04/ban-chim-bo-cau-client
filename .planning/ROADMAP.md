@@ -61,16 +61,16 @@ Plans:
 ### Phase 3: Admin Panel
 **Goal**: An admin user can manage the complete product catalog (CRUD + image upload) and handle all customer orders (view, filter, update status) through a dedicated protected interface
 **Depends on**: Phase 2
-**Requirements**: APROD-01, APROD-02, APROD-03, APROD-04, APROD-05, AORD-01, AORD-02, AORD-03, DASH-01, DASH-02, DASH-03
+**Requirements**: APROD-01, APROD-02, APROD-03, APROD-04, APROD-05, AORD-01, AORD-02, AORD-03, DASH-01, DASH-03
 **Success Criteria** (what must be TRUE):
-  1. An admin can view the dashboard and immediately see total new orders, basic revenue figure, and product stock status (in-stock vs. out-of-stock count)
+  1. An admin can view the dashboard and immediately see total new orders and product stock status (in-stock vs. out-of-stock count)
   2. An admin can create a new product (with image upload), edit it, and delete it with a confirmation dialog -- changes reflect immediately in the product list
   3. An admin can view all orders filtered by status, open a specific order to see full detail, and move it through the status workflow (pending -> confirmed -> shipping -> delivered, or cancelled)
 **Plans:** 4 plans
 
 Plans:
 - [ ] 03-01-PLAN.md -- Admin types, API modules (product/order/dashboard/category), TanStack Query hooks, unit tests
-- [ ] 03-02-PLAN.md -- Dashboard page (stat cards), Product management page (table + CRUD modal + image upload + stock adjust), router wiring
+- [ ] 03-02-PLAN.md -- Dashboard page (stat cards with stock split), Product management page (table + CRUD modal + image upload + stock adjust), router wiring
 - [ ] 03-03-PLAN.md -- Order management page (filterable table + detail drawer + status workflow buttons), router wiring
 - [ ] 03-04-PLAN.md -- Human verification of complete admin panel (dashboard, products, orders)
 
@@ -79,13 +79,14 @@ Plans:
 ### Phase 4: Account + Polish
 **Goal**: Logged-in customers can track their order history; every page in the app has consistent, production-quality loading states, error handling, and passes a mobile responsiveness check
 **Depends on**: Phase 3
-**Requirements**: ACCOUNT-01, ACCOUNT-02, UX-01, UX-02, UX-03, UX-04
+**Requirements**: ACCOUNT-01, ACCOUNT-02, UX-01, UX-02, UX-03, UX-04, DASH-02
 **Success Criteria** (what must be TRUE):
   1. A logged-in customer can view a list of their past orders and open any order to see full detail (items, status, delivery address)
   2. Every data-fetching surface shows a loading indicator (spinner or skeleton) while the API call is in flight
   3. Every API error produces a visible, human-readable notification -- no silent failures or blank screens
   4. Every form shows inline validation errors before submission; the user knows exactly what to fix
   5. The app is fully usable on a 360px mobile viewport -- no horizontal scroll, no truncated actions, no overlapping UI elements
+  6. Admin dashboard shows basic revenue figure (DASH-02 — deferred from Phase 3; requires backend revenue endpoint)
 **Plans**: TBD
 **UI hint**: yes
 
@@ -144,7 +145,7 @@ Plans:
 | AORD-02 | Phase 3 | Pending |
 | AORD-03 | Phase 3 | Pending |
 | DASH-01 | Phase 3 | Pending |
-| DASH-02 | Phase 3 | Pending |
+| DASH-02 | Phase 4 | Pending |
 | DASH-03 | Phase 3 | Pending |
 | ACCOUNT-01 | Phase 4 | Pending |
 | ACCOUNT-02 | Phase 4 | Pending |
@@ -161,4 +162,5 @@ Plans:
 *Phase 1 planned: 2026-03-28*
 *Phase 2 planned: 2026-03-29*
 *Phase 3 planned: 2026-03-29*
+*Phase 3 revised: 2026-03-29 (DASH-02 deferred to Phase 4 — backend lacks revenue endpoint)*
 *Next: `/gsd:execute-phase 03`*
