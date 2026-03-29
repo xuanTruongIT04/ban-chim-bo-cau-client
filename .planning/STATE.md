@@ -4,14 +4,14 @@ milestone: v1.0
 milestone_name: milestone
 current_phase: 02
 current_plan: 1
-status: executing
-last_updated: "2026-03-29T04:26:27.223Z"
+status: verifying
+last_updated: "2026-03-29T04:40:54.274Z"
 progress:
   total_phases: 4
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 8
-  completed_plans: 6
-  percent: 75
+  completed_plans: 7
+  percent: 88
 ---
 
 # Project State: Bán Chim Bồ Câu — Frontend Client
@@ -37,11 +37,11 @@ Phase: 02 (customer-purchase-flow) — EXECUTING
 Plan: 4 of 4
 **Current phase:** 02
 **Current plan:** 1
-**Status:** Ready to execute
+**Status:** Phase complete — ready for verification
 
 **Progress:**
 
-[████████░░] 75%
+[█████████░] 88%
 [          ] Phase 1: Foundation + Authentication   (0%)
 [          ] Phase 2: Customer Purchase Flow        (0%)
 [          ] Phase 3: Admin Panel                   (0%)
@@ -68,6 +68,7 @@ Plan: 4 of 4
 | Phase 02 P01 | 3 | 2 tasks | 14 files |
 | Phase 02 P02 | 15 | 2 tasks | 6 files |
 | Phase 02 P03 | 2 | 2 tasks | 4 files |
+| Phase 02 P04 | 30 | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -92,6 +93,8 @@ Plan: 4 of 4
 - [Phase 02]: CategoryFilter flattens parent+children into flat Select list for simplicity
 - [Phase 02]: formatVND placed in src/utils/format.ts as shared utility for all price formatting across customer UI
 - [Phase 02]: CustomerLayout badge reads cart count from useCart() TanStack Query instead of Zustand store
+- [Phase 02]: Note field shown in checkout form but intentionally excluded from CheckoutPayload — backend has no note field per RESEARCH.md gap
+- [Phase 02]: OrderConfirmationPage uses useLocation().state to receive order data — avoids extra GET /orders/:id API call after checkout
 
 ### Critical Blockers (Must Resolve Before Phase 1)
 
