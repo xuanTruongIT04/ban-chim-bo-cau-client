@@ -12,6 +12,8 @@ import {
   Radio,
   Descriptions,
   message,
+  Spin,
+  Result,
 } from 'antd';
 import { checkoutApi } from '../../api/checkoutApi';
 import { useCart } from '../../hooks/useCart';
@@ -35,7 +37,7 @@ export default function CheckoutPage() {
   const [submitting, setSubmitting] = useState(false);
   const [idempotencyKey] = useState(() => crypto.randomUUID());
 
-  const { data: cart, isLoading } = useCart();
+  const { data: cart, isLoading, isError, refetch } = useCart();
 
   useEffect(() => {
     if (!isLoading && (!cart || cart.items.length === 0)) {
@@ -78,7 +80,32 @@ export default function CheckoutPage() {
     }
   };
 
-  if (isLoading || !cart) {
+  if (isLoading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 400 }}>
+        <Spin size="large" />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '24px 16px' }}>
+        <Result
+          status="error"
+          title="Không tải được giỏ hàng"
+          subTitle="Đã có lỗi xảy ra khi tải thông tin giỏ hàng."
+          extra={
+            <Button type="primary" onClick={() => refetch()}>
+              Thử lại
+            </Button>
+          }
+        />
+      </div>
+    );
+  }
+
+  if (!cart) {
     return null;
   }
 

@@ -48,8 +48,8 @@
 
 ### Customer — Account
 
-- [x] **ACCOUNT-01**: Khách hàng đã đăng nhập có thể xem danh sách đơn hàng của mình
-- [x] **ACCOUNT-02**: Khách hàng có thể xem chi tiết từng đơn hàng (sản phẩm, trạng thái, địa chỉ)
+- [ ] **ACCOUNT-01**: Khách hàng đã đăng nhập có thể xem danh sách đơn hàng của mình
+- [ ] **ACCOUNT-02**: Khách hàng có thể xem chi tiết từng đơn hàng (sản phẩm, trạng thái, địa chỉ)
 
 ### Admin — Product Management
 
@@ -68,14 +68,14 @@
 ### Admin — Dashboard
 
 - [x] **DASH-01**: Admin thấy tổng số đơn hàng mới (hôm nay / tuần này)
-- [x] **DASH-02**: Admin thấy tổng doanh thu cơ bản
+- [ ] **DASH-02**: Admin thấy tổng doanh thu cơ bản
 - [x] **DASH-03**: Admin thấy số sản phẩm đang bán / hết hàng
 
 ### UX & Quality
 
-- [ ] **UX-01**: Tất cả API calls có loading state rõ ràng (spinner / skeleton)
-- [ ] **UX-02**: Tất cả lỗi API được hiển thị thông báo rõ ràng cho người dùng
-- [ ] **UX-03**: Tất cả form có validation (client-side) với thông báo lỗi cụ thể
+- [x] **UX-01**: Tất cả API calls có loading state rõ ràng (spinner / skeleton)
+- [x] **UX-02**: Tất cả lỗi API được hiển thị thông báo rõ ràng cho người dùng
+- [x] **UX-03**: Tất cả form có validation (client-side) với thông báo lỗi cụ thể
 - [ ] **UX-04**: UI responsive, sử dụng được tốt trên mobile (360px+) và desktop
 
 ## v2 Requirements
@@ -154,13 +154,13 @@
 | AORD-02 | Phase 3 | Complete |
 | AORD-03 | Phase 3 | Complete |
 | DASH-01 | Phase 3 | Complete |
-| DASH-02 | Phase 3 | Complete |
+| DASH-02 | Phase 3 | Pending |
 | DASH-03 | Phase 3 | Complete |
-| ACCOUNT-01 | Phase 4 | Complete |
-| ACCOUNT-02 | Phase 4 | Complete |
-| UX-01 | Phase 4 | Pending |
-| UX-02 | Phase 4 | Pending |
-| UX-03 | Phase 4 | Pending |
+| ACCOUNT-01 | Phase 4 | Pending |
+| ACCOUNT-02 | Phase 4 | Pending |
+| UX-01 | Phase 4 | Complete |
+| UX-02 | Phase 4 | Complete |
+| UX-03 | Phase 4 | Complete |
 | UX-04 | Phase 4 | Pending |
 
 **Coverage:**

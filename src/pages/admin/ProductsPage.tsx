@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Image, Modal, Space, Table, Tag, Typography } from 'antd';
+import { Alert, Button, Image, Modal, Space, Table, Tag, Typography } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import { useAdminProducts, useDeleteProduct } from '../../hooks/admin/useAdminProducts';
@@ -18,7 +18,7 @@ export default function ProductsPage() {
   const [imageProductId, setImageProductId] = useState<number | null>(null);
   const [stockProductId, setStockProductId] = useState<number | null>(null);
 
-  const { data, isLoading } = useAdminProducts({ page, per_page: 20 });
+  const { data, isLoading, isError } = useAdminProducts({ page, per_page: 20 });
   const deleteProduct = useDeleteProduct();
 
   const handleAddNew = () => {
@@ -129,6 +129,16 @@ export default function ProductsPage() {
           Thêm sản phẩm
         </Button>
       </div>
+
+      {isError && (
+        <Alert
+          type="error"
+          message="Không tải được danh sách sản phẩm"
+          description="Đã có lỗi xảy ra. Vui lòng tải lại trang."
+          showIcon
+          style={{ marginBottom: 16 }}
+        />
+      )}
 
       <Table<ProductResource>
         rowKey="id"
