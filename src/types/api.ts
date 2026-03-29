@@ -141,3 +141,69 @@ export interface ProductListParams {
   'filter[category_id]'?: number;
   sort?: string;
 }
+
+// --- Phase 3: Admin types ---
+
+// Admin product detail (extends ProductDetailResource with admin fields)
+export interface AdminProductDetailResource extends ProductDetailResource {
+  category_id: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ProductImageResource {
+  id: number;
+  url: string;
+  thumbnail_url: string;
+  is_primary: boolean;
+  sort_order: number;
+}
+
+export interface CreateProductPayload {
+  name: string;
+  description?: string | null;
+  price_vnd: number;
+  unit_type: 'con' | 'kg';
+  category_id: number;
+  stock_quantity?: string;
+  is_active?: boolean;
+}
+
+export interface DashboardStats {
+  orders_by_status: {
+    cho_xac_nhan: number;
+    xac_nhan: number;
+    dang_giao: number;
+    hoan_thanh: number;
+    huy: number;
+  };
+}
+
+export interface StockAdjustmentResource {
+  id: number;
+  product_id: number;
+  admin_user_id: number;
+  delta: string;
+  adjustment_type: 'nhap_hang' | 'kiem_ke' | 'hu_hong' | 'khac';
+  note: string | null;
+  stock_before: string;
+  stock_after: string;
+  created_at: string;
+}
+
+export interface AdjustStockPayload {
+  delta: number;
+  adjustment_type: 'nhap_hang' | 'kiem_ke' | 'hu_hong' | 'khac';
+  note?: string;
+}
+
+export interface AdminOrderListParams {
+  'filter[status]'?: string;
+  'filter[search]'?: string;
+  'filter[date_from]'?: string;
+  'filter[date_to]'?: string;
+  sort?: string;
+  page?: number;
+  per_page?: number;
+}
