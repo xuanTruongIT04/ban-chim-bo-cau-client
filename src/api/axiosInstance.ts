@@ -43,8 +43,25 @@ export const _resetIsRefreshing = () => {
   isRefreshing = false;
 };
 
+// Global response transform: backend may return "file" prefix before JSON
 axiosInstance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    if (typeof response.data === 'string') {
+      const jsonStart = response.data.indexOf('{');
+      const jsonArrayStart = response.data.indexOf('[');
+      const start = jsonStart >= 0 && jsonArrayStart >= 0
+        ? Math.min(jsonStart, jsonArrayStart)
+        : jsonStart >= 0 ? jsonStart : jsonArrayStart;
+      if (start > 0) {
+        try {
+          response.data = JSON.parse(response.data.substring(start));
+        } catch {
+          // leave as-is if parse fails
+        }
+      }
+    }
+    return response;
+  },
   (error) => {
     const status = error.response?.status;
 

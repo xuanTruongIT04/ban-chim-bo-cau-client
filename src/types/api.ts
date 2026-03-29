@@ -24,25 +24,22 @@ export interface ApiError {
   errors?: Record<string, string[]>;
 }
 
-// --- Phase 2: Product types ---
+// --- Phase 2: Product types (aligned with openapi.yaml) ---
 export interface ProductImage {
   id: number;
   url: string;
-  thumbnail_url: string;
   is_primary: boolean;
-  sort_order: number;
 }
 
 export interface ProductResource {
   id: number;
   name: string;
-  description: string;
   price_vnd: number;
   unit_type: string;
   category_id: number;
-  stock_quantity: number;
+  stock_quantity: string; // decimal string e.g. "50.000"
   is_active: boolean;
-  primary_image: { url: string; thumbnail_url: string } | null;
+  primary_image: string | null; // URL string or null
   created_at: string;
   updated_at: string;
 }
@@ -50,29 +47,18 @@ export interface ProductResource {
 export interface ProductDetailResource {
   id: number;
   name: string;
-  description: string;
+  description: string | null;
   price_vnd: number;
   unit_type: string;
-  category_id: number;
-  category: CategoryResource;
-  stock_quantity: number;
-  is_active: boolean;
+  stock_quantity: string; // decimal string e.g. "50.000"
+  category: { id: number; name: string };
   images: ProductImage[];
-  created_at: string;
-  updated_at: string;
 }
 
 export interface CategoryResource {
   id: number;
   name: string;
-  slug: string;
-  parent_id: number | null;
-  description: string | null;
-  sort_order: number;
-  is_active: boolean;
-  children: CategoryResource[];
-  created_at: string;
-  updated_at: string;
+  children?: CategoryResource[];
 }
 
 export interface PaginationMeta {
@@ -95,19 +81,17 @@ export interface PaginatedResponse<T> {
   meta: PaginationMeta;
 }
 
-// --- Phase 2: Cart types ---
+// --- Phase 2: Cart types (aligned with openapi.yaml) ---
 export interface CartItemResource {
   id: number;
   product_id: number;
   product_name: string;
-  product_price_vnd: number;
   quantity: string; // decimal string e.g. "2.000"
+  unit_price: number;
   subtotal: number;
-  is_available: boolean;
 }
 
 export interface CartData {
-  id: number;
   token: string;
   expires_at: string;
   items: CartItemResource[];

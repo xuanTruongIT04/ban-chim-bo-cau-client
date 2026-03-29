@@ -4,16 +4,8 @@ import type { LoginRequest, LoginResponse, UserProfile } from '../types/api';
 export const authApi = {
   login: async (data: LoginRequest): Promise<LoginResponse> => {
     const response = await axiosInstance.post('/admin/login', data);
-    // Backend trả response có prefix "file" trước JSON — cần parse thủ công
-    let body = response.data;
-    if (typeof body === 'string') {
-      const jsonStart = body.indexOf('{');
-      if (jsonStart > 0) {
-        body = JSON.parse(body.substring(jsonStart));
-      }
-    }
     return {
-      access_token: body.data.token,
+      access_token: response.data.data.token,
       token_type: 'Bearer',
     };
   },

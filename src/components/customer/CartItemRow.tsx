@@ -52,7 +52,7 @@ export default function CartItemRow({
         title={<Typography.Text strong>{item.product_name}</Typography.Text>}
         description={
           <Typography.Text type="secondary">
-            {formatVND(item.product_price_vnd)} / con
+            {formatVND(item.unit_price)} / con
           </Typography.Text>
         }
       />

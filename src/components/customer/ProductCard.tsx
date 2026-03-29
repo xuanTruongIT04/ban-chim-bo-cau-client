@@ -13,13 +13,13 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const addToCart = useAddToCart();
-  const isOutOfStock = product.stock_quantity === 0;
+  const isOutOfStock = parseFloat(product.stock_quantity) === 0;
 
   const coverImage = (
     <div style={{ position: 'relative', height: 200, overflow: 'hidden', background: '#f5f5f5' }}>
       {product.primary_image ? (
         <img
-          src={product.primary_image.thumbnail_url}
+          src={product.primary_image}
           alt={product.name}
           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />

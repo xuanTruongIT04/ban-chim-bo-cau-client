@@ -43,16 +43,8 @@ describe('authApi.login', () => {
     expect(result).toEqual({ access_token: 'test-token-abc', token_type: 'Bearer' });
   });
 
-  it('handles response with "file" prefix (backend bug workaround)', async () => {
-    const mockResponse = {
-      data: 'file{"success":true,"data":{"token":"test-token-file","expires_at":"2026-04-28T00:00:00Z"}}',
-    };
-    mockPost.mockResolvedValueOnce(mockResponse);
-
-    const result = await authApi.login({ email: 'admin@example.com', password: 'secret' });
-
-    expect(result).toEqual({ access_token: 'test-token-file', token_type: 'Bearer' });
-  });
+  // Note: "file" prefix workaround is now handled globally in axiosInstance interceptor
+  // and tested in axiosInstance.test.ts
 
   it('propagates error when POST fails', async () => {
     const error = new Error('Network Error');

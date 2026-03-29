@@ -52,24 +52,26 @@ export default function ProductDetailPage() {
     );
   }
 
-  const isOutOfStock = product.stock_quantity === 0;
+  const stockQty = parseFloat(product.stock_quantity);
+  const isOutOfStock = stockQty === 0;
   const images = product.images ?? [];
   const primaryImage = images[selectedImageIndex] ?? images[0];
 
   function renderStockStatus() {
-    if (product!.stock_quantity === 0) {
+    const qty = parseFloat(product!.stock_quantity);
+    if (qty === 0) {
       return <Tag color="error">Hết hàng</Tag>;
     }
-    if (product!.stock_quantity <= 5) {
+    if (qty <= 5) {
       return (
         <Text style={{ color: '#faad14', fontWeight: 500 }}>
-          Chỉ còn {product!.stock_quantity} con
+          Chỉ còn {qty} con
         </Text>
       );
     }
     return (
       <Text style={{ color: '#52c41a', fontWeight: 500 }}>
-        Còn {product!.stock_quantity} con
+        Còn {qty} con
       </Text>
     );
   }
@@ -131,7 +133,7 @@ export default function ProductDetailPage() {
                 {images.map((img, index) => (
                   <Col key={img.id} span={6}>
                     <Image
-                      src={img.thumbnail_url}
+                      src={img.url}
                       alt={`${product.name} ${index + 1}`}
                       style={{
                         width: '100%',
@@ -180,7 +182,7 @@ export default function ProductDetailPage() {
               </Text>
               <InputNumber
                 min={1}
-                max={product.stock_quantity > 0 ? product.stock_quantity : 1}
+                max={stockQty > 0 ? stockQty : 1}
                 step={1}
                 precision={0}
                 value={selectedQuantity}
