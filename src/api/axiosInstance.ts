@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { message } from 'antd';
 import { useAuthStore } from '../stores/authStore';
+import { useCartStore } from '../stores/cartStore';
 import { navigateTo } from '../lib/navigationService';
 import { env } from '../config/env';
 
@@ -9,12 +10,24 @@ export const axiosInstance = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-// D-25: Request interceptor — inject Bearer token when present
+// Request interceptor — inject auth tokens and handle FormData Content-Type
 axiosInstance.interceptors.request.use((config) => {
+  // When sending FormData, delete the default Content-Type so axios auto-sets multipart/form-data with boundary
+  if (config.data instanceof FormData) {
+    delete config.headers['Content-Type'];
+  }
+
   const token = useAuthStore.getState().token;
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+
+  // Phase 2: Inject cart token for cart and checkout routes
+  const cartToken = useCartStore.getState().cartToken;
+  if (cartToken && (config.url?.includes('/cart') || config.url?.includes('/checkout'))) {
+    config.headers['X-Cart-Token'] = cartToken;
+  }
+
   return config;
 });
 
@@ -34,13 +47,32 @@ export const _resetIsRefreshing = () => {
   isRefreshing = false;
 };
 
+// Global response transform: backend may return "file" prefix before JSON
 axiosInstance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    if (typeof response.data === 'string') {
+      const jsonStart = response.data.indexOf('{');
+      const jsonArrayStart = response.data.indexOf('[');
+      const start = jsonStart >= 0 && jsonArrayStart >= 0
+        ? Math.min(jsonStart, jsonArrayStart)
+        : jsonStart >= 0 ? jsonStart : jsonArrayStart;
+      if (start > 0) {
+        try {
+          response.data = JSON.parse(response.data.substring(start));
+        } catch {
+          // leave as-is if parse fails
+        }
+      }
+    }
+    return response;
+  },
   (error) => {
     const status = error.response?.status;
 
     // D-26: 401 → clear auth, redirect to admin login
-    if (status === 401 && !isRefreshing) {
+    // Phase 2: Skip admin redirect when error is cart-specific (CART_TOKEN_REQUIRED, CART_NOT_FOUND)
+    const errorCode = error.response?.data?.code;
+    if (status === 401 && !isRefreshing && errorCode !== 'CART_TOKEN_REQUIRED' && errorCode !== 'CART_NOT_FOUND') {
       isRefreshing = true;
       useAuthStore.getState().clearAuth();
       // Per UI-SPEC.md copywriting contract
@@ -49,6 +81,11 @@ axiosInstance.interceptors.response.use(
       setTimeout(() => {
         isRefreshing = false;
       }, 1000);
+    }
+
+    // 403: Forbidden — user lacks permission
+    if (status === 403) {
+      message.error('Bạn không có quyền thực hiện thao tác này.');
     }
 
     // D-28: 5xx → global error toast

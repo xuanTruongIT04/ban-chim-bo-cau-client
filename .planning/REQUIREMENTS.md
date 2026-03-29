@@ -28,23 +28,23 @@
 
 ### Customer — Product Browsing
 
-- [ ] **PROD-01**: Khách có thể xem danh sách sản phẩm với phân trang
-- [ ] **PROD-02**: Khách có thể filter sản phẩm theo danh mục/loại chim
-- [ ] **PROD-03**: Khách có thể tìm kiếm sản phẩm theo tên
-- [ ] **PROD-04**: Khách có thể xem trang chi tiết sản phẩm (tên, mô tả, giá, ảnh)
-- [ ] **PROD-05**: Trang chi tiết sản phẩm hiển thị số lượng tồn kho ("Còn N con")
-- [ ] **PROD-06**: Sản phẩm hết hàng hiển thị rõ trạng thái và không thể thêm vào giỏ
+- [x] **PROD-01**: Khách có thể xem danh sách sản phẩm với phân trang
+- [x] **PROD-02**: Khách có thể filter sản phẩm theo danh mục/loại chim
+- [x] **PROD-03**: Khách có thể tìm kiếm sản phẩm theo tên
+- [x] **PROD-04**: Khách có thể xem trang chi tiết sản phẩm (tên, mô tả, giá, ảnh)
+- [x] **PROD-05**: Trang chi tiết sản phẩm hiển thị số lượng tồn kho ("Còn N con")
+- [x] **PROD-06**: Sản phẩm hết hàng hiển thị rõ trạng thái và không thể thêm vào giỏ
 
 ### Customer — Cart & Checkout
 
-- [ ] **CART-01**: Khách có thể thêm sản phẩm vào giỏ hàng từ trang danh sách hoặc chi tiết
-- [ ] **CART-02**: Khách có thể cập nhật số lượng sản phẩm trong giỏ hàng
-- [ ] **CART-03**: Khách có thể xóa sản phẩm khỏi giỏ hàng
-- [ ] **CART-04**: Giỏ hàng hiển thị tổng tiền cập nhật real-time
-- [ ] **CART-05**: Giỏ hàng tồn tại qua browser refresh (localStorage persistence)
-- [ ] **CHECKOUT-01**: Khách có thể điền form đặt hàng: tên, số điện thoại, địa chỉ giao hàng, ghi chú
-- [ ] **CHECKOUT-02**: Khách thấy trang xác nhận đơn hàng thành công sau khi đặt (mã đơn, tóm tắt)
-- [ ] **CHECKOUT-03**: Phương thức thanh toán mặc định là COD (thanh toán khi nhận hàng)
+- [x] **CART-01**: Khách có thể thêm sản phẩm vào giỏ hàng từ trang danh sách hoặc chi tiết
+- [x] **CART-02**: Khách có thể cập nhật số lượng sản phẩm trong giỏ hàng
+- [x] **CART-03**: Khách có thể xóa sản phẩm khỏi giỏ hàng
+- [x] **CART-04**: Giỏ hàng hiển thị tổng tiền cập nhật real-time
+- [x] **CART-05**: Giỏ hàng tồn tại qua browser refresh (localStorage persistence)
+- [x] **CHECKOUT-01**: Khách có thể điền form đặt hàng: tên, số điện thoại, địa chỉ giao hàng, ghi chú
+- [x] **CHECKOUT-02**: Khách thấy trang xác nhận đơn hàng thành công sau khi đặt (mã đơn, tóm tắt)
+- [x] **CHECKOUT-03**: Phương thức thanh toán mặc định là COD (thanh toán khi nhận hàng)
 
 ### Customer — Account
 
@@ -53,29 +53,29 @@
 
 ### Admin — Product Management
 
-- [ ] **APROD-01**: Admin có thể xem danh sách tất cả sản phẩm với phân trang
-- [ ] **APROD-02**: Admin có thể thêm sản phẩm mới (tên, mô tả, giá, số lượng, danh mục, ảnh)
-- [ ] **APROD-03**: Admin có thể chỉnh sửa thông tin sản phẩm
-- [ ] **APROD-04**: Admin có thể xóa sản phẩm (có confirmation dialog)
-- [ ] **APROD-05**: Admin có thể upload ảnh sản phẩm
+- [x] **APROD-01**: Admin có thể xem danh sách tất cả sản phẩm với phân trang
+- [x] **APROD-02**: Admin có thể thêm sản phẩm mới (tên, mô tả, giá, số lượng, danh mục, ảnh)
+- [x] **APROD-03**: Admin có thể chỉnh sửa thông tin sản phẩm
+- [x] **APROD-04**: Admin có thể xóa sản phẩm (có confirmation dialog)
+- [x] **APROD-05**: Admin có thể upload ảnh sản phẩm
 
 ### Admin — Order Management
 
-- [ ] **AORD-01**: Admin có thể xem danh sách tất cả đơn hàng với bộ lọc theo trạng thái
-- [ ] **AORD-02**: Admin có thể xem chi tiết đơn hàng (sản phẩm, khách hàng, địa chỉ, tổng tiền)
-- [ ] **AORD-03**: Admin có thể cập nhật trạng thái đơn hàng (pending → confirmed → shipping → delivered / cancelled)
+- [x] **AORD-01**: Admin có thể xem danh sách tất cả đơn hàng với bộ lọc theo trạng thái
+- [x] **AORD-02**: Admin có thể xem chi tiết đơn hàng (sản phẩm, khách hàng, địa chỉ, tổng tiền)
+- [x] **AORD-03**: Admin có thể cập nhật trạng thái đơn hàng (pending → confirmed → shipping → delivered / cancelled)
 
 ### Admin — Dashboard
 
-- [ ] **DASH-01**: Admin thấy tổng số đơn hàng mới (hôm nay / tuần này)
+- [x] **DASH-01**: Admin thấy tổng số đơn hàng mới (hôm nay / tuần này)
 - [ ] **DASH-02**: Admin thấy tổng doanh thu cơ bản
-- [ ] **DASH-03**: Admin thấy số sản phẩm đang bán / hết hàng
+- [x] **DASH-03**: Admin thấy số sản phẩm đang bán / hết hàng
 
 ### UX & Quality
 
-- [ ] **UX-01**: Tất cả API calls có loading state rõ ràng (spinner / skeleton)
-- [ ] **UX-02**: Tất cả lỗi API được hiển thị thông báo rõ ràng cho người dùng
-- [ ] **UX-03**: Tất cả form có validation (client-side) với thông báo lỗi cụ thể
+- [x] **UX-01**: Tất cả API calls có loading state rõ ràng (spinner / skeleton)
+- [x] **UX-02**: Tất cả lỗi API được hiển thị thông báo rõ ràng cho người dùng
+- [x] **UX-03**: Tất cả form có validation (client-side) với thông báo lỗi cụ thể
 - [ ] **UX-04**: UI responsive, sử dụng được tốt trên mobile (360px+) và desktop
 
 ## v2 Requirements
@@ -131,36 +131,36 @@
 | AUTH-03 | Phase 1 | Pending |
 | AUTH-04 | Phase 1 | Pending |
 | AUTH-05 | Phase 1 | Complete |
-| PROD-01 | Phase 2 | Pending |
-| PROD-02 | Phase 2 | Pending |
-| PROD-03 | Phase 2 | Pending |
-| PROD-04 | Phase 2 | Pending |
-| PROD-05 | Phase 2 | Pending |
-| PROD-06 | Phase 2 | Pending |
-| CART-01 | Phase 2 | Pending |
-| CART-02 | Phase 2 | Pending |
-| CART-03 | Phase 2 | Pending |
-| CART-04 | Phase 2 | Pending |
-| CART-05 | Phase 2 | Pending |
-| CHECKOUT-01 | Phase 2 | Pending |
-| CHECKOUT-02 | Phase 2 | Pending |
-| CHECKOUT-03 | Phase 2 | Pending |
-| APROD-01 | Phase 3 | Pending |
-| APROD-02 | Phase 3 | Pending |
-| APROD-03 | Phase 3 | Pending |
-| APROD-04 | Phase 3 | Pending |
-| APROD-05 | Phase 3 | Pending |
-| AORD-01 | Phase 3 | Pending |
-| AORD-02 | Phase 3 | Pending |
-| AORD-03 | Phase 3 | Pending |
-| DASH-01 | Phase 3 | Pending |
+| PROD-01 | Phase 2 | Complete |
+| PROD-02 | Phase 2 | Complete |
+| PROD-03 | Phase 2 | Complete |
+| PROD-04 | Phase 2 | Complete |
+| PROD-05 | Phase 2 | Complete |
+| PROD-06 | Phase 2 | Complete |
+| CART-01 | Phase 2 | Complete |
+| CART-02 | Phase 2 | Complete |
+| CART-03 | Phase 2 | Complete |
+| CART-04 | Phase 2 | Complete |
+| CART-05 | Phase 2 | Complete |
+| CHECKOUT-01 | Phase 2 | Complete |
+| CHECKOUT-02 | Phase 2 | Complete |
+| CHECKOUT-03 | Phase 2 | Complete |
+| APROD-01 | Phase 3 | Complete |
+| APROD-02 | Phase 3 | Complete |
+| APROD-03 | Phase 3 | Complete |
+| APROD-04 | Phase 3 | Complete |
+| APROD-05 | Phase 3 | Complete |
+| AORD-01 | Phase 3 | Complete |
+| AORD-02 | Phase 3 | Complete |
+| AORD-03 | Phase 3 | Complete |
+| DASH-01 | Phase 3 | Complete |
 | DASH-02 | Phase 3 | Pending |
-| DASH-03 | Phase 3 | Pending |
+| DASH-03 | Phase 3 | Complete |
 | ACCOUNT-01 | Phase 4 | Pending |
 | ACCOUNT-02 | Phase 4 | Pending |
-| UX-01 | Phase 4 | Pending |
-| UX-02 | Phase 4 | Pending |
-| UX-03 | Phase 4 | Pending |
+| UX-01 | Phase 4 | Complete |
+| UX-02 | Phase 4 | Complete |
+| UX-03 | Phase 4 | Complete |
 | UX-04 | Phase 4 | Pending |
 
 **Coverage:**

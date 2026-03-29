@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 01
+current_phase: 03
 current_plan: 1
-status: executing
-last_updated: "2026-03-28T11:04:53.497Z"
+status: verifying
+last_updated: "2026-03-29T08:00:26.403Z"
 progress:
   total_phases: 4
-  completed_phases: 0
-  total_plans: 4
-  completed_plans: 3
-  percent: 75
+  completed_phases: 3
+  total_plans: 15
+  completed_plans: 14
+  percent: 93
 ---
 
 # Project State: Bán Chim Bồ Câu — Frontend Client
@@ -33,15 +33,15 @@ progress:
 
 ## Current Position
 
-Phase: 01 (foundation-authentication) — EXECUTING
-Plan: 3 of 4
-**Current phase:** 01
+Phase: 03 (admin-panel) — EXECUTING
+Plan: 4 of 4
+**Current phase:** 03
 **Current plan:** 1
-**Status:** Ready to execute
+**Status:** Phase complete — ready for verification
 
 **Progress:**
 
-[████████░░] 75%
+[█████████░] 93%
 [          ] Phase 1: Foundation + Authentication   (0%)
 [          ] Phase 2: Customer Purchase Flow        (0%)
 [          ] Phase 3: Admin Panel                   (0%)
@@ -65,6 +65,15 @@ Plan: 3 of 4
 ---
 | Phase 01 P02 | 5 | 2 tasks | 7 files |
 | Phase 01 P03 | 260 | 2 tasks | 12 files |
+| Phase 02 P01 | 3 | 2 tasks | 14 files |
+| Phase 02 P02 | 15 | 2 tasks | 6 files |
+| Phase 02 P03 | 2 | 2 tasks | 4 files |
+| Phase 02 P04 | 30 | 3 tasks | 3 files |
+| Phase 03 P03 | 660 | 2 tasks | 4 files |
+| Phase 03 P02 | 3 | 3 tasks | 6 files |
+| Phase 03 P04 | checkpoint | 1 tasks | 0 files |
+| Phase 04 P02 | 13 | 2 tasks | 7 files |
+| Phase 04 P03 | 20 | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -82,6 +91,25 @@ Plan: 3 of 4
 - [Phase 01]: 422 responses not globally intercepted — pass through to call-site handlers (FOUND-05)
 - [Phase 01]: authApi stub created in Plan 03 to unblock AdminLayout logout wiring; Plan 04 replaces with full implementation
 - [Phase 01]: setNavigator registered in both AdminLayout and CustomerLayout useEffect so navigation service works across all route sections
+- [Phase 02]: cartStore persists only cartToken (not items) — cart data lives in backend, token is the identity key
+- [Phase 02]: CART_TOKEN_REQUIRED and CART_NOT_FOUND 401s skip admin login redirect — cart errors are separate from auth errors
+- [Phase 02]: useCategories degrades gracefully to empty array on 401 — guest product browsing works without auth
+- [Phase 02]: Client-side search only searches current page — server-side search would require API support not in scope
+- [Phase 02]: CategoryFilter flattens parent+children into flat Select list for simplicity
+- [Phase 02]: formatVND placed in src/utils/format.ts as shared utility for all price formatting across customer UI
+- [Phase 02]: CustomerLayout badge reads cart count from useCart() TanStack Query instead of Zustand store
+- [Phase 02]: Note field shown in checkout form but intentionally excluded from CheckoutPayload — backend has no note field per RESEARCH.md gap
+- [Phase 02]: OrderConfirmationPage uses useLocation().state to receive order data — avoids extra GET /orders/:id API call after checkout
+- [Phase 03]: OrderStatusButtons returns null for terminal statuses — cleaner than disabled buttons
+- [Phase 03]: Cancel uses separate useCancelOrder hook (POST /cancel) — not updateStatus with huy value
+- [Phase 03]: PlaceholderPage import removed from router — all admin routes now have real page components
+- [Phase 03]: ProductImageUpload uses customRequest (not action URL) to avoid Content-Type header issues with multipart/form-data
+- [Phase 03]: Admin panel verified end-to-end by human against live backend — Phase 3 requirements APROD-01-05, AORD-01-03, DASH-01, DASH-03 all confirmed working
+- [Phase 04]: CartPage and CheckoutPage use Result component for error with retry — consistent with ProductDetailPage/HomePage pattern
+- [Phase 04]: ProductsPage and OrdersPage use Alert (not Result) for error — inline above table, not full-page replacement
+- [Phase 04]: 403 added to axiosInstance global interceptor — completes HTTP error coverage: 401, 403, 5xx global; 422 pass-through
+- [Phase 04]: CartItemRow refactored from List.Item actions to flex layout with flexWrap for 360px compatibility
+- [Phase 04]: AdminLayout Sider breakpoint=lg collapsedWidth=0 — sidebar collapses to zero on mobile
 
 ### Critical Blockers (Must Resolve Before Phase 1)
 
