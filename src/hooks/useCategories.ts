@@ -6,14 +6,8 @@ export function useCategories() {
   return useQuery({
     queryKey: ['categories'],
     queryFn: async (): Promise<CategoryResource[]> => {
-      // Backend only has GET /admin/categories (requires auth).
-      // Attempt fetch — if 401 (guest), return empty array (graceful degradation).
-      try {
-        const response = await axiosInstance.get('/admin/categories');
-        return response.data.data ?? response.data;
-      } catch {
-        return [];
-      }
+      const response = await axiosInstance.get('/categories');
+      return response.data.data ?? response.data;
     },
     staleTime: 10 * 60 * 1000,
   });

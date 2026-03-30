@@ -3,7 +3,7 @@ import type { CategoryResource } from '../../types/api';
 
 export const adminCategoryApi = {
   list: async (): Promise<CategoryResource[]> => {
-    const response = await axiosInstance.get('/admin/categories');
-    return response.data.data;
+    const response = await axiosInstance.get('/categories');
+    return response.data.data ?? response.data;
   },
 };
