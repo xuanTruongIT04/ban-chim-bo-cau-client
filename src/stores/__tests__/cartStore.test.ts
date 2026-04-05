@@ -12,7 +12,7 @@ describe('cartStore — initial state', () => {
   });
 
   it('does NOT have items array', () => {
-    const state = useCartStore.getState() as Record<string, unknown>;
+    const state = useCartStore.getState() as unknown as Record<string, unknown>;
     expect(state.items).toBeUndefined();
   });
 });

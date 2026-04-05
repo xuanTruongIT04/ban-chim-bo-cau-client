@@ -11,7 +11,7 @@ function flattenCategories(categories: CategoryResource[]): CategoryResource[] {
   const result: CategoryResource[] = [];
   for (const category of categories) {
     result.push(category);
-    if (category.children?.length > 0) {
+    if (category.children && category.children.length > 0) {
       result.push(...flattenCategories(category.children));
     }
   }
