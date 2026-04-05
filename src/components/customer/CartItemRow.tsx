@@ -41,7 +41,7 @@ export default function CartItemRow({
           {item.product_name}
         </Typography.Text>
         <Typography.Text type="secondary" style={{ fontSize: 12 }}>
-          {formatVND(item.unit_price)} / con
+          {formatVND(Number(item.product_price_vnd))} / con
         </Typography.Text>
       </div>
 
@@ -57,7 +57,7 @@ export default function CartItemRow({
           style={{ width: 72 }}
         />
         <Typography.Text strong style={{ minWidth: 80, textAlign: 'right', display: 'inline-block' }}>
-          {formatVND(item.subtotal)}
+          {formatVND(Number(item.subtotal))}
         </Typography.Text>
         <Button
           type="text"

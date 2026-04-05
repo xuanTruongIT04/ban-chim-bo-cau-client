@@ -88,8 +88,9 @@ export interface CartItemResource {
   product_id: number;
   product_name: string;
   quantity: string; // decimal string e.g. "2.000"
-  unit_price: number;
+  product_price_vnd: number;
   subtotal: number;
+  is_available: boolean;
 }
 
 export interface CartData {

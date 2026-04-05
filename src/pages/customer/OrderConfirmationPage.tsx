@@ -128,7 +128,7 @@ export default function OrderConfirmationPage() {
 
         <div style={{ marginTop: 8 }}>
           <Text style={{ fontSize: 15, color: '#2e7d32' }}>
-            <PhoneOutlined /> Hotline hỗ trợ: <strong>0946 477 117</strong>
+            <PhoneOutlined /> Hotline hỗ trợ: <strong>0978 238 946</strong>
           </Text>
         </div>
       </Card>

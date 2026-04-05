@@ -241,7 +241,7 @@ export default function CheckoutPage() {
                   <CheckCircleOutlined /> Nhận hàng mới trả tiền — An tâm mua sắm
                 </Text>
                 <Text style={{ color: '#2e7d32', fontSize: 14 }}>
-                  <CheckCircleOutlined /> Hỗ trợ hotline: 0946 477 117
+                  <CheckCircleOutlined /> Hỗ trợ hotline: 0978 238 946
                 </Text>
               </div>
             </Card>

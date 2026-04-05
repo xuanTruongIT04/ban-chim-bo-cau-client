@@ -8,7 +8,7 @@ export const cartApi = {
   },
   get: async (): Promise<CartData> => {
     const response = await axiosInstance.get('/cart');
-    return response.data.data;
+return response.data.data;
   },
   addItem: async (productId: number, quantity: number): Promise<CartData> => {
     const response = await axiosInstance.post('/cart/items', { product_id: productId, quantity });

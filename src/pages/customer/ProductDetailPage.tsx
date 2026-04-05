@@ -266,7 +266,7 @@ export default function ProductDetailPage() {
                   <CheckCircleOutlined /> Giao hàng tận nơi — Nhận hàng mới trả tiền
                 </Text>
                 <Text style={{ color: '#2e7d32', fontSize: 15 }}>
-                  <CheckCircleOutlined /> Hỗ trợ hotline: 0946 477 117
+                  <CheckCircleOutlined /> Hỗ trợ hotline: 0978 238 946
                 </Text>
               </Space>
             </Card>

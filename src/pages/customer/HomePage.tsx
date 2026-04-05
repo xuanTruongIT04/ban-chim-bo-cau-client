@@ -13,8 +13,7 @@ const SORT_OPTIONS = [
   { value: '-created_at', label: 'Mới nhất' },
 ];
 
-// Banner images from bocaulamsan.com (owned by the user)
-const BANNER_IMAGE = 'https://bocaulamsan.com/upload/sanpham/27930197732077839828104412587284632307641249n-5799.jpg';
+const BANNER_IMAGE = import.meta.env.VITE_BANNER_IMAGE_URL || 'https://bocaulamsan.com/upload/sanpham/27930197732077839828104412587284632307641249n-5799.jpg';
 
 export default function HomePage() {
   const [page, setPage] = useState(1);
@@ -127,7 +126,7 @@ export default function HomePage() {
             >
               <PhoneOutlined style={{ fontSize: 18, color: '#2e7d32' }} />
               <Text style={{ fontSize: 17, fontWeight: 700, color: '#1b5e20' }}>
-                0946 477 117
+                0978 238 946
               </Text>
             </div>
             <div
@@ -201,7 +200,7 @@ export default function HomePage() {
           Chuyên cung cấp chim bồ câu tươi sống, chất lượng, uy tín
         </Text>
         <Text style={{ fontSize: 15, color: '#888' }}>
-          <PhoneOutlined /> 0946 477 117 &nbsp;|&nbsp; <EnvironmentOutlined /> Phú Bình, Thái Nguyên
+          <PhoneOutlined /> 0978 238 946 &nbsp;|&nbsp; <EnvironmentOutlined /> Phú Bình, Thái Nguyên
         </Text>
       </div>
     </div>
