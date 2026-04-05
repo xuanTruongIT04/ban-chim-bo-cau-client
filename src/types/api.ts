@@ -91,6 +91,7 @@ export interface CartItemResource {
   product_price_vnd: number;
   subtotal: number;
   is_available: boolean;
+  primary_image?: string | { url?: string } | null;
 }
 
 export interface CartData {

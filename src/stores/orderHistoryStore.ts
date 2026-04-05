@@ -2,12 +2,12 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { OrderResource } from '../types/api';
 
-const MAX_ORDERS = 20;
+const MAX_ORDERS = 50;
 
 interface OrderHistoryState {
   orders: OrderResource[];
   addOrder: (order: OrderResource) => void;
-  clearHistory: () => void;
+  updateOrder: (order: OrderResource) => void;
 }
 
 export const useOrderHistoryStore = create<OrderHistoryState>()(
@@ -16,11 +16,13 @@ export const useOrderHistoryStore = create<OrderHistoryState>()(
       orders: [],
       addOrder: (order) =>
         set((state) => {
-          // Deduplicate by id, prepend new order, keep max 20
           const filtered = state.orders.filter((o) => o.id !== order.id);
           return { orders: [order, ...filtered].slice(0, MAX_ORDERS) };
         }),
-      clearHistory: () => set({ orders: [] }),
+      updateOrder: (order) =>
+        set((state) => ({
+          orders: state.orders.map((o) => (o.id === order.id ? order : o)),
+        })),
     }),
     {
       name: 'order-history',

@@ -1,9 +1,11 @@
-import { Card, Tag, Button, Typography, message } from 'antd';
+import { useState } from 'react';
+import { Card, Tag, Button, Typography } from 'antd';
 import { ShoppingCartOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { useAddToCart } from '../../hooks/useCart';
 import { formatVND, extractImageUrl } from '../../utils/format';
 import type { ProductResource } from '../../types/api';
+import SuccessModal from './SuccessModal';
 
 const { Text } = Typography;
 
@@ -13,6 +15,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const addToCart = useAddToCart();
+  const [showModal, setShowModal] = useState(false);
   const isOutOfStock = parseFloat(product.stock_quantity) === 0;
   const stockQty = parseFloat(product.stock_quantity);
   const isLowStock = stockQty > 0 && stockQty <= 5;
@@ -20,15 +23,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const handleAddToCart = () => {
     addToCart.mutate(
       { productId: product.id, quantity: 1 },
-      {
-        onSuccess: () => {
-          message.success({
-            content: `Đã thêm "${product.name}" vào giỏ hàng!`,
-            duration: 2,
-            style: { fontSize: 16 },
-          });
-        },
-      },
+      { onSuccess: () => setShowModal(true) },
     );
   };
 
@@ -80,6 +75,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   );
 
   return (
+    <>
     <Card
       hoverable
       cover={coverImage}
@@ -156,5 +152,13 @@ export default function ProductCard({ product }: ProductCardProps) {
         </Link>
       </div>
     </Card>
+
+    <SuccessModal
+      open={showModal}
+      type="cart"
+      productName={product.name}
+      onClose={() => setShowModal(false)}
+    />
+    </>
   );
 }
