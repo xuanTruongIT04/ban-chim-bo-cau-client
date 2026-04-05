@@ -166,10 +166,7 @@ export default function CheckoutPage() {
                 label={<span style={{ fontSize: 16, fontWeight: 500 }}>Ghi chú</span>}
                 name="note"
               >
-                <Input.TextArea rows={2} placeholder="Ghi chú cho đơn hàng (không bắt buộc)" style={{ fontSize: 16 }} />
-                <Text type="secondary" style={{ fontSize: 13, marginTop: 4, display: 'block' }}>
-                  (Tính năng đang cập nhật)
-                </Text>
+                <Input.TextArea rows={2} placeholder="Ngày giờ giao hàng mong muốn (VD: Nhà 4 tầng, có mái tôn đỏ, cửa xanh, ...)" style={{ fontSize: 16 }} />
               </Form.Item>
 
               <Form.Item label={<span style={{ fontSize: 16, fontWeight: 500 }}>Phương thức thanh toán</span>}>
