@@ -112,7 +112,7 @@ export default function ProductFormModal({ open, onClose, editingProduct }: Prop
             { type: 'number', min: 1, message: 'Giá phải lớn hơn 0' },
           ]}
         >
-          <InputNumber
+          <InputNumber<number>
             style={{ width: '100%' }}
             formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             parser={(value) => Number(value?.replace(/,/g, '') ?? 0)}
