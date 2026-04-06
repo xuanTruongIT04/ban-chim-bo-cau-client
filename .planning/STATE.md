@@ -16,8 +16,8 @@ progress:
 
 # Project State: Bán Chim Bồ Câu — Frontend Client
 
-**Last updated:** 2026-03-28
-**Updated by:** Roadmap initialization
+**Last updated:** 2026-04-06
+**Last activity:** 2026-04-06 - Completed quick task 260406-fra: Xây dựng màn hình Quản lý đầu mục admin categories CRUD
 
 ---
 
@@ -136,6 +136,12 @@ Plan: 4 of 4
 ### Blockers
 
 None active (project not yet started)
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260406-fra | Xây dựng màn hình Quản lý đầu mục admin categories CRUD | 2026-04-06 | c360e05 | [260406-fra-x-y-d-ng-m-n-h-nh-qu-n-l-u-m-c-admin-cat](./quick/260406-fra-x-y-d-ng-m-n-h-nh-qu-n-l-u-m-c-admin-cat/) |
 
 ---
 
