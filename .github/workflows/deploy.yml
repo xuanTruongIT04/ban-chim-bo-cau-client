@@ -26,7 +26,7 @@ jobs:
         run: npm run build
         env:
           VITE_API_BASE_URL: http://103.166.185.155/api/v1
-
+      
       - name: Deploy to server via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -34,7 +34,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            rm -rf /var/www/app/ban-chim-bo-cau-client/*
+            rm -rf /var/www/app/ban-chim-bo-cau-client/dist
 
       - name: Copy dist to server
         uses: appleboy/scp-action@v0.1.7
@@ -42,6 +42,5 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: 'dist/*'
+          source: 'dist'
           target: '/var/www/app/ban-chim-bo-cau-client'
-          strip_components: 1
