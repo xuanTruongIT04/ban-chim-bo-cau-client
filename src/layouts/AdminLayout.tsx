@@ -7,6 +7,7 @@ import {
   OrderedListOutlined,
   LogoutOutlined,
   GlobalOutlined,
+  AppstoreOutlined,
 } from '@ant-design/icons';
 import { useAuthStore } from '../stores/authStore';
 import { setNavigator, navigateTo } from '../lib/navigationService';
@@ -25,6 +26,11 @@ const menuItems = [
     key: '/admin/products',
     icon: <ShoppingOutlined style={{ fontSize: 18 }} />,
     label: 'Sản phẩm',
+  },
+  {
+    key: '/admin/categories',
+    icon: <AppstoreOutlined style={{ fontSize: 18 }} />,
+    label: 'Đầu mục',
   },
   {
     key: '/admin/orders',
