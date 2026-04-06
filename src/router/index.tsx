@@ -8,6 +8,7 @@ import LoginPage from '../pages/admin/LoginPage';
 import DashboardPage from '../pages/admin/DashboardPage';
 import ProductsPage from '../pages/admin/ProductsPage';
 import OrdersPage from '../pages/admin/OrdersPage';
+import CategoriesPage from '../pages/admin/CategoriesPage';
 import HomePage from '../pages/customer/HomePage';
 import ProductDetailPage from '../pages/customer/ProductDetailPage';
 import CartPage from '../pages/customer/CartPage';
@@ -39,6 +40,7 @@ export const router = createBrowserRouter([
           { path: '/admin', element: <Navigate to="/admin/dashboard" replace /> },
           { path: '/admin/dashboard', element: <DashboardPage /> },
           { path: '/admin/products', element: <ProductsPage /> },
+          { path: '/admin/categories', element: <CategoriesPage /> },
           { path: '/admin/orders', element: <OrdersPage /> },
         ],
       },

@@ -210,3 +210,25 @@ export interface AdminOrderListParams {
   page?: number;
   per_page?: number;
 }
+
+// --- Admin Category types ---
+export interface AdminCategoryResource {
+  id: number;
+  name: string;
+  slug?: string;
+  parent_id: number | null;
+  description?: string | null;
+  sort_order?: number;
+  is_active: boolean;
+  children?: AdminCategoryResource[];
+  products_count?: number;
+}
+
+export interface CreateCategoryPayload {
+  name: string;
+  slug?: string;
+  parent_id?: number | null;
+  description?: string | null;
+  sort_order?: number;
+  is_active?: boolean;
+}
