@@ -226,7 +226,6 @@ export interface AdminCategoryResource {
 
 export interface CreateCategoryPayload {
   name: string;
-  slug?: string;
   parent_id?: number | null;
   description?: string | null;
   sort_order?: number;
