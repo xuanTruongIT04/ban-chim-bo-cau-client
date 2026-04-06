@@ -30,6 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const imageUrl = extractImageUrl(product.primary_image);
 
   const coverImage = (
+    <Link to={`/products/${product.id}`} style={{ display: 'block' }}>
     <div style={{ position: 'relative', height: 220, overflow: 'hidden', background: '#f5f5f5' }}>
       {imageUrl ? (
         <img
@@ -72,6 +73,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       )}
     </div>
+    </Link>
   );
 
   return (

@@ -142,6 +142,7 @@ None active (project not yet started)
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260406-fra | Xây dựng màn hình Quản lý đầu mục admin categories CRUD | 2026-04-06 | c360e05 | [260406-fra-x-y-d-ng-m-n-h-nh-qu-n-l-u-m-c-admin-cat](./quick/260406-fra-x-y-d-ng-m-n-h-nh-qu-n-l-u-m-c-admin-cat/) |
+| 260406-fra-fix-product-ui | Fix product UI: image clickable, detail image equal height, description text, thumbnails row scroll | 2026-04-06 | — | [260406-fra-fix-product-ui](./quick/260406-fra-fix-product-ui/) |
 
 ---
 

@@ -114,14 +114,16 @@ export default function ProductDetailPage() {
         {/* Image section */}
         <Col xs={24} md={10}>
           <Image.PreviewGroup>
-            <div style={{ marginBottom: 16 }}>
+            <div style={{ marginBottom: 12 }}>
               {primaryImage ? (
-                <Image
-                  src={primaryImage.url}
-                  alt={product.name}
-                  style={{ width: '100%', borderRadius: 12 }}
-                  preview={{ src: primaryImage.url }}
-                />
+                <div style={{ width: '100%', height: 320, overflow: 'hidden', borderRadius: 12, background: '#f5f5f5' }}>
+                  <Image
+                    src={primaryImage.url}
+                    alt={product.name}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 12 }}
+                    preview={{ src: primaryImage.url }}
+                  />
+                </div>
               ) : (
                 <div
                   style={{
@@ -142,26 +144,38 @@ export default function ProductDetailPage() {
             </div>
 
             {images.length > 1 && (
-              <Row gutter={[8, 8]}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: 8,
+                  overflowX: 'auto',
+                  paddingBottom: 4,
+                }}
+              >
                 {images.map((img, index) => (
-                  <Col key={img.id} span={6}>
+                  <div
+                    key={img.id}
+                    style={{
+                      flexShrink: 0,
+                      width: 80,
+                      height: 80,
+                      borderRadius: 8,
+                      overflow: 'hidden',
+                      border: selectedImageIndex === index ? '3px solid #2e7d32' : '3px solid transparent',
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => setSelectedImageIndex(index)}
+                  >
                     <Image
                       src={img.url}
                       alt={`${product.name} ${index + 1}`}
-                      style={{
-                        width: '100%',
-                        height: 80,
-                        objectFit: 'cover',
-                        borderRadius: 8,
-                        cursor: 'pointer',
-                        border: selectedImageIndex === index ? '3px solid #2e7d32' : '3px solid transparent',
-                      }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       preview={false}
-                      onClick={() => setSelectedImageIndex(index)}
                     />
-                  </Col>
+                  </div>
                 ))}
-              </Row>
+              </div>
             )}
           </Image.PreviewGroup>
         </Col>
@@ -207,7 +221,17 @@ export default function ProductDetailPage() {
 
           <Divider />
 
-          <Paragraph style={{ whiteSpace: 'pre-wrap', marginBottom: 24, fontSize: 16, lineHeight: 1.8 }}>
+          <Paragraph
+            style={{
+              whiteSpace: 'pre-wrap',
+              marginBottom: 24,
+              fontSize: 13,
+              lineHeight: 1.6,
+              color: '#888',
+              maxHeight: 120,
+              overflowY: 'auto',
+            }}
+          >
             {product.description}
           </Paragraph>
 
