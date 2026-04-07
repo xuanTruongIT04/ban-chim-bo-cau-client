@@ -54,7 +54,7 @@ export default function CustomerLayout() {
               whiteSpace: 'nowrap',
             }}
           >
-            <span className="logo-full">Quý Chim - Phú Bình</span>
+            <span className="logo-full">Quý Chim - Từ Sơn</span>
             <span className="logo-short">Quý Chim</span>
           </span>
         </Link>

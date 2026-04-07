@@ -79,7 +79,7 @@ export default function AdminLayout() {
           <PigeonLogo size={40} color="#2e7d32" />
           <div>
             <div style={{ fontSize: 17, fontWeight: 700, color: '#1b5e20', lineHeight: 1.2 }}>
-              Quý Chim - Phú Bình
+              Quý Chim - Từ Sơn
             </div>
             <div style={{ fontSize: 12, color: '#4caf50' }}>Quản trị hệ thống</div>
           </div>

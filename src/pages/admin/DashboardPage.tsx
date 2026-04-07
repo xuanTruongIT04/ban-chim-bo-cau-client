@@ -100,7 +100,7 @@ export default function DashboardPage() {
         style={{ padding: '20px 28px', marginBottom: 24 }}
       >
         <Title level={3} style={{ margin: 0, color: '#1b5e20' }}>
-          Tổng quan — Quý Chim Phú Bình
+          Tổng quan — Quý Chim Từ Sơn
         </Title>
         <Text style={{ fontSize: 15, color: '#4caf50' }}>
           Chào mừng bạn trở lại! Dưới đây là tình hình kinh doanh hôm nay.

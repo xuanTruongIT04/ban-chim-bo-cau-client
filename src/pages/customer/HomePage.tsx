@@ -13,7 +13,8 @@ const SORT_OPTIONS = [
   { value: '-created_at', label: 'Mới nhất' },
 ];
 
-const BANNER_IMAGE = import.meta.env.VITE_BANNER_IMAGE_URL || 'https://bocaulamsan.com/upload/sanpham/27930197732077839828104412587284632307641249n-5799.jpg';
+import bannerImage from '../../assets/banner.jpg';
+const BANNER_IMAGE = import.meta.env.VITE_BANNER_IMAGE_URL || bannerImage;
 
 export default function HomePage() {
   const [page, setPage] = useState(1);
@@ -81,7 +82,7 @@ export default function HomePage() {
       <div className="hero-banner fade-in-up" style={{ marginTop: 20, marginBottom: 28 }}>
         <img
           src={BANNER_IMAGE}
-          alt="Chim bồ câu tươi sống - Quý Chim Phú Bình"
+          alt="Chim bồ câu tươi sống - Quý Chim Từ Sơn"
         />
         <div className="hero-banner-overlay">
           <Title
@@ -93,7 +94,7 @@ export default function HomePage() {
               textShadow: '0 2px 8px rgba(0,0,0,0.5)',
             }}
           >
-            Quý Chim - Phú Bình
+            Quý Chim - Từ Sơn
           </Title>
           <Text
             style={{
@@ -141,7 +142,7 @@ export default function HomePage() {
             >
               <EnvironmentOutlined style={{ fontSize: 18, color: '#2e7d32' }} />
               <Text style={{ fontSize: 15, fontWeight: 500, color: '#1b5e20' }}>
-                Phú Bình, Thái Nguyên
+                Từ Sơn, Bắc Ninh
               </Text>
             </div>
           </div>
@@ -194,13 +195,13 @@ export default function HomePage() {
         style={{ padding: '24px', marginTop: 40, marginBottom: 24, textAlign: 'center' }}
       >
         <Title level={4} style={{ color: '#1b5e20', margin: '0 0 8px' }}>
-          Quý Chim - Phú Bình
+          Quý Chim - Từ Sơn
         </Title>
         <Text style={{ fontSize: 16, color: '#555', display: 'block', marginBottom: 4 }}>
           Chuyên cung cấp chim bồ câu tươi sống, chất lượng, uy tín
         </Text>
         <Text style={{ fontSize: 15, color: '#888' }}>
-          <PhoneOutlined /> 0978 238 946 &nbsp;|&nbsp; <EnvironmentOutlined /> Phú Bình, Thái Nguyên
+          <PhoneOutlined /> 0978 238 946 &nbsp;|&nbsp; <EnvironmentOutlined /> Từ Sơn, Bắc Ninh
         </Text>
       </div>
     </div>

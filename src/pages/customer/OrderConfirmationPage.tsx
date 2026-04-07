@@ -105,7 +105,7 @@ export default function OrderConfirmationPage() {
           }
           subTitle={
             <Text style={{ fontSize: 17, color: '#333' }}>
-              Cảm ơn bạn đã tin tưởng <strong>Quý Chim - Phú Bình</strong>!
+              Cảm ơn bạn đã tin tưởng <strong>Quý Chim - Từ Sơn</strong>!
               <br />
               Chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.
             </Text>
