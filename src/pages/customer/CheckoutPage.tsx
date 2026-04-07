@@ -48,7 +48,12 @@ export default function CheckoutPage() {
   const [form] = Form.useForm<CheckoutFormValues>();
   const [submitting, setSubmitting] = useState(false);
   const [completedOrder, setCompletedOrder] = useState<OrderResource | null>(null);
-  const [idempotencyKey] = useState(() => crypto.randomUUID());
+  const [idempotencyKey] = useState(() => {
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+    return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  });
   const addOrder = useOrderHistoryStore((s) => s.addOrder);
 
   const { data: cart, isLoading, isError, refetch } = useCart();
