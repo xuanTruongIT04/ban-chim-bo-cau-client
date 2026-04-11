@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { message } from 'antd';
+import { App } from 'antd';
 import { adminCategoryApi } from '../../api/admin/adminCategoryApi';
 import type { CreateCategoryPayload } from '../../types/api';
 
@@ -15,6 +15,7 @@ export function useAdminCategories() {
 
 export function useCreateCategory() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: (payload: CreateCategoryPayload) => adminCategoryApi.create(payload),
@@ -30,6 +31,7 @@ export function useCreateCategory() {
 
 export function useUpdateCategory() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: ({ id, payload }: { id: number; payload: Partial<CreateCategoryPayload> }) =>
@@ -46,6 +48,7 @@ export function useUpdateCategory() {
 
 export function useDeleteCategory() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: (id: number) => adminCategoryApi.delete(id),

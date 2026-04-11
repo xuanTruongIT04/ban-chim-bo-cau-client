@@ -1,11 +1,14 @@
 import { axiosInstance } from './axiosInstance';
-import type { CheckoutPayload, OrderResource } from '../types/api';
+import type { CheckoutPayload, CheckoutResponse } from '../types/api';
 
 export const checkoutApi = {
-  submit: async (payload: CheckoutPayload, idempotencyKey: string): Promise<OrderResource> => {
+  submit: async (payload: CheckoutPayload, idempotencyKey: string): Promise<CheckoutResponse> => {
     const response = await axiosInstance.post('/checkout', payload, {
       headers: { 'Idempotency-Key': idempotencyKey },
     });
-    return response.data.data;
+    return {
+      order: response.data.data,
+      bank_info: response.data.bank_info,
+    };
   },
 };

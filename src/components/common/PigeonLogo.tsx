@@ -4,7 +4,7 @@ interface PigeonLogoProps {
   style?: React.CSSProperties;
 }
 
-export default function PigeonLogo({ size = 36, color = '#2e7d32', style }: PigeonLogoProps) {
+export default function PigeonLogo({ size = 36, color = '#1565c0', style }: PigeonLogoProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

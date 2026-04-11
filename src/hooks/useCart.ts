@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { message } from 'antd';
+import { App } from 'antd';
 import { cartApi } from '../api/cartApi';
 import { useCartStore } from '../stores/cartStore';
 import type { CartData } from '../types/api';
@@ -44,6 +44,7 @@ export function useCart() {
 
 export function useAddToCart() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: async ({ productId, quantity }: { productId: number; quantity: number }) => {

@@ -7,11 +7,11 @@ import {
   Tag,
   Typography,
   Pagination,
-  Spin,
   Empty,
   Card,
   Row,
   Col,
+  theme,
 } from 'antd';
 import {
   PlusOutlined,
@@ -29,6 +29,49 @@ import StockAdjustModal from '../../components/admin/StockAdjustModal';
 
 const { Title, Text } = Typography;
 
+/* ─── Skeleton ─────────────────────────────────────────────────────────────── */
+function ProductListSkeleton() {
+  const shimmer = {
+    background: 'linear-gradient(90deg, #e3f2fd 0%, #e8f0fe 50%, #e3f2fd 100%)',
+    backgroundSize: '200% 100%',
+    animation: 'prod-shimmer 1.4s ease-in-out infinite',
+    borderRadius: 8,
+  } as const;
+  return (
+    <>
+      <style>{`@keyframes prod-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }`}</style>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            style={{
+              borderRadius: 12,
+              border: '1px solid #e0e0e0',
+              padding: 16,
+              display: 'flex',
+              gap: 16,
+              alignItems: 'flex-start',
+              background: '#fff',
+            }}
+          >
+            <div style={{ ...shimmer, width: 100, height: 100, flexShrink: 0, borderRadius: 10 }} />
+            <div style={{ flex: 1 }}>
+              <div style={{ ...shimmer, height: 18, width: '55%', marginBottom: 10 }} />
+              <div style={{ ...shimmer, height: 15, width: '35%', marginBottom: 14 }} />
+              <div style={{ display: 'flex', gap: 8 }}>
+                {[1, 2, 3, 4].map((j) => (
+                  <div key={j} style={{ ...shimmer, height: 40, width: 80, borderRadius: 8 }} />
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+/* ─── Main Page ─────────────────────────────────────────────────────────────── */
 export default function ProductsPage() {
   const [page, setPage] = useState(1);
   const [editingProduct, setEditingProduct] = useState<ProductResource | null>(null);
@@ -76,7 +119,7 @@ export default function ProductsPage() {
           gap: 12,
         }}
       >
-        <Title level={2} style={{ margin: 0, color: '#1b5e20' }}>
+        <Title level={2} style={{ margin: 0, color: '#0d47a1' }}>
           Quản lý sản phẩm
         </Title>
         <Button
@@ -100,14 +143,8 @@ export default function ProductsPage() {
         />
       )}
 
-      {/* Loading */}
-      {isLoading && (
-        <div style={{ textAlign: 'center', padding: 60 }}>
-          <Spin size="large" />
-        </div>
-      )}
+      {isLoading && <ProductListSkeleton />}
 
-      {/* Empty */}
       {!isLoading && products.length === 0 && (
         <Empty description="Chưa có sản phẩm nào" style={{ padding: 60 }}>
           <Button type="primary" size="large" icon={<PlusOutlined />} onClick={handleAddNew}>
@@ -116,7 +153,6 @@ export default function ProductsPage() {
         </Empty>
       )}
 
-      {/* Product cards */}
       {!isLoading && products.length > 0 && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {products.map((product) => (
@@ -132,7 +168,6 @@ export default function ProductsPage() {
         </div>
       )}
 
-      {/* Pagination */}
       {meta && meta.total > meta.per_page && (
         <div style={{ textAlign: 'center', marginTop: 24 }}>
           <Pagination
@@ -172,8 +207,7 @@ export default function ProductsPage() {
   );
 }
 
-/* ─── Individual product card ─── */
-
+/* ─── Individual product card ─────────────────────────────────────────────── */
 interface ProductCardProps {
   product: ProductResource;
   onEdit: (p: ProductResource) => void;
@@ -183,13 +217,19 @@ interface ProductCardProps {
 }
 
 function ProductCard({ product, onEdit, onManageImages, onManageStock, onDelete }: ProductCardProps) {
+  const { token: designToken } = theme.useToken();
   const imageUrl = extractImageUrl(product.primary_image);
   const stockQty = parseFloat(product.stock_quantity);
   const stockDisplay = Number.isInteger(stockQty) ? stockQty.toString() : stockQty.toFixed(3);
+  const isOutOfStock = stockQty === 0;
 
   return (
     <Card
-      style={{ borderRadius: 12, border: '1px solid #e0e0e0' }}
+      style={{
+        borderRadius: 12,
+        border: `1px solid ${designToken.colorBorderSecondary}`,
+        transition: 'box-shadow 0.2s',
+      }}
       styles={{ body: { padding: 16 } }}
     >
       <Row gutter={[16, 16]} align="middle">
@@ -208,14 +248,14 @@ function ProductCard({ product, onEdit, onManageImages, onManageStock, onDelete 
                 width: 100,
                 height: 100,
                 margin: '0 auto',
-                background: '#f5f5f5',
+                background: '#e8f0fe',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 fontSize: 13,
                 color: '#999',
                 borderRadius: 10,
-                border: '1px dashed #d9d9d9',
+                border: '1px dashed #bbdefb',
               }}
             >
               Chưa có ảnh
@@ -228,8 +268,8 @@ function ProductCard({ product, onEdit, onManageImages, onManageStock, onDelete 
           <Text
             strong
             style={{
-              fontSize: 18,
-              color: '#1b5e20',
+              fontSize: 17,
+              color: '#0d47a1',
               cursor: 'pointer',
               display: 'block',
               marginBottom: 6,
@@ -239,19 +279,34 @@ function ProductCard({ product, onEdit, onManageImages, onManageStock, onDelete 
             {product.name}
           </Text>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 20px', alignItems: 'center' }}>
-            <Text style={{ fontSize: 17, fontWeight: 700, color: '#c62828' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 16px', alignItems: 'center' }}>
+            {/* Price — amber/warning color, consistent with storefront */}
+            <Text
+              style={{
+                fontSize: 17,
+                fontWeight: 700,
+                color: designToken.colorWarning,
+                fontVariantNumeric: 'tabular-nums',
+              }}
+            >
               {formatVND(product.price_vnd)}
             </Text>
 
-            <Text style={{ fontSize: 15, color: stockQty === 0 ? '#c62828' : '#555' }}>
-              Kho: <strong>{stockDisplay}</strong>
+            <Text style={{ fontSize: 14, color: isOutOfStock ? '#c62828' : '#555' }}>
+              Kho:{' '}
+              <strong style={{ color: isOutOfStock ? '#c62828' : '#0d47a1' }}>
+                {stockDisplay}
+              </strong>
             </Text>
 
             {product.is_active ? (
               <Tag color="green" style={{ fontSize: 13, margin: 0 }}>Đang bán</Tag>
             ) : (
               <Tag color="red" style={{ fontSize: 13, margin: 0 }}>Ngừng bán</Tag>
+            )}
+
+            {isOutOfStock && (
+              <Tag color="warning" style={{ fontSize: 12, margin: 0 }}>Hết hàng</Tag>
             )}
           </div>
         </Col>
@@ -264,7 +319,7 @@ function ProductCard({ product, onEdit, onManageImages, onManageStock, onDelete 
                 block
                 icon={<EditOutlined />}
                 onClick={() => onEdit(product)}
-                style={{ height: 44, fontSize: 15, fontWeight: 500 }}
+                style={{ height: 44, fontSize: 14, fontWeight: 500 }}
               >
                 Sửa
               </Button>
@@ -274,7 +329,7 @@ function ProductCard({ product, onEdit, onManageImages, onManageStock, onDelete 
                 block
                 icon={<PictureOutlined />}
                 onClick={() => onManageImages(product.id)}
-                style={{ height: 44, fontSize: 15, fontWeight: 500 }}
+                style={{ height: 44, fontSize: 14, fontWeight: 500 }}
               >
                 Ảnh
               </Button>
@@ -284,7 +339,7 @@ function ProductCard({ product, onEdit, onManageImages, onManageStock, onDelete 
                 block
                 icon={<InboxOutlined />}
                 onClick={() => onManageStock(product.id)}
-                style={{ height: 44, fontSize: 15, fontWeight: 500 }}
+                style={{ height: 44, fontSize: 14, fontWeight: 500 }}
               >
                 Kho
               </Button>
@@ -296,7 +351,7 @@ function ProductCard({ product, onEdit, onManageImages, onManageStock, onDelete 
                 type="primary"
                 icon={<DeleteOutlined />}
                 onClick={() => onDelete(product)}
-                style={{ height: 44, fontSize: 15, fontWeight: 500 }}
+                style={{ height: 44, fontSize: 14, fontWeight: 500 }}
               >
                 Xóa
               </Button>

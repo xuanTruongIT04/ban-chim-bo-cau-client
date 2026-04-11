@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Form, Input, InputNumber, Modal, Select, Switch, message } from 'antd';
+import { Form, Input, InputNumber, Modal, Select, Switch } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { adminCategoryApi } from '../../api/admin/adminCategoryApi';
 import { useCreateProduct, useUpdateProduct } from '../../hooks/admin/useAdminProducts';
@@ -68,7 +68,6 @@ export default function ProductFormModal({ open, onClose, editingProduct }: Prop
           stock_quantity: values.stock_quantity != null ? String(values.stock_quantity) : undefined,
         });
       }
-      message.success(isEdit ? 'Cập nhật sản phẩm thành công' : 'Tạo sản phẩm thành công');
       onClose();
     } catch {
       // validation errors handled by AntD Form, mutation errors handled in hooks

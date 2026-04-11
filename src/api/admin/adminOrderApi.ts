@@ -36,8 +36,8 @@ export const adminOrderApi = {
     return response.data.data;
   },
 
-  setDeliveryMethod: async (id: number, method: string): Promise<OrderResource> => {
-    const response = await axiosInstance.patch(`/admin/orders/${id}/delivery-method`, { method });
+  setDeliveryMethod: async (id: number, delivery_method: string): Promise<OrderResource> => {
+    const response = await axiosInstance.patch(`/admin/orders/${id}/delivery-method`, { delivery_method });
     return response.data.data;
   },
 };

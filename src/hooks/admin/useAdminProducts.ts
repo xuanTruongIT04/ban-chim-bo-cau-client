@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
-import { message } from 'antd';
+import { App } from 'antd';
 import { adminProductApi } from '../../api/admin/adminProductApi';
 import type { CreateProductPayload, AdjustStockPayload } from '../../types/api';
 
@@ -25,6 +25,7 @@ export function useAdminProduct(id: number) {
 
 export function useCreateProduct() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: (payload: CreateProductPayload) => adminProductApi.create(payload),
@@ -40,6 +41,7 @@ export function useCreateProduct() {
 
 export function useUpdateProduct() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: ({ id, payload }: { id: number; payload: Partial<CreateProductPayload> }) =>
@@ -57,6 +59,7 @@ export function useUpdateProduct() {
 
 export function useDeleteProduct() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: (id: number) => adminProductApi.delete(id),
@@ -72,6 +75,7 @@ export function useDeleteProduct() {
 
 export function useUploadProductImage() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: ({
@@ -95,6 +99,7 @@ export function useUploadProductImage() {
 
 export function useDeleteProductImage() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: ({ productId, imageId }: { productId: number; imageId: number }) =>
@@ -111,6 +116,7 @@ export function useDeleteProductImage() {
 
 export function useAdjustStock() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: ({

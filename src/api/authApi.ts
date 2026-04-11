@@ -11,11 +11,8 @@ export const authApi = {
   },
 
   getMe: async (): Promise<UserProfile> => {
-    // TODO: Backend chưa có route /me — tạm decode từ token hoặc bỏ qua
-    // Khi backend thêm route, uncomment dòng dưới:
-    // const response = await axiosInstance.get<UserProfile>('/admin/me');
-    // return response.data;
-    throw new Error('GET /me not implemented in backend');
+    const response = await axiosInstance.get('/admin/me');
+    return response.data.data as UserProfile;
   },
 
   logout: async (): Promise<void> => {
