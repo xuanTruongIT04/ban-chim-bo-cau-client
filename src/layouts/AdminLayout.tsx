@@ -70,18 +70,18 @@ export default function AdminLayout() {
         breakpoint="lg"
         collapsedWidth={0}
         style={{
-          background: 'linear-gradient(180deg, #f0f7f0 0%, #e8f5e9 100%)',
-          borderRight: '1px solid #c8e6c9',
+          background: 'linear-gradient(180deg, #e8f0fe 0%, #e3f2fd 100%)',
+          borderRight: '1px solid #bbdefb',
         }}
       >
         {/* Logo area */}
         <div className="admin-logo-area">
-          <PigeonLogo size={40} color="#2e7d32" />
+          <PigeonLogo size={40} color="#1565c0" />
           <div>
-            <div style={{ fontSize: 17, fontWeight: 700, color: '#1b5e20', lineHeight: 1.2 }}>
+            <div style={{ fontSize: 17, fontWeight: 700, color: '#0d47a1', lineHeight: 1.2 }}>
               Quý Chim - Từ Sơn
             </div>
-            <div style={{ fontSize: 12, color: '#4caf50' }}>Quản trị hệ thống</div>
+            <div style={{ fontSize: 12, color: '#42a5f5' }}>Quản trị hệ thống</div>
           </div>
         </div>
 
@@ -104,37 +104,34 @@ export default function AdminLayout() {
           style={{
             background: '#ffffff',
             height: 64,
-            lineHeight: '64px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'flex-end',
+            justifyContent: 'flex-start',
             paddingInline: 24,
             gap: 12,
-            borderBottom: '1px solid #e0e0e0',
+            borderBottom: '1px solid #e3f2fd',
+            boxShadow: '0 1px 4px rgba(21,101,192,0.06)',
           }}
         >
-          <Tooltip title="Xem trang bán hàng">
+          {adminName && (
+            <span style={{ fontSize: 15, color: designToken.colorText, fontWeight: 500 }}>
+              Xin chào, <strong style={{ color: '#1565c0' }}>{adminName}</strong>
+            </span>
+          )}
+
+          <div style={{ flex: 1 }} />
+
+          <Tooltip title="Xem trang bán hàng (mở tab mới)">
             <Button
               type="default"
               icon={<GlobalOutlined />}
               onClick={() => window.open('/', '_blank')}
-              style={{
-                borderColor: '#2e7d32',
-                color: '#2e7d32',
-                fontWeight: 600,
-              }}
+              style={{ borderColor: '#1565c0', color: '#1565c0', fontWeight: 600 }}
             >
               Trang bán hàng
             </Button>
           </Tooltip>
 
-          <div style={{ flex: 1 }} />
-
-          {adminName && (
-            <span style={{ fontSize: 15, color: designToken.colorText, fontWeight: 500 }}>
-              Xin chào, {adminName}
-            </span>
-          )}
           <Button
             type="text"
             icon={<LogoutOutlined />}

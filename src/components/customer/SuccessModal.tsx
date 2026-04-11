@@ -41,7 +41,7 @@ export default function SuccessModal({ open, type, productName, onClose }: Succe
         {isOrder ? '🎉' : '🛒'}
       </div>
 
-      <Title level={3} style={{ color: '#1b5e20', margin: '0 0 8px' }}>
+      <Title level={3} style={{ color: '#0d47a1', margin: '0 0 8px' }}>
         {isOrder ? 'Đặt hàng thành công!' : 'Đã thêm vào giỏ!'}
       </Title>
 
@@ -63,7 +63,7 @@ export default function SuccessModal({ open, type, productName, onClose }: Succe
           fontSize: 17,
           fontWeight: 700,
           borderRadius: 10,
-          background: '#2e7d32',
+          background: '#1565c0',
           border: 'none',
         }}
       >

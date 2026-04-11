@@ -8,7 +8,7 @@ import { useOrderHistoryStore } from '../../stores/orderHistoryStore';
 
 const { Text, Title } = Typography;
 
-const CONFETTI_COLORS = ['#2e7d32', '#66bb6a', '#ffd54f', '#ff7043', '#42a5f5', '#ab47bc', '#ef5350'];
+const CONFETTI_COLORS = ['#1976d2', '#64b5f6', '#ffd54f', '#ff7043', '#42a5f5', '#ab47bc', '#ef5350'];
 
 function createConfetti() {
   const container = document.createElement('div');
@@ -89,17 +89,17 @@ export default function OrderConfirmationPage() {
       {/* Success banner */}
       <Card
         style={{
-          background: 'linear-gradient(135deg, #e8f5e9, #c8e6c9)',
-          border: '1px solid #a5d6a7',
+          background: 'linear-gradient(135deg, #e3f2fd, #bbdefb)',
+          border: '1px solid #90caf9',
           borderRadius: 16,
           textAlign: 'center',
           marginBottom: 24,
         }}
       >
         <Result
-          icon={<SmileOutlined style={{ color: '#2e7d32', fontSize: 64 }} />}
+          icon={<SmileOutlined style={{ color: '#1565c0', fontSize: 64 }} />}
           title={
-            <Title level={2} style={{ color: '#1b5e20', margin: 0 }}>
+            <Title level={2} style={{ color: '#0d47a1', margin: 0 }}>
               Đặt hàng thành công!
             </Title>
           }
@@ -127,7 +127,7 @@ export default function OrderConfirmationPage() {
         />
 
         <div style={{ marginTop: 8 }}>
-          <Text style={{ fontSize: 15, color: '#2e7d32' }}>
+          <Text style={{ fontSize: 15, color: '#1565c0' }}>
             <PhoneOutlined /> Hotline hỗ trợ: <strong>0978 238 946</strong>
           </Text>
         </div>
@@ -157,8 +157,8 @@ export default function OrderConfirmationPage() {
           <Descriptions.Item label={<span style={{ fontSize: 15 }}>Trạng thái</span>}>
             <span className="status-new-pulse" style={{
               display: 'inline-block',
-              background: '#e8f5e9',
-              color: '#2e7d32',
+              background: '#e3f2fd',
+              color: '#1565c0',
               padding: '2px 12px',
               borderRadius: 6,
               fontWeight: 600,

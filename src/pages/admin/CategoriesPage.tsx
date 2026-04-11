@@ -7,7 +7,6 @@ import {
   Empty,
   Modal,
   Row,
-  Spin,
   Tag,
   Typography,
 } from 'antd';
@@ -61,7 +60,7 @@ export default function CategoriesPage() {
           gap: 12,
         }}
       >
-        <Title level={2} style={{ margin: 0, color: '#1b5e20' }}>
+        <Title level={2} style={{ margin: 0, color: '#0d47a1' }}>
           Quản lý đầu mục
         </Title>
         <Button
@@ -85,11 +84,27 @@ export default function CategoriesPage() {
         />
       )}
 
-      {/* Loading */}
+      {/* Loading skeleton */}
       {isLoading && (
-        <div style={{ textAlign: 'center', padding: 60 }}>
-          <Spin size="large" />
-        </div>
+        <Row gutter={[16, 16]}>
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <Col key={i} xs={24} sm={12} md={8}>
+              <div
+                style={{
+                  borderRadius: 12,
+                  border: '1px solid #e0e0e0',
+                  padding: 16,
+                  background: 'linear-gradient(90deg, #e3f2fd 0%, #e8f0fe 50%, #e3f2fd 100%)',
+                  backgroundSize: '200% 100%',
+                  animation: 'cat-shimmer 1.4s ease-in-out infinite',
+                  height: 80,
+                  animationDelay: `${i * 0.08}s`,
+                }}
+              />
+            </Col>
+          ))}
+          <style>{`@keyframes cat-shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }`}</style>
+        </Row>
       )}
 
       {/* Empty */}
@@ -147,7 +162,7 @@ function CategoryCard({ category, allCategories, onEdit, onDelete }: CategoryCar
       <Row gutter={[16, 16]} align="middle">
         {/* Info */}
         <Col xs={24} sm={16}>
-          <Text strong style={{ fontSize: 18, color: '#1b5e20', display: 'block', marginBottom: 6 }}>
+          <Text strong style={{ fontSize: 18, color: '#0d47a1', display: 'block', marginBottom: 6 }}>
             {category.name}
           </Text>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 12px', alignItems: 'center' }}>

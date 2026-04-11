@@ -14,6 +14,10 @@ import ProductDetailPage from '../pages/customer/ProductDetailPage';
 import CartPage from '../pages/customer/CartPage';
 import CheckoutPage from '../pages/customer/CheckoutPage';
 import OrderConfirmationPage from '../pages/customer/OrderConfirmationPage';
+import AboutPage from '../pages/customer/AboutPage';
+import SalesPolicyPage from '../pages/customer/SalesPolicyPage';
+import ShippingPolicyPage from '../pages/customer/ShippingPolicyPage';
+import ContactPage from '../pages/customer/ContactPage';
 
 const MyOrdersPageLazy = lazy(() => import('../pages/customer/MyOrdersPage'));
 
@@ -57,6 +61,10 @@ export const router = createBrowserRouter([
       { path: '/checkout', element: <CheckoutPage /> },
       { path: '/orders/confirm', element: <OrderConfirmationPage /> },
       { path: '/orders', element: MyOrdersPage },
+      { path: '/gioi-thieu', element: <AboutPage /> },
+      { path: '/chinh-sach-ban-hang', element: <SalesPolicyPage /> },
+      { path: '/chinh-sach-van-chuyen', element: <ShippingPolicyPage /> },
+      { path: '/lien-he', element: <ContactPage /> },
     ],
   },
 ]);

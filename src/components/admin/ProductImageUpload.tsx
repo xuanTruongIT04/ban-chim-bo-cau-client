@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Button, Modal, Space, Spin, Tag, Upload, message } from 'antd';
+import { App, Button, Modal, Space, Tag, Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 import type { UploadRequestOption } from 'rc-upload/lib/interface';
 import { useAdminProduct, useDeleteProductImage, ADMIN_PRODUCT_KEY, ADMIN_PRODUCTS_KEY } from '../../hooks/admin/useAdminProducts';
@@ -18,6 +18,7 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
   const { data: product, isLoading } = useAdminProduct(productId);
   const deleteImage = useDeleteProductImage();
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
   // Track whether any image change happened while modal was open
   const changedRef = useRef(false);
 
@@ -121,17 +122,18 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
                 <div
                   key={img.id}
                   style={{
-                    border: img.is_primary ? '2px solid #2e7d32' : '1px solid #d9d9d9',
+                    border: img.is_primary ? '2px solid #1565c0' : '1px solid #d9d9d9',
                     borderRadius: 8,
                     padding: 8,
                     textAlign: 'center',
                     width: 140,
-                    background: img.is_primary ? '#f0f7f0' : '#fff',
+                    background: img.is_primary ? '#e8f0fe' : '#fff',
                   }}
                 >
                   <img
                     src={img.url}
                     alt="product"
+                    loading="lazy"
                     style={{ width: '100%', height: 100, objectFit: 'cover', marginBottom: 8, borderRadius: 4 }}
                   />
                   {img.is_primary && (

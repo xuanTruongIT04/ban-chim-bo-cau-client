@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
-import { message } from 'antd';
+import { App } from 'antd';
 import { adminOrderApi } from '../../api/admin/adminOrderApi';
 import type { AdminOrderListParams } from '../../types/api';
 
@@ -25,6 +25,7 @@ export function useAdminOrder(id: number) {
 
 export function useUpdateOrderStatus() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: ({ id, status }: { id: number; status: string }) =>
@@ -54,8 +55,44 @@ export function useCompletedOrdersRevenue() {
   });
 }
 
+export function useConfirmPayment() {
+  const queryClient = useQueryClient();
+  const { message } = App.useApp();
+
+  return useMutation({
+    mutationFn: (id: number) => adminOrderApi.confirmPayment(id),
+    onSuccess: (_data, id) => {
+      queryClient.invalidateQueries({ queryKey: [ADMIN_ORDERS_KEY] });
+      queryClient.invalidateQueries({ queryKey: [ADMIN_ORDER_KEY, id] });
+      message.success('Đã xác nhận thanh toán');
+    },
+    onError: () => {
+      message.error('Không thể xác nhận thanh toán. Vui lòng thử lại.');
+    },
+  });
+}
+
+export function useSetDeliveryMethod() {
+  const queryClient = useQueryClient();
+  const { message } = App.useApp();
+
+  return useMutation({
+    mutationFn: ({ id, method }: { id: number; method: string }) =>
+      adminOrderApi.setDeliveryMethod(id, method),
+    onSuccess: (_data, { id }) => {
+      queryClient.invalidateQueries({ queryKey: [ADMIN_ORDERS_KEY] });
+      queryClient.invalidateQueries({ queryKey: [ADMIN_ORDER_KEY, id] });
+      message.success('Đã cập nhật hình thức giao hàng');
+    },
+    onError: () => {
+      message.error('Không thể cập nhật hình thức giao. Vui lòng thử lại.');
+    },
+  });
+}
+
 export function useCancelOrder() {
   const queryClient = useQueryClient();
+  const { message } = App.useApp();
 
   return useMutation({
     mutationFn: (id: number) => adminOrderApi.cancel(id),
