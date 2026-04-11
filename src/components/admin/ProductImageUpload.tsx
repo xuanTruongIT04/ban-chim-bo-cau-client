@@ -5,6 +5,7 @@ import type { UploadRequestOption } from 'rc-upload/lib/interface';
 import { useAdminProduct, useDeleteProductImage, ADMIN_PRODUCT_KEY, ADMIN_PRODUCTS_KEY } from '../../hooks/admin/useAdminProducts';
 import { adminProductApi } from '../../api/admin/adminProductApi';
 import { useQueryClient } from '@tanstack/react-query';
+import { normalizeImageUrl } from '../../utils/format';
 
 interface Props {
   productId: number;
@@ -131,7 +132,7 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
                   }}
                 >
                   <img
-                    src={img.url}
+                    src={normalizeImageUrl(img.url)}
                     alt="product"
                     loading="lazy"
                     style={{ width: '100%', height: 100, objectFit: 'cover', marginBottom: 8, borderRadius: 4 }}
