@@ -25,7 +25,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_API_BASE_URL: http://103.166.185.155/api/v1
+          VITE_API_BASE_URL: https://api.bocautuson.io.vn/api/v1
       
       - name: Deploy to server via SSH
         uses: appleboy/ssh-action@v1.0.3
