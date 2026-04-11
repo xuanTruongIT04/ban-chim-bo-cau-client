@@ -8,7 +8,7 @@ export function formatVND(amount: number): string {
  * Rewrite legacy IP-based storage URLs to the current API domain.
  * Handles cases where Laravel APP_URL is still set to the old IP.
  */
-function normalizeImageUrl(url: string): string {
+export function normalizeImageUrl(url: string): string {
   const apiBase = import.meta.env.VITE_API_BASE_URL as string | undefined;
   if (!apiBase) return url;
   try {

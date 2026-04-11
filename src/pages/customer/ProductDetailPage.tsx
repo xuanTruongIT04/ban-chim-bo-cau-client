@@ -26,7 +26,7 @@ import {
 import { useProduct } from '../../hooks/useProduct';
 import { useProducts } from '../../hooks/useProducts';
 import { useAddToCart } from '../../hooks/useCart';
-import { formatVND, extractImageUrl } from '../../utils/format';
+import { formatVND, extractImageUrl, normalizeImageUrl } from '../../utils/format';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -121,7 +121,7 @@ export default function ProductDetailPage() {
   const stockQty   = parseFloat(product.stock_quantity);
   const isOutOfStock = stockQty === 0;
   const isLowStock   = stockQty > 0 && stockQty <= 5;
-  const images       = product.images ?? [];
+  const images       = (product.images ?? []).map((img) => ({ ...img, url: normalizeImageUrl(img.url) }));
   const activeImage  = images[selectedImageIndex] ?? images[0];
 
   function increment() { setQty((q) => Math.min(q + 1, isOutOfStock ? 1 : stockQty)); }
