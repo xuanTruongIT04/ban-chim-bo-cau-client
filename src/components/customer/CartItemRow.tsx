@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { List, Button, Typography, Tag, theme } from 'antd';
+import { List, Typography, Tag, theme } from 'antd';
 import { DeleteOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import type { CartItemResource } from '../../types/api';
 import { formatVND, extractImageUrl } from '../../utils/format';

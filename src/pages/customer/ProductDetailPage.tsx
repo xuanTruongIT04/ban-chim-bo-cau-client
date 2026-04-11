@@ -128,6 +128,7 @@ export default function ProductDetailPage() {
   function decrement() { setQty((q) => Math.max(q - 1, 1)); }
 
   function handleAddToCart() {
+    if (!product) return;
     addToCart.mutate(
       { productId: product.id, quantity: qty },
       {
