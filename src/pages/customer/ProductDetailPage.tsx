@@ -129,14 +129,15 @@ export default function ProductDetailPage() {
 
   function handleAddToCart() {
     if (!product) return;
+    const p = product;
     addToCart.mutate(
-      { productId: product.id, quantity: qty },
+      { productId: p.id, quantity: qty },
       {
         onSuccess: () => {
           message.success({
             content: (
               <span>
-                Đã thêm <strong>{qty} × {product.name}</strong> vào giỏ hàng!
+                Đã thêm <strong>{qty} × {p.name}</strong> vào giỏ hàng!
               </span>
             ),
             duration: 3,
