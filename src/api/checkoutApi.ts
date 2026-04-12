@@ -8,7 +8,6 @@ export const checkoutApi = {
     });
     return {
       order: response.data.data,
-      bank_info: response.data.bank_info,
     };
   },
 };

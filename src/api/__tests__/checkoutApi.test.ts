@@ -23,7 +23,6 @@ describe('checkoutApi.submit', () => {
     customer_name: 'Nguyen Van A',
     customer_phone: '0901234567',
     delivery_address: '123 Le Loi, Quan 1, TP.HCM',
-    payment_method: 'cod' as const,
   };
 
   it('calls POST /checkout with payload', async () => {
@@ -65,12 +64,12 @@ describe('checkoutApi.submit', () => {
     expect(sentPayload).not.toHaveProperty('note');
   });
 
-  it('payment_method is cod in payload', async () => {
+  it('does NOT include payment_method in payload', async () => {
     mockPost.mockResolvedValueOnce({ data: { data: { id: 1 } } });
 
     await checkoutApi.submit(validPayload, 'idem-key-abc');
 
     const sentPayload = mockPost.mock.calls[0][1];
-    expect(sentPayload.payment_method).toBe('cod');
+    expect(sentPayload).not.toHaveProperty('payment_method');
   });
 });

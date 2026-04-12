@@ -106,20 +106,11 @@ export interface CheckoutPayload {
   customer_name: string;
   customer_phone: string;
   delivery_address: string;
-  payment_method: 'cod' | 'chuyen_khoan';
   note?: string;
-}
-
-export interface BankInfo {
-  bank_name: string;
-  account_number: string;
-  account_name: string;
-  branch?: string;
 }
 
 export interface CheckoutResponse {
   order: OrderResource;
-  bank_info?: BankInfo;
 }
 
 export interface OrderItemResource {

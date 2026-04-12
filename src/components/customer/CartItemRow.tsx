@@ -98,8 +98,8 @@ export default function CartItemRow({ item, onUpdateQuantity, onRemove, updating
               aria-label="Xóa sản phẩm"
               style={{
                 flexShrink: 0,
-                width: 36,
-                height: 36,
+                width: 40,
+                height: 40,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -143,8 +143,8 @@ export default function CartItemRow({ item, onUpdateQuantity, onRemove, updating
                 onClick={() => changeQty(qty - 1)}
                 disabled={updating || qty <= 1}
                 style={{
-                  width: 36,
-                  height: 36,
+                  width: 40,
+                  height: 40,
                   border: `1.5px solid ${designToken.colorBorder}`,
                   borderRight: 'none',
                   borderRadius: '8px 0 0 8px',
@@ -153,7 +153,7 @@ export default function CartItemRow({ item, onUpdateQuantity, onRemove, updating
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: 13,
+                  fontSize: 14,
                   color: '#595959',
                   padding: 0,
                   transition: 'background 0.15s',
@@ -163,8 +163,8 @@ export default function CartItemRow({ item, onUpdateQuantity, onRemove, updating
               </button>
               <div
                 style={{
-                  width: 40,
-                  height: 36,
+                  width: 44,
+                  height: 40,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -183,8 +183,8 @@ export default function CartItemRow({ item, onUpdateQuantity, onRemove, updating
                 onClick={() => changeQty(qty + 1)}
                 disabled={updating}
                 style={{
-                  width: 36,
-                  height: 36,
+                  width: 40,
+                  height: 40,
                   border: `1.5px solid ${designToken.colorBorder}`,
                   borderLeft: 'none',
                   borderRadius: '0 8px 8px 0',
@@ -193,7 +193,7 @@ export default function CartItemRow({ item, onUpdateQuantity, onRemove, updating
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  fontSize: 13,
+                  fontSize: 14,
                   color: '#595959',
                   padding: 0,
                   transition: 'background 0.15s',

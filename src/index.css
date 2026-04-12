@@ -155,8 +155,8 @@ a:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 8px;
   background: var(--primary-light);
   color: var(--primary);
@@ -242,21 +242,37 @@ a:focus-visible {
 
 /* ─── Trust Strip ───────────────────────────────────────────────────────── */
 .trust-strip {
-  /* Single column on phones, 2 col on small tablets, 4 col on desktop */
-  display: grid;
-  grid-template-columns: 1fr;
+  /* Horizontal scroll on tiny phones → saves ~156px above the fold
+     2 col on small tablets, 4 col on desktop */
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   gap: 8px;
   background: #ffffff;
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 12px;
+  padding: 10px 12px;
+  /* Fade-out right edge hint */
+  mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
+
+.trust-strip::-webkit-scrollbar {
+  display: none;
 }
 
 @media (min-width: 480px) {
   .trust-strip {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     padding: 16px;
+    mask-image: none;
+    -webkit-mask-image: none;
+    overflow-x: visible;
   }
 }
 
@@ -273,7 +289,17 @@ a:focus-visible {
   padding: 8px;
   border-radius: 8px;
   transition: background var(--transition);
-  min-height: 52px;
+  min-height: 48px;
+  /* Horizontal scroll mode: fixed width, don't shrink */
+  flex-shrink: 0;
+  min-width: 150px;
+}
+
+@media (min-width: 480px) {
+  .trust-item {
+    min-width: unset;
+    flex-shrink: unset;
+  }
 }
 
 .trust-item:hover {

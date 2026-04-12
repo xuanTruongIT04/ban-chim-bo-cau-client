@@ -311,20 +311,20 @@ function ProductCard({ product, onEdit, onManageImages, onManageStock, onDelete 
           </div>
         </Col>
 
-        {/* Actions */}
+        {/* Actions — 3 nút chính + nút Xóa tách riêng, nhỏ hơn để tránh xóa nhầm */}
         <Col xs={24} sm={8}>
           <Row gutter={[10, 10]}>
-            <Col xs={12} sm={12}>
+            <Col xs={8} sm={24}>
               <Button
                 block
                 icon={<EditOutlined />}
                 onClick={() => onEdit(product)}
-                style={{ height: 44, fontSize: 14, fontWeight: 500 }}
+                style={{ height: 44, fontSize: 14, fontWeight: 600 }}
               >
                 Sửa
               </Button>
             </Col>
-            <Col xs={12} sm={12}>
+            <Col xs={8} sm={24}>
               <Button
                 block
                 icon={<PictureOutlined />}
@@ -334,7 +334,7 @@ function ProductCard({ product, onEdit, onManageImages, onManageStock, onDelete 
                 Ảnh
               </Button>
             </Col>
-            <Col xs={12} sm={12}>
+            <Col xs={8} sm={24}>
               <Button
                 block
                 icon={<InboxOutlined />}
@@ -344,19 +344,17 @@ function ProductCard({ product, onEdit, onManageImages, onManageStock, onDelete 
                 Kho
               </Button>
             </Col>
-            <Col xs={12} sm={12}>
-              <Button
-                block
-                danger
-                type="primary"
-                icon={<DeleteOutlined />}
-                onClick={() => onDelete(product)}
-                style={{ height: 44, fontSize: 14, fontWeight: 500 }}
-              >
-                Xóa
-              </Button>
-            </Col>
           </Row>
+          {/* Xóa — tách ra, nhỏ hơn, màu nhạt để giảm nhấn mạnh */}
+          <Button
+            block
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() => onDelete(product)}
+            style={{ height: 32, fontSize: 12, marginTop: 8, opacity: 0.7 }}
+          >
+            Xóa sản phẩm
+          </Button>
         </Col>
       </Row>
     </Card>
