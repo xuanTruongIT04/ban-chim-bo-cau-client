@@ -14,6 +14,9 @@ import PigeonLogo from '../components/common/PigeonLogo';
 
 const { Header, Content } = Layout;
 
+const MAPS_URL =
+  'https://www.google.com/maps/place/C%E1%BB%99t+%C4%90%E1%BB%93ng+H%E1%BB%93+-+T%E1%BB%AB+S%C6%A1n/@21.1153053,105.9614437,3a,75y,192.24h,74.9t/data=!3m7!1e1!3m5!1s0d4t2AGqEhHtSos5olAHOA!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D15.100612517500025%26panoid%3D0d4t2AGqEhHtSos5olAHOA%26yaw%3D192.24351766425008!7i16384!8i8192!4m6!3m5!1s0x3135070018c61c1b:0x119f7e639d6daf8e!8m2!3d21.1159444!4d105.9559002!16s%2Fg%2F11n9r9s4mp?entry=ttu&g_ep=EgoyMDI2MDQwOC4wIKXMDSoASAFQAw%3D%3D';
+
 const POLICY_ITEMS = [
   { key: 'ban-hang', label: <Link to="/chinh-sach-ban-hang">Chính sách bán hàng</Link> },
   { key: 'van-chuyen', label: <Link to="/chinh-sach-van-chuyen">Chính sách vận chuyển</Link> },
@@ -41,10 +44,15 @@ export default function CustomerLayout() {
           <PhoneOutlined />
           0978 238 946
         </a>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 6, opacity: 0.75 }}>
+        <a
+          href={MAPS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'flex', alignItems: 'center', gap: 6, opacity: 0.75, textDecoration: 'none', color: 'inherit' }}
+        >
           <EnvironmentOutlined />
           Từ Sơn, Bắc Ninh
-        </span>
+        </a>
       </div>
 
       <Header

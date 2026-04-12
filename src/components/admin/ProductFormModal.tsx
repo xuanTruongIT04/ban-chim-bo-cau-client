@@ -82,12 +82,14 @@ export default function ProductFormModal({ open, onClose, editingProduct }: Prop
       open={open}
       onCancel={onClose}
       onOk={handleSubmit}
-      okText={isEdit ? 'Cập nhật' : 'Tạo'}
+      okText={isEdit ? 'Lưu thay đổi' : 'Tạo sản phẩm'}
       cancelText="Hủy"
       confirmLoading={isLoading}
-      destroyOnClose
+      destroyOnHidden
+      style={{ top: 20 }}
+      styles={{ body: { padding: '16px 24px' } }}
     >
-      <Form form={form} layout="vertical">
+      <Form form={form} layout="vertical" size="large">
         <Form.Item
           name="name"
           label="Tên sản phẩm"
@@ -105,7 +107,7 @@ export default function ProductFormModal({ open, onClose, editingProduct }: Prop
 
         <Form.Item
           name="price_vnd"
-          label="Giá (VND)"
+          label="Giá bán (VND)"
           rules={[
             { required: true, message: 'Vui lòng nhập giá sản phẩm' },
             { type: 'number', min: 1, message: 'Giá phải lớn hơn 0' },
@@ -115,20 +117,20 @@ export default function ProductFormModal({ open, onClose, editingProduct }: Prop
             style={{ width: '100%' }}
             formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             parser={(value) => Number(value?.replace(/,/g, '') ?? 0)}
-            placeholder="Nhập giá"
+            placeholder="Ví dụ: 150000"
             min={1}
           />
         </Form.Item>
 
         <Form.Item
           name="unit_type"
-          label="Đơn vị"
+          label="Đơn vị tính"
           rules={[{ required: true, message: 'Vui lòng chọn đơn vị' }]}
         >
           <Select
             options={[
-              { value: 'con', label: 'Con' },
-              { value: 'kg', label: 'Kg' },
+              { value: 'con', label: 'Con (từng con)' },
+              { value: 'kg',  label: 'Kg (theo cân)' },
             ]}
             placeholder="Chọn đơn vị"
           />
@@ -144,7 +146,7 @@ export default function ProductFormModal({ open, onClose, editingProduct }: Prop
 
         {!isEdit && (
           <Form.Item name="stock_quantity" label="Số lượng ban đầu">
-            <InputNumber style={{ width: '100%' }} min={0} placeholder="Số lượng (tuỳ chọn)" />
+            <InputNumber style={{ width: '100%' }} min={0} placeholder="Nhập số lượng (tuỳ chọn)" />
           </Form.Item>
         )}
 

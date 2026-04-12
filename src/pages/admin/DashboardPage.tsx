@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { Alert, Badge, Card, Col, Row, Spin, Statistic, Tag, Typography, theme } from 'antd';
+import { Alert, Badge, Button, Card, Col, Row, Spin, Statistic, Tag, Typography, theme } from 'antd';
 import { Link } from 'react-router-dom';
 import {
   ClockCircleOutlined,
@@ -48,9 +48,9 @@ const PIPELINE_STEPS = [
     key: 'hoan_thanh' as const,
     label: 'Hoàn thành',
     icon: <TrophyOutlined />,
-    bg: '#e3f2fd',
-    color: '#1565c0',
-    border: '#90caf9',
+    bg: '#e8f5e9',
+    color: '#2e7d32',
+    border: '#a5d6a7',
   },
 ] as const;
 
@@ -123,15 +123,38 @@ export default function DashboardPage() {
     PIPELINE_STEPS.reduce((sum, s) => sum + (orderStats?.[s.key] ?? 0), 0) +
     (orderStats?.huy ?? 0);
 
+  const pendingCount = orderStats?.cho_xac_nhan ?? 0;
+
   return (
     <div>
+      {/* ── Alert đơn chờ xác nhận — hiện ngay đầu nếu có ── */}
+      {pendingCount > 0 && (
+        <Alert
+          type="warning"
+          showIcon
+          style={{ marginBottom: 16, borderRadius: 10, fontSize: 15, fontWeight: 600 }}
+          message={
+            <span>
+              Có <strong style={{ fontSize: 17, color: '#e65100' }}>{pendingCount}</strong> đơn đang chờ xác nhận
+            </span>
+          }
+          action={
+            <Link to="/admin/orders">
+              <Button size="small" type="primary" style={{ fontWeight: 700 }}>
+                Xem ngay
+              </Button>
+            </Link>
+          }
+        />
+      )}
+
       {/* ── Welcome banner ─────────────────────────────────────────────── */}
-      <div className="bg-soft-green" style={{ padding: '20px 28px', marginBottom: 24 }}>
-        <Title level={3} style={{ margin: 0, color: '#0d47a1' }}>
+      <div className="bg-soft-green" style={{ padding: '16px 20px', marginBottom: 20, borderRadius: 10 }}>
+        <Title level={4} style={{ margin: 0, color: '#0d47a1' }}>
           Tổng quan — Quý Chim Từ Sơn
         </Title>
-        <Text style={{ fontSize: 15, color: '#42a5f5' }}>
-          Chào mừng bạn trở lại! Dưới đây là tình hình kinh doanh hôm nay.
+        <Text style={{ fontSize: 14, color: '#42a5f5' }}>
+          Dưới đây là tình hình kinh doanh hôm nay.
         </Text>
       </div>
 
@@ -213,7 +236,7 @@ export default function DashboardPage() {
         }}
         styles={{ body: { padding: 0 } }}
       >
-        <div style={{ overflowX: 'auto' }}>
+        <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
           <div style={{ display: 'flex', alignItems: 'stretch', minWidth: 560 }}>
             {/* Main 4 flow steps with arrows */}
             {PIPELINE_STEPS.map((step, idx) => (

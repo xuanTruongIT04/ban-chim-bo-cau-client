@@ -141,7 +141,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <Text
             strong
             style={{
-              fontSize: 13,
+              fontSize: 14,
               color: designToken.colorText,
               marginBottom: 5,
               lineHeight: 1.4,
@@ -190,12 +190,11 @@ export default function ProductCard({ product }: ProductCardProps) {
               icon={<EyeOutlined />}
               block
               style={{
-                fontSize: 12,
+                fontSize: 13,
                 color: designToken.colorPrimary,
                 borderColor: designToken.colorBorderSecondary,
                 fontWeight: 500,
-                /* min 44px touch target */
-                height: 36,
+                height: 44,
                 borderRadius: 8,
               }}
             >

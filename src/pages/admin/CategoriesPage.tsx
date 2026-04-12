@@ -186,30 +186,23 @@ function CategoryCard({ category, allCategories, onEdit, onDelete }: CategoryCar
 
         {/* Actions */}
         <Col xs={24} sm={8}>
-          <Row gutter={[10, 10]}>
-            <Col xs={12} sm={12}>
-              <Button
-                block
-                icon={<EditOutlined />}
-                onClick={() => onEdit(category)}
-                style={{ height: 44, fontSize: 15, fontWeight: 500 }}
-              >
-                Sửa
-              </Button>
-            </Col>
-            <Col xs={12} sm={12}>
-              <Button
-                block
-                danger
-                type="primary"
-                icon={<DeleteOutlined />}
-                onClick={() => onDelete(category)}
-                style={{ height: 44, fontSize: 15, fontWeight: 500 }}
-              >
-                Xóa
-              </Button>
-            </Col>
-          </Row>
+          <Button
+            block
+            icon={<EditOutlined />}
+            onClick={() => onEdit(category)}
+            style={{ height: 44, fontSize: 15, fontWeight: 600, marginBottom: 8 }}
+          >
+            Sửa đầu mục
+          </Button>
+          <Button
+            block
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() => onDelete(category)}
+            style={{ height: 32, fontSize: 12, opacity: 0.65 }}
+          >
+            Xóa
+          </Button>
         </Col>
       </Row>
     </Card>

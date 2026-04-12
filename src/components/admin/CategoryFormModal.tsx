@@ -59,12 +59,12 @@ export default function CategoryFormModal({ open, onClose, editingCategory }: Pr
       open={open}
       onCancel={onClose}
       onOk={handleSubmit}
-      okText={isEdit ? 'Cập nhật' : 'Tạo'}
+      okText={isEdit ? 'Lưu thay đổi' : 'Tạo'}
       cancelText="Hủy"
       confirmLoading={isLoading}
-      destroyOnClose
+      destroyOnHidden
     >
-      <Form form={form} layout="vertical">
+      <Form form={form} layout="vertical" size="large">
         <Form.Item
           name="name"
           label="Tên đầu mục"

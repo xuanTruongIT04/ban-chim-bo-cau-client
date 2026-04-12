@@ -9,7 +9,6 @@ import {
   Row,
   Col,
   Card,
-  Radio,
   Divider,
   Modal,
   Space,
@@ -29,7 +28,7 @@ import { useCart } from '../../hooks/useCart';
 import { useCartStore } from '../../stores/cartStore';
 import { useOrderHistoryStore } from '../../stores/orderHistoryStore';
 import { formatVND } from '../../utils/format';
-import type { BankInfo, CheckoutPayload, OrderResource } from '../../types/api';
+import type { CheckoutPayload, OrderResource } from '../../types/api';
 
 const { Title, Text } = Typography;
 
@@ -37,7 +36,6 @@ interface CheckoutFormValues {
   customer_name: string;
   customer_phone: string;
   delivery_address: string;
-  payment_method: 'cod' | 'chuyen_khoan';
   note?: string;
 }
 
@@ -73,10 +71,8 @@ export default function CheckoutPage() {
   const { token: designToken } = theme.useToken();
 
   const [form] = Form.useForm<CheckoutFormValues>();
-  const paymentMethod = Form.useWatch('payment_method', form) ?? 'cod';
   const [submitting, setSubmitting] = useState(false);
   const [completedOrder, setCompletedOrder] = useState<OrderResource | null>(null);
-  const [bankInfo, setBankInfo] = useState<BankInfo | null>(null);
 
   // Idempotency key — generated once per page mount
   const [idempotencyKey] = useState(() => {
@@ -97,13 +93,11 @@ export default function CheckoutPage() {
         customer_name: values.customer_name,
         customer_phone: values.customer_phone,
         delivery_address: values.delivery_address,
-        payment_method: values.payment_method,
         note: values.note,
       };
-      const { order, bank_info } = await checkoutApi.submit(payload, idempotencyKey);
+      const { order } = await checkoutApi.submit(payload, idempotencyKey);
       addOrder(order);
       setCompletedOrder(order);
-      if (bank_info) setBankInfo(bank_info);
     } catch (error) {
       const axiosError = error as {
         response?: { status?: number; data?: { message?: string; errors?: Record<string, string[]> } };
@@ -165,8 +159,8 @@ export default function CheckoutPage() {
             width: 72,
             height: 72,
             borderRadius: '50%',
-            background: '#e8f0fe',
-            border: `3px solid ${designToken.colorPrimary}`,
+            background: '#e8f5e9',
+            border: '3px solid #2e7d32',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -174,7 +168,7 @@ export default function CheckoutPage() {
             animation: 'successScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both',
           }}
         >
-          <CheckCircleFilled style={{ fontSize: 36, color: designToken.colorPrimary }} />
+          <CheckCircleFilled style={{ fontSize: 36, color: '#2e7d32' }} />
         </div>
 
         <Title level={3} style={{ margin: '0 0 6px' }}>
@@ -183,39 +177,56 @@ export default function CheckoutPage() {
         <Text style={{ fontSize: 14, color: '#8c8c8c', display: 'block', marginBottom: 6 }}>
           Mã đơn hàng: <strong style={{ color: '#1a1a1a' }}>#{completedOrder?.id}</strong>
         </Text>
-        <Text style={{ fontSize: 14, color: '#8c8c8c', display: 'block', marginBottom: bankInfo ? 16 : 28 }}>
-          Chúng tôi sẽ liên hệ xác nhận đơn trong thời gian sớm nhất.
+        <Text style={{ fontSize: 14, color: '#8c8c8c', display: 'block', marginBottom: 16 }}>
+          Chúng tôi sẽ gọi điện xác nhận đơn hàng trong thời gian sớm nhất.
         </Text>
 
-        {/* Bank transfer info */}
-        {bankInfo && (
-          <div
-            style={{
-              background: designToken.colorPrimaryBg,
-              border: `1px solid ${designToken.colorBorderSecondary}`,
-              borderRadius: 10,
-              padding: '14px 16px',
-              marginBottom: 20,
-              textAlign: 'left',
-            }}
-          >
-            <Text strong style={{ display: 'block', marginBottom: 8, color: designToken.colorPrimary, fontSize: 13 }}>
-              Thông tin chuyển khoản
-            </Text>
-            {[
-              { label: 'Ngân hàng', value: bankInfo.bank_name },
-              { label: 'Số tài khoản', value: bankInfo.account_number },
-              { label: 'Chủ tài khoản', value: bankInfo.account_name },
-              ...(bankInfo.branch ? [{ label: 'Chi nhánh', value: bankInfo.branch }] : []),
-              { label: 'Nội dung CK', value: `DH${completedOrder?.id ?? ''}` },
-            ].map((row) => (
-              <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4, gap: 8 }}>
-                <Text style={{ fontSize: 13, color: '#8c8c8c', flexShrink: 0 }}>{row.label}</Text>
-                <Text strong style={{ fontSize: 13 }}>{row.value}</Text>
-              </div>
-            ))}
+        {/* Next-step guide — khách cần biết CHÍNH XÁC điều gì xảy ra tiếp theo */}
+        <div
+          style={{
+            background: '#e8f5e9',
+            border: '1.5px solid #a5d6a7',
+            borderRadius: 10,
+            padding: '14px 16px',
+            marginBottom: 20,
+            textAlign: 'left',
+          }}
+        >
+          <Text strong style={{ fontSize: 13, color: '#1b5e20', display: 'block', marginBottom: 10 }}>
+            📋 Bước tiếp theo:
+          </Text>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+              <span style={{
+                background: '#2e7d32', color: '#fff',
+                width: 20, height: 20, borderRadius: '50%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 11, fontWeight: 700, flexShrink: 0, marginTop: 1,
+              }}>1</span>
+              <Text style={{ fontSize: 13, color: '#2e7d32' }}>
+                Nhân viên gọi đến{' '}
+                <a
+                  href={`tel:${completedOrder?.customer_phone}`}
+                  style={{ color: '#1b5e20', fontWeight: 700, textDecoration: 'underline' }}
+                >
+                  {completedOrder?.customer_phone}
+                </a>{' '}
+                để xác nhận đơn hàng
+              </Text>
+            </div>
+            <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+              <span style={{
+                background: '#2e7d32', color: '#fff',
+                width: 20, height: 20, borderRadius: '50%',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 11, fontWeight: 700, flexShrink: 0, marginTop: 1,
+              }}>2</span>
+              <Text style={{ fontSize: 13, color: '#595959' }}>
+                Giao hàng tận nơi — <strong>Trả tiền khi nhận hàng</strong>
+              </Text>
+            </div>
           </div>
-        )}
+        </div>
 
         <Space direction="vertical" size={10} style={{ width: '100%' }}>
           <Button
@@ -271,7 +282,7 @@ export default function CheckoutPage() {
                 Thông tin giao hàng
               </Title>
 
-              <Form form={form} layout="vertical" onFinish={onFinish} autoComplete="off" initialValues={{ payment_method: 'cod' }}>
+              <Form form={form} layout="vertical" onFinish={onFinish} autoComplete="on">
                 <Form.Item
                   label="Họ và tên"
                   name="customer_name"
@@ -280,7 +291,7 @@ export default function CheckoutPage() {
                     { max: 100, message: 'Tối đa 100 ký tự.' },
                   ]}
                 >
-                  <Input size="large" placeholder="VD: Nguyễn Văn A" />
+                  <Input size="large" placeholder="VD: Nguyễn Văn A" autoComplete="name" />
                 </Form.Item>
 
                 <Form.Item
@@ -291,7 +302,7 @@ export default function CheckoutPage() {
                     { pattern: /^0\d{9}$/, message: 'Số điện thoại 10 chữ số, bắt đầu bằng 0.' },
                   ]}
                 >
-                  <Input size="large" placeholder="VD: 0912 345 678" />
+                  <Input size="large" placeholder="VD: 0912 345 678" autoComplete="tel" inputMode="tel" />
                 </Form.Item>
 
                 <Form.Item
@@ -302,6 +313,7 @@ export default function CheckoutPage() {
                   <Input.TextArea
                     rows={3}
                     placeholder="Số nhà, tên đường, xã/phường, quận/huyện..."
+                    autoComplete="street-address"
                   />
                 </Form.Item>
 
@@ -312,48 +324,26 @@ export default function CheckoutPage() {
                   />
                 </Form.Item>
 
-                <Form.Item label="Phương thức thanh toán" name="payment_method">
-                  <Radio.Group style={{ width: '100%' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                      <div
-                        style={{
-                          border: `1.5px solid ${paymentMethod === 'cod' ? designToken.colorPrimary : designToken.colorBorder}`,
-                          borderRadius: 8,
-                          padding: '12px 14px',
-                          background: paymentMethod === 'cod' ? designToken.colorPrimaryBg : '#fff',
-                          transition: 'all 0.2s',
-                          cursor: 'pointer',
-                        }}
-                        onClick={() => form.setFieldValue('payment_method', 'cod')}
-                      >
-                        <Radio value="cod">
-                          <Text strong style={{ fontSize: 14 }}>Thanh toán khi nhận hàng (COD)</Text>
-                          <Text style={{ fontSize: 13, color: '#595959', display: 'block', marginTop: 2, marginLeft: 0 }}>
-                            Nhận hàng rồi mới trả tiền — an toàn, tiện lợi
-                          </Text>
-                        </Radio>
-                      </div>
-                      <div
-                        style={{
-                          border: `1.5px solid ${paymentMethod === 'chuyen_khoan' ? designToken.colorPrimary : designToken.colorBorder}`,
-                          borderRadius: 8,
-                          padding: '12px 14px',
-                          background: paymentMethod === 'chuyen_khoan' ? designToken.colorPrimaryBg : '#fff',
-                          transition: 'all 0.2s',
-                          cursor: 'pointer',
-                        }}
-                        onClick={() => form.setFieldValue('payment_method', 'chuyen_khoan')}
-                      >
-                        <Radio value="chuyen_khoan">
-                          <Text strong style={{ fontSize: 14 }}>Chuyển khoản ngân hàng</Text>
-                          <Text style={{ fontSize: 13, color: '#595959', display: 'block', marginTop: 2 }}>
-                            Thông tin tài khoản sẽ hiển thị sau khi đặt hàng
-                          </Text>
-                        </Radio>
-                      </div>
-                    </div>
-                  </Radio.Group>
-                </Form.Item>
+                <div
+                  style={{
+                    background: designToken.colorPrimaryBg,
+                    border: `1.5px solid ${designToken.colorBorderSecondary}`,
+                    borderRadius: 8,
+                    padding: '12px 14px',
+                    marginBottom: 16,
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: 10,
+                  }}
+                >
+                  <span style={{ fontSize: 20 }}>📞</span>
+                  <div>
+                    <Text strong style={{ fontSize: 14, display: 'block' }}>Thanh toán khi nhận hàng</Text>
+                    <Text style={{ fontSize: 13, color: '#595959' }}>
+                      Nhân viên sẽ gọi điện xác nhận đơn — thanh toán khi nhận hàng. An toàn, tiện lợi.
+                    </Text>
+                  </div>
+                </div>
 
                 <Form.Item style={{ marginBottom: 0 }}>
                   <Button

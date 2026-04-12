@@ -44,7 +44,7 @@ export default function StockAdjustModal({ productId, open, onClose }: Props) {
       okText="Xác nhận"
       cancelText="Hủy"
       confirmLoading={adjustStock.isPending}
-      destroyOnClose
+      destroyOnHidden
     >
       <Form form={form} layout="vertical">
         <Form.Item

@@ -92,10 +92,9 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
       title="Quản lý ảnh sản phẩm"
       open={open}
       onCancel={handleClose}
-      footer={
-        <Button onClick={handleClose}>Đóng</Button>
-      }
-      width={640}
+      footer={<Button size="large" block onClick={handleClose}>Đóng</Button>}
+      width="min(640px, 96vw)"
+      destroyOnHidden
     >
       {isLoading ? (
         <div style={{ textAlign: 'center', padding: 24 }}>
@@ -146,8 +145,14 @@ export default function ProductImageUpload({ productId, open, onClose }: Props) 
                         Đặt đại diện
                       </Button>
                     )}
-                    <Button size="small" danger block onClick={() => handleDeleteImage(img.id)}>
-                      Xóa
+                    <Button
+                      size="small"
+                      danger
+                      block
+                      onClick={() => handleDeleteImage(img.id)}
+                      style={{ opacity: 0.6, fontSize: 11 }}
+                    >
+                      Xóa ảnh
                     </Button>
                   </Space>
                 </div>
