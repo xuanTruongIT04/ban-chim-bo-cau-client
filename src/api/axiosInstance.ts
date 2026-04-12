@@ -73,8 +73,11 @@ axiosInstance.interceptors.response.use(
 
     // D-26: 401 → clear auth, redirect to admin login
     // Phase 2: Skip admin redirect when error is cart-specific (CART_TOKEN_REQUIRED, CART_NOT_FOUND)
+    // Guard: only redirect if the user actually HAD an admin token — prevents guest users
+    // calling admin endpoints (e.g. order status refresh) from being bounced to /admin/login.
     const errorCode = error.response?.data?.code;
-    if (status === 401 && !isRefreshing && errorCode !== 'CART_TOKEN_REQUIRED' && errorCode !== 'CART_NOT_FOUND') {
+    const hadAdminToken = !!useAuthStore.getState().token;
+    if (status === 401 && !isRefreshing && hadAdminToken && errorCode !== 'CART_TOKEN_REQUIRED' && errorCode !== 'CART_NOT_FOUND') {
       isRefreshing = true;
       useAuthStore.getState().clearAuth();
       // Per UI-SPEC.md copywriting contract

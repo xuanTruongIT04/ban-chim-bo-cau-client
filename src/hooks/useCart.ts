@@ -57,7 +57,7 @@ export function useAddToCart() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] });
-      message.success('Đã thêm vào giỏ hàng');
+      // Thông báo thành công do ProductCard xử lý qua SuccessModal — không toast ở đây
     },
     onError: () => {
       message.error('Không thêm được vào giỏ hàng. Vui lòng thử lại.');

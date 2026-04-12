@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Typography,
@@ -7,16 +7,14 @@ import {
   Button,
   Empty,
   Descriptions,
-  Spin,
   Modal,
   Drawer,
   Card,
   Grid,
   Divider,
 } from 'antd';
-import { ReloadOutlined, EyeOutlined, ClockCircleOutlined } from '@ant-design/icons';
+import { PhoneOutlined, EyeOutlined, ClockCircleOutlined } from '@ant-design/icons';
 import { useOrderHistoryStore } from '../../stores/orderHistoryStore';
-import { adminOrderApi } from '../../api/admin/adminOrderApi';
 import { formatVND } from '../../utils/format';
 import type { OrderResource, OrderItemResource } from '../../types/api';
 import type { ColumnsType } from 'antd/es/table';
@@ -187,46 +185,35 @@ function buildColumns(onDetail: (o: OrderResource) => void): ColumnsType<OrderRe
 /* ─── Page ───────────────────────────────────────────────────────────────────── */
 export default function MyOrdersPage() {
   const orders = useOrderHistoryStore((s) => s.orders);
-  const updateOrder = useOrderHistoryStore((s) => s.updateOrder);
   const [selectedOrder, setSelectedOrder] = useState<OrderResource | null>(null);
-  const [refreshing, setRefreshing] = useState(false);
   const screens = useBreakpoint();
   const isMobile = !screens.md;
-
-  async function refreshOrders() {
-    if (orders.length === 0) return;
-    setRefreshing(true);
-    try {
-      await Promise.allSettled(
-        orders.map((o) =>
-          adminOrderApi.getById(o.id).then((fresh) => updateOrder(fresh))
-        )
-      );
-    } finally {
-      setRefreshing(false);
-    }
-  }
-
-  useEffect(() => {
-    refreshOrders();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div style={{ maxWidth: 860, margin: '0 auto', padding: isMobile ? '16px 12px' : '28px 16px' }}>
       {/* ── Header ── */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
         <Title level={isMobile ? 3 : 2} style={{ margin: 0 }}>Đơn hàng của tôi</Title>
-        {orders.length > 0 && (
+        <a href="tel:0978238946">
           <Button
-            icon={refreshing ? <Spin size="small" /> : <ReloadOutlined />}
-            onClick={refreshOrders}
-            disabled={refreshing}
+            icon={<PhoneOutlined />}
             size={isMobile ? 'small' : 'middle'}
+            style={{ fontWeight: 600 }}
           >
-            {isMobile ? 'Làm mới' : 'Cập nhật trạng thái'}
+            {isMobile ? 'Gọi hỏi' : '0978 238 946'}
           </Button>
-        )}
+        </a>
       </div>
+      {/* Hướng dẫn check trạng thái — guest không có API để cập nhật real-time */}
+      {orders.length > 0 && (
+        <div style={{
+          background: '#e8f0fe', border: '1px solid #bbdefb',
+          borderRadius: 8, padding: '8px 14px', marginBottom: 14,
+          fontSize: 13, color: '#1565c0',
+        }}>
+          Để kiểm tra trạng thái mới nhất, vui lòng gọi <strong>0978 238 946</strong> — nhân viên sẽ cập nhật ngay.
+        </div>
+      )}
 
       {/* ── Empty state ── */}
       {orders.length === 0 ? (
@@ -250,7 +237,6 @@ export default function MyOrdersPage() {
           dataSource={orders}
           columns={buildColumns(setSelectedOrder)}
           rowKey="id"
-          loading={refreshing}
           pagination={{ pageSize: 10, hideOnSinglePage: true }}
         />
       )}
